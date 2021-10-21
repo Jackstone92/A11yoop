@@ -10,7 +10,7 @@ import A11yStatusEmitter
 import A11yStatusEmitterLive
 import A11yStatusManager
 import A11yStatusManagerLive
-import A11yFeaturesLive
+import A11yFeature
 
 extension A11yoop {
 

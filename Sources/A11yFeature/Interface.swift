@@ -1,10 +1,11 @@
 //
-//  A11yFeature.swift
+//  Interface.swift
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
 import Foundation
 import Combine
+import A11yCore
 
 public struct A11yFeature {
 

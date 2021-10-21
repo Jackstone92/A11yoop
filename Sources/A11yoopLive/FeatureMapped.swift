@@ -5,6 +5,8 @@
 
 import Foundation
 import A11yCore
+import A11yFeature
+import A11yFeatureLive
 
 struct FeatureMapped<T, U> {
     let mapped: (T) -> U

@@ -1,10 +1,11 @@
 //
-//  A11yFeature+VoiceOver.swift
+//  VoiceOver.swift
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
 import Combine
 import A11yCore
+import A11yFeature
 
 #if os(iOS) || os(tvOS)
 

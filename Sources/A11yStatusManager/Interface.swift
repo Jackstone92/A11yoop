@@ -1,11 +1,12 @@
 //
-//  A11yStatusManager.swift
+//  Interface.swift
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
 import Foundation
 import A11yCore
 import A11yStatusEmitter
+import A11yFeature
 
 public struct A11yStatusManager {
 

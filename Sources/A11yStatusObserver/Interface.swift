@@ -9,6 +9,7 @@ import A11yCore
 import A11yStatusEmitter
 import A11yStore
 import A11yStoreLive
+import A11yFeature
 
 public struct A11yStatusObserver {
 

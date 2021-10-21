@@ -12,6 +12,7 @@ import A11yStatusObserver
 import A11yStatusObserverLive
 import A11yStore
 import A11yStoreLive
+import A11yFeature
 
 extension A11yStatusManager {
 

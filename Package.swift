@@ -20,7 +20,7 @@ var package = Package(
             dependencies: ["A11yCore"]),
         .target(
             name: "A11yoopLive",
-            dependencies: ["A11yoop", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yFeaturesLive"]),
+            dependencies: ["A11yoop", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yFeatureLive"]),
         .testTarget(
             name: "A11yoopTests",
             dependencies: ["A11yoopLive"]),
@@ -40,8 +40,11 @@ package.targets.append(contentsOf: [
 // MARK: - Features
 package.targets.append(contentsOf: [
     .target(
-        name: "A11yFeaturesLive",
+        name: "A11yFeature",
         dependencies: ["A11yCore"]),
+    .target(
+        name: "A11yFeatureLive",
+        dependencies: ["A11yFeature"]),
 ])
 
 // MARK: - Clients
@@ -65,14 +68,14 @@ package.targets.append(contentsOf: [
 
     .target(
         name: "A11yStatusObserver",
-        dependencies: ["A11yCore", "A11yStatusEmitter", "A11yStoreLive"]),
+        dependencies: ["A11yCore", "A11yFeature", "A11yStatusEmitter", "A11yStoreLive"]),
     .target(
         name: "A11yStatusObserverLive",
         dependencies: ["A11yStatusObserver"]),
 
     .target(
         name: "A11yStatusManager",
-        dependencies: ["A11yCore", "A11yStatusEmitter"]),
+        dependencies: ["A11yCore", "A11yStatusEmitter", "A11yFeature"]),
     .target(
         name: "A11yStatusManagerLive",
         dependencies: ["A11yStatusManager", "A11yStatusObserverLive", "A11yStoreLive"]),
