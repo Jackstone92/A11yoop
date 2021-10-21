@@ -32,6 +32,9 @@ package.targets.append(contentsOf: [
     .target(
         name: "A11yCore",
         dependencies: []),
+    .testTarget(
+        name: "A11yCoreTests",
+        dependencies: ["A11yCore"])
 ])
 
 // MARK: - Features
