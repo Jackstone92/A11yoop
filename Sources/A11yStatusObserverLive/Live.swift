@@ -14,7 +14,7 @@ extension A11yStatusObserver {
         Self { feature, store, emitter in
             feature.observeChanges()
                 .sink { type, status in
-                    store.insert(status, type)
+                    store.update(status, type)
                     emitter.emit(status, type)
                 }
         }

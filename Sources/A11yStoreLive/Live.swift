@@ -20,10 +20,15 @@ extension FeatureStore {
                 data[$0]
             },
             insert: {
-                guard data[$1] == nil else { return }
+                assert(data[$1] == nil, "Unable to insert as value already exists for \($1)")
+                data[$1] = $0
+            },
+            update: {
+                assert(data[$1] != nil, "Value to be updated for \($1) does not exist")
                 data[$1] = $0
             },
             remove: {
+                assert(data[$0] != nil, "Value to be removed for \($0) does not exist")
                 data.removeValue(forKey: $0)
             }
         )
