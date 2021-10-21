@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import A11yCore
+import A11yFeature
 
 public struct A11yoop {
 

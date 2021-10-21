@@ -5,7 +5,6 @@
 
 import Foundation
 import Combine
-import A11yCore
 import A11yStatusEmitter
 import A11yStore
 import A11yStoreLive

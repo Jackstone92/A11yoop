@@ -4,7 +4,7 @@
 //
 
 import XCTest
-import A11yCore
+import A11yFeature
 import A11yStore
 import A11yStoreLive
 

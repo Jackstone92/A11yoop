@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import A11yCore
+import A11yFeature
 import A11yStore
 
 public typealias FeatureStore = Store<A11yFeatureType, A11yStatus>

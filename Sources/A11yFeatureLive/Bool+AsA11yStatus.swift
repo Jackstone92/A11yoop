@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import A11yFeature
 
 extension Bool {
 

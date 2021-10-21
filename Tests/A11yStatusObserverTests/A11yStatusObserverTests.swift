@@ -5,7 +5,6 @@
 
 import XCTest
 import Combine
-import A11yCore
 import A11yStatusObserver
 import A11yStatusObserverLive
 import A11yStatusEmitter

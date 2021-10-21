@@ -4,7 +4,7 @@
 //
 
 import os.log
-import A11yCore
+import A11yFeature
 import A11yStatusEmitter
 
 extension A11yStatusEmitter {

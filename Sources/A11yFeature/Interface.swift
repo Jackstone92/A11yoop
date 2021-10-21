@@ -5,7 +5,6 @@
 
 import Foundation
 import Combine
-import A11yCore
 
 public struct A11yFeature {
 

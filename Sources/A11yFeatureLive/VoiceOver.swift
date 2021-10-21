@@ -4,7 +4,6 @@
 //
 
 import Combine
-import A11yCore
 import A11yFeature
 
 #if os(iOS) || os(tvOS)

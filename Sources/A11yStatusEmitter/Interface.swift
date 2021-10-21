@@ -3,7 +3,7 @@
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
-import A11yCore
+import A11yFeature
 
 public struct A11yStatusEmitter {
 

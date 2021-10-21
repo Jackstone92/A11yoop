@@ -17,7 +17,7 @@ var package = Package(
     targets: [
         .target(
             name: "A11yoop",
-            dependencies: ["A11yCore"]),
+            dependencies: ["A11yFeature"]),
         .target(
             name: "A11yoopLive",
             dependencies: ["A11yoop", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yFeatureLive"]),
@@ -27,31 +27,24 @@ var package = Package(
     ]
 )
 
-// MARK: - Common
-package.targets.append(contentsOf: [
-    .target(
-        name: "A11yCore",
-        dependencies: []),
-    .testTarget(
-        name: "A11yCoreTests",
-        dependencies: ["A11yCore"])
-])
-
 // MARK: - Features
 package.targets.append(contentsOf: [
     .target(
         name: "A11yFeature",
-        dependencies: ["A11yCore"]),
+        dependencies: []),
     .target(
         name: "A11yFeatureLive",
         dependencies: ["A11yFeature"]),
+    .testTarget(
+        name: "A11yFeatureTests",
+        dependencies: ["A11yFeatureLive"])
 ])
 
 // MARK: - Clients
 package.targets.append(contentsOf: [
     .target(
         name: "A11yStatusEmitter",
-        dependencies: ["A11yCore"]),
+        dependencies: ["A11yFeature"]),
     .target(
         name: "A11yStatusEmitterLive",
         dependencies: ["A11yStatusEmitter"]),
@@ -61,7 +54,7 @@ package.targets.append(contentsOf: [
 
     .target(
         name: "A11yStore",
-        dependencies: ["A11yCore"]),
+        dependencies: ["A11yFeature"]),
     .target(
         name: "A11yStoreLive",
         dependencies: ["A11yStore"]),
@@ -71,7 +64,7 @@ package.targets.append(contentsOf: [
 
     .target(
         name: "A11yStatusObserver",
-        dependencies: ["A11yCore", "A11yFeature", "A11yStatusEmitter", "A11yStoreLive"]),
+        dependencies: ["A11yFeature", "A11yFeature", "A11yStatusEmitter", "A11yStoreLive"]),
     .target(
         name: "A11yStatusObserverLive",
         dependencies: ["A11yStatusObserver"]),
@@ -81,7 +74,7 @@ package.targets.append(contentsOf: [
 
     .target(
         name: "A11yStatusManager",
-        dependencies: ["A11yCore", "A11yStatusEmitter", "A11yFeature"]),
+        dependencies: ["A11yFeature", "A11yStatusEmitter", "A11yFeature"]),
     .target(
         name: "A11yStatusManagerLive",
         dependencies: ["A11yStatusManager", "A11yStatusObserverLive", "A11yStoreLive"]),

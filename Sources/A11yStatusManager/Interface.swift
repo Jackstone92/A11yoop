@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import A11yCore
 import A11yStatusEmitter
 import A11yFeature
 

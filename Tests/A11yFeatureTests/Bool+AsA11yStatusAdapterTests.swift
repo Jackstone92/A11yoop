@@ -1,12 +1,12 @@
 //
-//  A11yCore+AsA11yStatusAdapterTests.swift
+//  Bool+AsA11yStatusAdapterTests.swift
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
 import XCTest
-import A11yCore
+import A11yFeatureLive
 
-final class A11yCore_AsA11yStatusAdapterTests: XCTestCase {
+final class Bool_AsA11yStatusAdapterTests: XCTestCase {
 
     func test_asA11yStatusWhenTrue() {
 
