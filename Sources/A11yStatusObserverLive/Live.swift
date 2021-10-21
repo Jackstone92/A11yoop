@@ -5,18 +5,40 @@
 
 import Foundation
 import Combine
+import A11yCore
 import A11yStatusObserver
 import A11yStatusEmitter
+import A11yStoreLive
 
 extension A11yStatusObserver {
 
     public static var live: Self {
         Self { feature, store, emitter in
             feature.observeChanges()
-                .sink { type, status in
-                    store.update(status, type)
-                    emitter.emit(status, type)
-                }
+                .sink { onChangeObserved(for: $0, whereStatusChangedTo: $1, store: store, emitter: emitter) }
+        }
+    }
+
+    private static func onChangeObserved(
+        for type: A11yFeatureType,
+        whereStatusChangedTo status: A11yStatus,
+        store: FeatureStore,
+        emitter: A11yStatusEmitter
+    ) {
+        updateStore(with: status, for: type, using: store)
+        emitter.emit(status, type)
+    }
+
+    private static func updateStore(
+        with status: A11yStatus,
+        for type: A11yFeatureType,
+        using store: FeatureStore
+    ) {
+        do {
+            try store.update(status, type)
+
+        } catch {
+            assert(false, error.localizedDescription)
         }
     }
 }

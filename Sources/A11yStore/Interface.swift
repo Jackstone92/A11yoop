@@ -8,15 +8,15 @@ import Foundation
 public final class Store<Key: Hashable, Value> {
 
     public let get: (_ key: Key) -> Value?
-    public let insert: (_ value: Value, _ key: Key) -> Void
-    public let update: (Value, Key) -> Void
-    public let remove: (_ key: Key) -> Void
+    public let insert: (_ value: Value, _ key: Key) throws -> Void
+    public let update: (Value, Key) throws -> Void
+    public let remove: (_ key: Key) throws -> Void
 
     public init(
         get: @escaping (Key) -> Value?,
-        insert: @escaping (Value, Key) -> Void,
-        update: @escaping (Value, Key) -> Void,
-        remove: @escaping (Key) -> Void
+        insert: @escaping (Value, Key) throws -> Void,
+        update: @escaping (Value, Key) throws -> Void,
+        remove: @escaping (Key) throws -> Void
     ) {
         self.get = get
         self.insert = insert

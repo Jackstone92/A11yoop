@@ -25,7 +25,7 @@ extension A11yStatusManager {
 
         return Self(
             observeFeatures: { features, emitter in
-                features.forEach { featureStore.insert($0.status, $0.type) }
+                features.forEach { addToStore($0.status, for: $0.type, using: featureStore) }
 
                 subscribe(
                     to: features,
@@ -43,6 +43,19 @@ extension A11yStatusManager {
                 return status == .enabled
             }
         )
+    }
+
+    private static func addToStore(
+        _ status: A11yStatus,
+        for type: A11yFeatureType,
+        using store: FeatureStore
+    ) {
+        do {
+            try store.insert(status, type)
+
+        } catch {
+            assert(false, error.localizedDescription)
+        }
     }
 
     private static func subscribe(

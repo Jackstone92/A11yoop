@@ -9,6 +9,12 @@ import A11yStore
 
 public typealias FeatureStore = Store<A11yFeatureType, A11yStatus>
 
+public enum FeatureStoreError: Swift.Error, Equatable {
+    case insertError(key: A11yFeatureType)
+    case updateError(key: A11yFeatureType)
+    case removeError(key: A11yFeatureType)
+}
+
 extension FeatureStore {
 
     public static var live: Self {
@@ -20,17 +26,37 @@ extension FeatureStore {
                 data[$0]
             },
             insert: {
-                assert(data[$1] == nil, "Unable to insert as value already exists for \($1)")
+                guard data[$1] == nil else {
+                    throw FeatureStoreError.insertError(key: $1)
+                }
+
                 data[$1] = $0
             },
             update: {
-                assert(data[$1] != nil, "Value to be updated for \($1) does not exist")
+                guard data[$1] != nil else {
+                    throw FeatureStoreError.updateError(key: $1)
+                }
+
                 data[$1] = $0
             },
             remove: {
-                assert(data[$0] != nil, "Value to be removed for \($0) does not exist")
+                guard data[$0] != nil else {
+                    throw FeatureStoreError.removeError(key: $0)
+                }
+
                 data.removeValue(forKey: $0)
             }
         )
+    }
+}
+
+extension FeatureStoreError: LocalizedError {
+
+    public var errorDescription: String? {
+        switch self {
+        case .insertError(let key): return "Unable to insert as value already exists for \(key)"
+        case .updateError(let key): return "Value to be updated for \(key) does not exist"
+        case .removeError(let key): return "Value to be removed for \(key) does not exist"
+        }
     }
 }
