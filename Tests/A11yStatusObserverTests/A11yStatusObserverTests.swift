@@ -10,6 +10,8 @@ import A11yStatusObserverLive
 import A11yStatusEmitter
 import A11yStoreLive
 import A11yFeature
+import A11yStoreTestSupport
+import A11yStatusEmitterTestSupport
 
 final class A11yStatusObserverTests: XCTestCase {
 
@@ -34,7 +36,7 @@ final class A11yStatusObserverTests: XCTestCase {
             observeChanges: { Empty().eraseToAnyPublisher() }
         )
 
-        sut.observeChanges(feature, .noop, .noop)
+        sut.observeChanges(feature, .notInvoked, .notInvoked)
             .store(in: &subscriptions)
     }
 
@@ -55,7 +57,7 @@ final class A11yStatusObserverTests: XCTestCase {
             remove: { _ in XCTFail() }
         )
 
-        sut.observeChanges(feature, storeSpy, .succeeding)
+        sut.observeChanges(feature, storeSpy, .noop)
             .store(in: &subscriptions)
 
         let (status, type) = try XCTUnwrap(storeUpdateData)
@@ -72,7 +74,7 @@ final class A11yStatusObserverTests: XCTestCase {
             observeChanges: { Empty().eraseToAnyPublisher() }
         )
 
-        sut.observeChanges(feature, .noop, .noop)
+        sut.observeChanges(feature, .notInvoked, .notInvoked)
             .store(in: &subscriptions)
     }
 
@@ -88,44 +90,12 @@ final class A11yStatusObserverTests: XCTestCase {
 
         let emitterSpy = A11yStatusEmitter { emitData = ($0, $1) }
 
-        sut.observeChanges(feature, .succeeding, emitterSpy)
+        sut.observeChanges(feature, .noop, emitterSpy)
             .store(in: &subscriptions)
 
         let (status, type) = try XCTUnwrap(emitData)
 
         XCTAssertEqual(status, toStatus)
         XCTAssertEqual(type, self.type)
-    }
-}
-
-private extension FeatureStore {
-
-    static var noop: Self {
-        Self(
-            get: { _ in XCTFail(); return nil },
-            insert: { _, _ in XCTFail() },
-            update: { _, _ in XCTFail() },
-            remove: { _ in XCTFail() }
-        )
-    }
-
-    static var succeeding: Self {
-        Self(
-            get: { _ in return nil },
-            insert: { _, _ in },
-            update: { _, _ in },
-            remove: { _ in }
-        )
-    }
-}
-
-private extension A11yStatusEmitter {
-
-    static var noop: Self {
-        Self { _, _ in XCTFail() }
-    }
-
-    static var succeeding: Self {
-        Self { _, _ in }
     }
 }

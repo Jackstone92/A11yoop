@@ -48,6 +48,9 @@ package.targets.append(contentsOf: [
     .target(
         name: "A11yStatusEmitterLive",
         dependencies: ["A11yStatusEmitter"]),
+    .target(
+        name: "A11yStatusEmitterTestSupport",
+        dependencies: ["A11yStatusEmitter"]),
     .testTarget(
         name: "A11yStatusEmitterTests",
         dependencies: ["A11yStatusEmitterLive"]),
@@ -58,6 +61,9 @@ package.targets.append(contentsOf: [
     .target(
         name: "A11yStoreLive",
         dependencies: ["A11yStore"]),
+    .target(
+        name: "A11yStoreTestSupport",
+        dependencies: ["A11yStoreLive"]),
     .testTarget(
         name: "A11yStoreTests",
         dependencies: ["A11yStoreLive"]),
@@ -68,9 +74,14 @@ package.targets.append(contentsOf: [
     .target(
         name: "A11yStatusObserverLive",
         dependencies: ["A11yStatusObserver"]),
+    .target(
+        name: "A11yStatusObserverTestSupport",
+        dependencies: ["A11yStatusObserver"]),
     .testTarget(
         name: "A11yStatusObserverTests",
-        dependencies: ["A11yStatusObserverLive"]),
+        dependencies: ["A11yStatusObserverLive",
+                       "A11yStoreTestSupport",
+                       "A11yStatusEmitterTestSupport"]),
 
     .target(
         name: "A11yStatusManager",
@@ -78,4 +89,10 @@ package.targets.append(contentsOf: [
     .target(
         name: "A11yStatusManagerLive",
         dependencies: ["A11yStatusManager", "A11yStatusObserverLive", "A11yStoreLive"]),
+    .testTarget(
+        name: "A11yStatusManagerTests",
+        dependencies: ["A11yStatusManagerLive",
+                       "A11yStoreTestSupport",
+                       "A11yStatusEmitterTestSupport",
+                       "A11yStatusObserverTestSupport"]),
 ])
