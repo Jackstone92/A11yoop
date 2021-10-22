@@ -16,7 +16,7 @@ extension A11yoop {
     public static func live(
         featureTypes: [A11yFeatureType] = A11yFeatureType.allCases,
         statusManager: A11yStatusManager = .live(),
-        emitter: A11yStatusEmitter = .log
+        emitter: A11yStatusEmitter = .log()
     ) -> Self {
 
         let features = featureTypes.map(.asA11yFeature)
