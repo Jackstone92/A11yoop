@@ -4,14 +4,14 @@
 //
 
 import Foundation
-import A11yoop
+import A11yoopMonitor
 import A11yStatusEmitter
 import A11yStatusEmitterLive
 import A11yStatusManager
 import A11yStatusManagerLive
 import A11yFeature
 
-extension A11yoop {
+extension A11yoopMonitor {
 
     public static func live(
         featureTypes: [A11yFeatureType] = A11yFeatureType.allCases,

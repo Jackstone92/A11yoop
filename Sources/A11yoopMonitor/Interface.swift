@@ -6,7 +6,7 @@
 import Foundation
 import A11yFeature
 
-public struct A11yoop {
+public struct A11yoopMonitor {
 
     public let isFeatureEnabled: (_ feature: A11yFeatureType) -> Bool
 

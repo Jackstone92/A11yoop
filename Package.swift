@@ -9,21 +9,21 @@ var package = Package(
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)],
     products: [
         .library(
-            name: "A11yoop",
-            targets: ["A11yoop"]),
+            name: "A11yoopMonitor",
+            targets: ["A11yoopMonitor"]),
     ],
     dependencies: [
     ],
     targets: [
         .target(
-            name: "A11yoop",
+            name: "A11yoopMonitor",
             dependencies: ["A11yFeature"]),
         .target(
-            name: "A11yoopLive",
-            dependencies: ["A11yoop", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yFeatureLive"]),
+            name: "A11yoopMonitorLive",
+            dependencies: ["A11yoopMonitor", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yFeatureLive"]),
         .testTarget(
-            name: "A11yoopTests",
-            dependencies: ["A11yoopLive"]),
+            name: "A11yoopMonitorTests",
+            dependencies: ["A11yoopMonitorLive"]),
     ]
 )
 
