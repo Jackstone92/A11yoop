@@ -9,13 +9,17 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// The screen reader available on Apple platforms.
     case voiceOver
+
+    /// Increases legibility by making fonts heavier.
+    case boldText
 }
 
 extension A11yFeatureType: CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case .voiceOver: return "VoiceOver"
+        case .voiceOver:    return "VoiceOver"
+        case .boldText:     return "Bold Text"
         }
     }
 }
