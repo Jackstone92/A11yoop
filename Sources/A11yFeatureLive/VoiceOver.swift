@@ -51,23 +51,23 @@ extension A11yFeature {
 
         #if os(iOS) || os(tvOS)
 
-        return NotificationCenter.default
-            .publisher(for: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
-            .map { _ in (.voiceOver, isEnabled.asA11yStatus) }
-            .eraseToAnyPublisher()
+            return NotificationCenter.default
+                .publisher(for: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
+                .map { _ in (type, status) }
+                .eraseToAnyPublisher()
 
         #elseif os(OSX)
 
-        return NSWorkspace.shared.publisher(for: \.isVoiceOverEnabled)
-            .map { (.voiceOver, $0.asA11yStatus) }
-            .eraseToAnyPublisher()
+            return NSWorkspace.shared.publisher(for: \.isVoiceOverEnabled)
+                .map { _ in (type, status) }
+                .eraseToAnyPublisher()
 
         #elseif os(watchOS)
 
-        return NotificationCenter.default
-            .publisher(for: NSNotification.Name(rawValue: WKAccessibilityVoiceOverStatusChanged), object: nil)
-            .map { _ in (.voiceOver, isEnabled.asA11yStatus) }
-            .eraseToAnyPublisher()
+            return NotificationCenter.default
+                .publisher(for: NSNotification.Name(rawValue: WKAccessibilityVoiceOverStatusChanged), object: nil)
+                .map { _ in (type, status) }
+                .eraseToAnyPublisher()
 
         #endif
     }
