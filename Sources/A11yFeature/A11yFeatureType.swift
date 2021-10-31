@@ -15,6 +15,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Increases legibility by making fonts bigger.
     case largerText
+
+    /// Allows users with limited mobility to control their device with the help of ability switches and other adaptive devices.
+    case switchControl
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -24,6 +27,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .voiceOver:    return "VoiceOver"
         case .boldText:     return "Bold Text"
         case .largerText:   return "Larger Text"
+        case .switchControl: return "Switch Control"
         }
     }
 }
