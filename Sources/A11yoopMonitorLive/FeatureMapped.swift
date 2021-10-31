@@ -18,6 +18,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             switch featureType {
             case .voiceOver: return .voiceOver
             case .boldText:  return .boldText
+            case .largerText: return .largerText
             }
         }
     }

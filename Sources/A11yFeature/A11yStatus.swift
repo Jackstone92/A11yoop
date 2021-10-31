@@ -8,6 +8,7 @@ import Foundation
 public enum A11yStatus: Equatable {
     case enabled
     case disabled
+    case contentSize(ContentSize)
 }
 
 extension A11yStatus: CustomStringConvertible {
@@ -16,6 +17,7 @@ extension A11yStatus: CustomStringConvertible {
         switch self {
         case .enabled:  return "Enabled"
         case .disabled: return "Disabled"
+        case .contentSize(let size): return size.description
         }
     }
 }

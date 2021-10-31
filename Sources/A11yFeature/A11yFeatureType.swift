@@ -12,6 +12,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Increases legibility by making fonts heavier.
     case boldText
+
+    /// Increases legibility by making fonts bigger.
+    case largerText
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -20,6 +23,7 @@ extension A11yFeatureType: CustomStringConvertible {
         switch self {
         case .voiceOver:    return "VoiceOver"
         case .boldText:     return "Bold Text"
+        case .largerText:   return "Larger Text"
         }
     }
 }
