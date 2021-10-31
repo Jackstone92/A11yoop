@@ -24,6 +24,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Helps people with low vision, colour blindness, or sensitivity to brightness to read the display content.
     case invertColors
+
+    /// Increases contrast.
+    case increaseContrast
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -36,6 +39,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .switchControl: return "Switch Control"
         case .greyscale: return "Greyscale"
         case .invertColors: return "Invert Colours"
+        case .increaseContrast: return "Increase Contrast"
         }
     }
 }
