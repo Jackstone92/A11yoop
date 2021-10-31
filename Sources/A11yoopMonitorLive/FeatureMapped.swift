@@ -20,6 +20,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .boldText:  return .boldText
             case .largerText: return .largerText
             case .switchControl: return .switchControl
+            case .greyscale: return .greyscale
             }
         }
     }

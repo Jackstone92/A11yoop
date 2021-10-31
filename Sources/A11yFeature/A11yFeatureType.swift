@@ -18,6 +18,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Allows users with limited mobility to control their device with the help of ability switches and other adaptive devices.
     case switchControl
+
+    /// Makes the display more readable for colour blind people by using grey tones instead of colours.
+    case greyscale
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -28,6 +31,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .boldText:     return "Bold Text"
         case .largerText:   return "Larger Text"
         case .switchControl: return "Switch Control"
+        case .greyscale: return "Greyscale"
         }
     }
 }
