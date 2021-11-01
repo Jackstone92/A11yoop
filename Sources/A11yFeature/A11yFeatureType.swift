@@ -66,6 +66,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Keeps people in a single app and allows them to control which features are available.
     case guidedAccess
+
+    /// Reduces the motion of user interface controls that slide in when appearing and disappearing.
+    case preferCrossFadeTransitions
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -92,6 +95,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .speakSelection: return "Speak Selection"
         case .hearingDevicePairedEar: return "Hearing Device Paired Ear"
         case .guidedAccess: return "Guided Access"
+        case .preferCrossFadeTransitions: return "Prefer Cross-Fade Transitions"
         }
     }
 }

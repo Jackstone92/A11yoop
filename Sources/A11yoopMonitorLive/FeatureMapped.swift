@@ -36,6 +36,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .speakSelection: return .speakSelection
             case .hearingDevicePairedEar: return .hearingDevicePairedEar
             case .guidedAccess: return .guidedAccess
+            case .preferCrossFadeTransitions: return .preferCrossFadeTransitions
             }
         }
     }
