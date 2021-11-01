@@ -24,6 +24,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .invertColors: return .invertColours
             case .increaseContrast: return .increaseContrast
             case .onOffLabels: return .onOffLabels
+            case .reduceTransparency: return .reduceTransparency
             }
         }
     }

@@ -30,6 +30,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Displays on/off labels for UISwitch controls.
     case onOffLabels
+
+    /// Removes transparency from layers to make them readable for users with visual impairments.
+    case reduceTransparency
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -44,6 +47,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .invertColors: return "Invert Colours"
         case .increaseContrast: return "Increase Contrast"
         case .onOffLabels: return "On/Off Labels"
+        case .reduceTransparency: return "Reduce Transparency"
         }
     }
 }
