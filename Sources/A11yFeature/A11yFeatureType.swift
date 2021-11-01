@@ -51,6 +51,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Enhances text contrast.
     case darkerSystemColours
+
+    /// Creates outlines around interface elements that can be tapped.
+    case buttonShapes
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -72,6 +75,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .shakeToUndo: return "Shake to Undo"
         case .fullKeyboardAccess: return "Full Keyboard Access"
         case .darkerSystemColours: return "Darker System Colours"
+        case .buttonShapes: return "Button Shapes"
         }
     }
 }
