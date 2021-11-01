@@ -45,6 +45,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Undos the last command by shaking the phone.
     case shakeToUndo
+
+    /// Enables people to control their devices using an external keyboard.
+    case fullKeyboardAccess
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -64,6 +67,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .differentiateWithoutColour: return "Differentiate Without Colour"
         case .assistiveTouch: return "Assistive Touch"
         case .shakeToUndo: return "Shake to Undo"
+        case .fullKeyboardAccess: return "Full Keyboard Access"
         }
     }
 }

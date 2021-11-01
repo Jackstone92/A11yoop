@@ -29,6 +29,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .differentiateWithoutColour: return .differentiateWithoutColour
             case .assistiveTouch: return .assistiveTouch
             case .shakeToUndo: return .shakeToUndo
+            case .fullKeyboardAccess: return .fullKeyboardAccess
             }
         }
     }
