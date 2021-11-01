@@ -54,6 +54,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Creates outlines around interface elements that can be tapped.
     case buttonShapes
+
+    /// Reads out the content of the current screen.
+    case speakScreen
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -76,6 +79,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .fullKeyboardAccess: return "Full Keyboard Access"
         case .darkerSystemColours: return "Darker System Colours"
         case .buttonShapes: return "Button Shapes"
+        case .speakScreen: return "Speak Screen"
         }
     }
 }
