@@ -48,6 +48,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Enables people to control their devices using an external keyboard.
     case fullKeyboardAccess
+
+    /// Enhances text contrast.
+    case darkerSystemColours
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -68,6 +71,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .assistiveTouch: return "Assistive Touch"
         case .shakeToUndo: return "Shake to Undo"
         case .fullKeyboardAccess: return "Full Keyboard Access"
+        case .darkerSystemColours: return "Darker System Colours"
         }
     }
 }
