@@ -27,6 +27,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .reduceTransparency: return .reduceTransparency
             case .reduceMotion: return .reduceMotion
             case .differentiateWithoutColour: return .differentiateWithoutColour
+            case .assistiveTouch: return .assistiveTouch
             }
         }
     }

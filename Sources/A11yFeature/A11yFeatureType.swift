@@ -39,6 +39,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Helps colour blind users to differentiate settings differently.
     case differentiateWithoutColour
+
+    /// Helps people with motor skill impairments perform certain actions or gestures by using a single tap.
+    case assistiveTouch
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -56,6 +59,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .reduceTransparency: return "Reduce Transparency"
         case .reduceMotion: return "Reduce Motion"
         case .differentiateWithoutColour: return "Differentiate Without Colour"
+        case .assistiveTouch: return "Assistive Touch"
         }
     }
 }
