@@ -63,6 +63,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Pairing status of a hearing aid.
     case hearingDevicePairedEar
+
+    /// Keeps people in a single app and allows them to control which features are available.
+    case guidedAccess
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -88,6 +91,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .speakScreen: return "Speak Screen"
         case .speakSelection: return "Speak Selection"
         case .hearingDevicePairedEar: return "Hearing Device Paired Ear"
+        case .guidedAccess: return "Guided Access"
         }
     }
 }
