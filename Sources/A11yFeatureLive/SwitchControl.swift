@@ -44,7 +44,7 @@ extension A11yFeature {
         #endif
     }
 
-    private static var status: A11yStatus { isEnabled.asA11yStatus }
+    private static var status: A11yStatus { isEnabled.asA11yStatus() }
 
     private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
 

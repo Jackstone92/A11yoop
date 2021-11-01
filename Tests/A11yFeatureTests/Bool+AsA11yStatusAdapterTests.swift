@@ -12,13 +12,13 @@ final class Bool_AsA11yStatusAdapterTests: XCTestCase {
 
         let value = true
 
-        XCTAssertEqual(value.asA11yStatus, .enabled)
+        XCTAssertEqual(value.asA11yStatus(), .enabled)
     }
 
     func test_asA11yStatusWhenFalse() {
 
         let value = false
 
-        XCTAssertEqual(value.asA11yStatus, .disabled)
+        XCTAssertEqual(value.asA11yStatus(), .disabled)
     }
 }

@@ -8,7 +8,7 @@ import A11yFeature
 
 extension Bool {
 
-    public var asA11yStatus: A11yStatus {
+    public func asA11yStatus() -> A11yStatus {
         switch self {
         case true:  return .enabled
         case false: return .disabled
