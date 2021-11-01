@@ -42,6 +42,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Helps people with motor skill impairments perform certain actions or gestures by using a single tap.
     case assistiveTouch
+
+    /// Undos the last command by shaking the phone.
+    case shakeToUndo
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -60,6 +63,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .reduceMotion: return "Reduce Motion"
         case .differentiateWithoutColour: return "Differentiate Without Colour"
         case .assistiveTouch: return "Assistive Touch"
+        case .shakeToUndo: return "Shake to Undo"
         }
     }
 }
