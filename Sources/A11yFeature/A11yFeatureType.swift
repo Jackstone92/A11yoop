@@ -33,6 +33,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Removes transparency from layers to make them readable for users with visual impairments.
     case reduceTransparency
+
+    /// Reduces animations to help users with motion sickness and epilepsy issues.
+    case reduceMotion
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -48,6 +51,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .increaseContrast: return "Increase Contrast"
         case .onOffLabels: return "On/Off Labels"
         case .reduceTransparency: return "Reduce Transparency"
+        case .reduceMotion: return "Reduce Motion"
         }
     }
 }

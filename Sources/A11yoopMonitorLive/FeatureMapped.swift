@@ -25,6 +25,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .increaseContrast: return .increaseContrast
             case .onOffLabels: return .onOffLabels
             case .reduceTransparency: return .reduceTransparency
+            case .reduceMotion: return .reduceMotion
             }
         }
     }
