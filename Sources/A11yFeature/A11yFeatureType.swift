@@ -36,6 +36,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Reduces animations to help users with motion sickness and epilepsy issues.
     case reduceMotion
+
+    /// Helps colour blind users to differentiate settings differently.
+    case differentiateWithoutColour
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -52,6 +55,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .onOffLabels: return "On/Off Labels"
         case .reduceTransparency: return "Reduce Transparency"
         case .reduceMotion: return "Reduce Motion"
+        case .differentiateWithoutColour: return "Differentiate Without Colour"
         }
     }
 }
