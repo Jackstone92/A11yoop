@@ -57,6 +57,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Reads out the content of the current screen.
     case speakScreen
+
+    /// Reads out selected content.
+    case speakSelection
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -80,6 +83,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .darkerSystemColours: return "Darker System Colours"
         case .buttonShapes: return "Button Shapes"
         case .speakScreen: return "Speak Screen"
+        case .speakSelection: return "Speak Selection"
         }
     }
 }

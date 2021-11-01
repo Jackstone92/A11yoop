@@ -33,6 +33,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .darkerSystemColours: return .darkerSystemColours
             case .buttonShapes: return .buttonShapes
             case .speakScreen: return .speakScreen
+            case .speakSelection: return .speakSelection
             }
         }
     }
