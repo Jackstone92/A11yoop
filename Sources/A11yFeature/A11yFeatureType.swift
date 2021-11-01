@@ -27,6 +27,9 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Increases contrast.
     case increaseContrast
+
+    /// Displays on/off labels for UISwitch controls.
+    case onOffLabels
 }
 
 extension A11yFeatureType: CustomStringConvertible {
@@ -40,6 +43,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .greyscale: return "Greyscale"
         case .invertColors: return "Invert Colours"
         case .increaseContrast: return "Increase Contrast"
+        case .onOffLabels: return "On/Off Labels"
         }
     }
 }

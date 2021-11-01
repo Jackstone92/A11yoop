@@ -23,6 +23,7 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .greyscale: return .greyscale
             case .invertColors: return .invertColours
             case .increaseContrast: return .increaseContrast
+            case .onOffLabels: return .onOffLabels
             }
         }
     }
