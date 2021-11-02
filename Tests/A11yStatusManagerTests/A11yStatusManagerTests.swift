@@ -42,7 +42,7 @@ final class A11yStatusManagerTests: XCTestCase {
             get: { _ in XCTFail(); return nil },
             insert: { addedFeatureData.append(($0, $1)) },
             update: { _, _ in XCTFail() },
-            remove: { _ in XCTFail() }
+            remove: { _ in XCTFail(); return nil }
         )
 
         sut = .live(observer: .noop, featureStore: storeSpy)
@@ -78,20 +78,20 @@ final class A11yStatusManagerTests: XCTestCase {
     }
 
     // MARK: - isFeatureEnabled tests
-    func test_isFeatureEnabledWhenFeatureEnabled() throws {
+    func test_isFeatureEnabledWhenFeatureEnabled() {
 
         let store: FeatureStore = .live
-        try store.insert(.enabled, .voiceOver)
+        store.insert(.enabled, .voiceOver)
 
         sut = .live(observer: .noop, featureStore: store)
 
         XCTAssertTrue(sut.isFeatureEnabled(.voiceOver))
     }
 
-    func test_isFeatureEnabledWhenFeatureDisabled() throws {
+    func test_isFeatureEnabledWhenFeatureDisabled() {
 
         let store: FeatureStore = .live
-        try store.insert(.disabled, .voiceOver)
+        store.insert(.disabled, .voiceOver)
 
         sut = .live(observer: .noop, featureStore: store)
 

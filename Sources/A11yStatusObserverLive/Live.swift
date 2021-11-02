@@ -34,11 +34,6 @@ extension A11yStatusObserver {
         for type: A11yFeatureType,
         using store: FeatureStore
     ) {
-        do {
-            try store.update(status, type)
-
-        } catch {
-            assert(false, error.localizedDescription)
-        }
+        store.update(status, type)
     }
 }

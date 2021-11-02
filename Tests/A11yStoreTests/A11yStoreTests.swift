@@ -18,12 +18,12 @@ final class A11yStoreTests: XCTestCase {
     }
 
     // MARK: - get tests
-    func test_getWhenExists() throws {
+    func test_getWhenExists() {
 
         let type: A11yFeatureType = .voiceOver
         let status: A11yStatus = .disabled
 
-        try sut.insert(status, type)
+        sut.insert(status, type)
 
         let value = sut.get(type)
 
@@ -36,65 +36,44 @@ final class A11yStoreTests: XCTestCase {
     }
 
     // MARK: - insert tests
-    func test_insert() throws {
+    func test_insert() {
 
         let type: A11yFeatureType = .voiceOver
         let status: A11yStatus = .disabled
 
-        try sut.insert(status, type)
+        sut.insert(status, type)
 
         let value = sut.get(type)
 
         XCTAssertEqual(value, status)
-    }
-
-    func test_cannotInsertIfValueAlreadyExistsForKey() throws {
-
-        let type: A11yFeatureType = .voiceOver
-        let status: A11yStatus = .disabled
-
-        try sut.insert(status, type)
-
-        let value = sut.get(type)
-
-        XCTAssertEqual(value, status)
-
-        XCTAssertThrowsError(try sut.insert(.enabled, type))
     }
 
     // MARK: - update tests
-    func test_update() throws {
+    func test_update() {
 
-        try sut.insert(.enabled, .voiceOver)
+        sut.insert(.enabled, .voiceOver)
 
         XCTAssertEqual(sut.get(.voiceOver), .enabled)
 
-        try sut.update(.disabled, .voiceOver)
+        sut.update(.disabled, .voiceOver)
 
         XCTAssertEqual(sut.get(.voiceOver), .disabled)
-    }
-
-    func test_cannotUpdateIfValueDoesNotAlreadyExistForKey() {
-
-        XCTAssertNil(sut.get(.voiceOver))
-
-        XCTAssertThrowsError(try sut.update(.enabled, .voiceOver))
     }
 
     // MARK: - remove tests
     func test_remove() throws {
 
-        try sut.insert(.enabled, .voiceOver)
+        sut.insert(.enabled, .voiceOver)
 
         XCTAssertEqual(sut.get(.voiceOver), .enabled)
 
-        try sut.remove(.voiceOver)
+        XCTAssertNotNil(sut.remove(.voiceOver))
 
         XCTAssertNil(sut.get(.voiceOver))
     }
 
     func test_cannotRemoveWhenValueDoesNotExist() {
 
-        XCTAssertThrowsError(try sut.remove(.voiceOver))
+        XCTAssertNil(sut.remove(.voiceOver))
     }
 }

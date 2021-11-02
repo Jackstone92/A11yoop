@@ -49,12 +49,7 @@ extension A11yStatusManager {
         for type: A11yFeatureType,
         using store: FeatureStore
     ) {
-        do {
-            try store.insert(status, type)
-
-        } catch {
-            assert(false, error.localizedDescription)
-        }
+        store.insert(status, type)
     }
 
     private static func subscribe(

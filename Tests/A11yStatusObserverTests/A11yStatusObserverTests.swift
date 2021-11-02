@@ -54,7 +54,7 @@ final class A11yStatusObserverTests: XCTestCase {
             get: { _ in XCTFail(); return nil },
             insert: { _, _ in XCTFail() },
             update: { storeUpdateData = ($0, $1) },
-            remove: { _ in XCTFail() }
+            remove: { _ in XCTFail(); return nil }
         )
 
         sut.observeChanges(feature, storeSpy, .noop)
