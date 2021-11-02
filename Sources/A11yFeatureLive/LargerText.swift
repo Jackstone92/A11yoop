@@ -5,20 +5,7 @@
 
 import Combine
 import A11yFeature
-
-#if os(iOS) || os(tvOS)
-
-    import UIKit
-
-#elseif os(watchOS)
-
-    import WatchKit
-
-#else
-
-    import Foundation
-
-#endif
+import UIKit
 
 extension A11yFeature {
 
@@ -29,39 +16,16 @@ extension A11yFeature {
     }
 
     private static var status: A11yStatus {
+        let contentSize = UIScreen.main.traitCollection.preferredContentSizeCategory.asContentSize()
 
-        #if os(iOS) || os(tvOS)
-
-            let contentSize = UIScreen.main.traitCollection.preferredContentSizeCategory.asContentSize()
-
-            return .contentSize(contentSize)
-
-        #elseif os(watchOS)
-
-            let contentSize = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body).pointSize.asContentSize()
-
-            return .contentSize(contentSize)
-
-        #else
-
-            return .contentSize(.unknown)
-
-        #endif
+        return .contentSize(contentSize)
     }
 
     private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
-
-        #if os(iOS) || os(tvOS)
-
-            NotificationCenter.default.publisher(for: UIContentSizeCategory.didChangeNotification)
-                .map { _ in (type, status) }
-                .eraseToAnyPublisher()
-
-        #else
-
-            return Empty().eraseToAnyPublisher()
-
-        #endif
+        NotificationCenter.default
+            .publisher(for: UIContentSizeCategory.didChangeNotification)
+            .map { _ in (type, status) }
+            .eraseToAnyPublisher()
     }
 }
 

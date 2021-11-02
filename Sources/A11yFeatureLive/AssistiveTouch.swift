@@ -5,16 +5,7 @@
 
 import Combine
 import A11yFeature
-
-#if os(iOS) || os(tvOS) || os(watchOS)
-
-    import UIKit
-
-#else
-
-    import Foundation
-
-#endif
+import UIKit
 
 extension A11yFeature {
 
@@ -25,32 +16,15 @@ extension A11yFeature {
     }
 
     private static var isEnabled: Bool {
-        #if os(iOS) || os(tvOS)
-
-            return UIAccessibility.isAssistiveTouchRunning
-
-        #else
-
-            return false
-
-        #endif
+        UIAccessibility.isAssistiveTouchRunning
     }
 
     private static var status: A11yStatus { isEnabled.asA11yStatus() }
 
     private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
-
-        #if os(iOS) || os(tvOS)
-
-            return NotificationCenter.default
-                .publisher(for: UIAccessibility.assistiveTouchStatusDidChangeNotification)
-                .map { _ in (type, status) }
-                .eraseToAnyPublisher()
-
-        #else
-
-            return Empty().eraseToAnyPublisher()
-
-        #endif
+        NotificationCenter.default
+            .publisher(for: UIAccessibility.assistiveTouchStatusDidChangeNotification)
+            .map { _ in (type, status) }
+            .eraseToAnyPublisher()
     }
 }

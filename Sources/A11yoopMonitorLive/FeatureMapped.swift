@@ -22,14 +22,12 @@ extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
             case .switchControl: return .switchControl
             case .greyscale: return .greyscale
             case .invertColors: return .invertColours
-            case .increaseContrast: return .increaseContrast
             case .onOffLabels: return .onOffLabels
             case .reduceTransparency: return .reduceTransparency
             case .reduceMotion: return .reduceMotion
             case .differentiateWithoutColour: return .differentiateWithoutColour
             case .assistiveTouch: return .assistiveTouch
             case .shakeToUndo: return .shakeToUndo
-            case .fullKeyboardAccess: return .fullKeyboardAccess
             case .darkerSystemColours: return .darkerSystemColours
             case .buttonShapes: return .buttonShapes
             case .speakScreen: return .speakScreen

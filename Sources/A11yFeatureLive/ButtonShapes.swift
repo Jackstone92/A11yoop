@@ -5,16 +5,7 @@
 
 import Combine
 import A11yFeature
-
-#if os(iOS) || os(tvOS)
-
-    import UIKit
-
-#else
-
-    import Foundation
-
-#endif
+import UIKit
 
 extension A11yFeature {
 
@@ -25,35 +16,18 @@ extension A11yFeature {
     }
 
     private static var isEnabled: Bool {
-        #if os(iOS) || os(tvOS)
-
         guard #available(iOS 14.0, *) else { return false }
         return UIAccessibility.buttonShapesEnabled
-
-        #else
-
-            return false
-
-        #endif
     }
 
     private static var status: A11yStatus { isEnabled.asA11yStatus() }
 
     private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
+        guard #available(iOS 14.0, *) else { return Empty().eraseToAnyPublisher() }
 
-        #if os(iOS) || os(tvOS)
-
-            guard #available(iOS 14.0, *) else { return Empty().eraseToAnyPublisher() }
-
-            return NotificationCenter.default
-                .publisher(for: UIAccessibility.buttonShapesEnabledStatusDidChangeNotification)
-                .map { _ in (type, status) }
-                .eraseToAnyPublisher()
-
-        #else
-
-            return Empty().eraseToAnyPublisher()
-
-        #endif
+        return NotificationCenter.default
+            .publisher(for: UIAccessibility.buttonShapesEnabledStatusDidChangeNotification)
+            .map { _ in (type, status) }
+            .eraseToAnyPublisher()
     }
 }

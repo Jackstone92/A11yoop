@@ -25,9 +25,6 @@ public enum A11yFeatureType: Hashable, CaseIterable {
     /// Helps people with low vision, colour blindness, or sensitivity to brightness to read the display content.
     case invertColors
 
-    /// Increases contrast.
-    case increaseContrast
-
     /// Displays on/off labels for UISwitch controls.
     case onOffLabels
 
@@ -45,9 +42,6 @@ public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// Undos the last command by shaking the phone.
     case shakeToUndo
-
-    /// Enables people to control their devices using an external keyboard.
-    case fullKeyboardAccess
 
     /// Enhances text contrast.
     case darkerSystemColours
@@ -81,14 +75,12 @@ extension A11yFeatureType: CustomStringConvertible {
         case .switchControl: return "Switch Control"
         case .greyscale: return "Greyscale"
         case .invertColors: return "Invert Colours"
-        case .increaseContrast: return "Increase Contrast"
         case .onOffLabels: return "On/Off Labels"
         case .reduceTransparency: return "Reduce Transparency"
         case .reduceMotion: return "Reduce Motion"
         case .differentiateWithoutColour: return "Differentiate Without Colour"
         case .assistiveTouch: return "Assistive Touch"
         case .shakeToUndo: return "Shake to Undo"
-        case .fullKeyboardAccess: return "Full Keyboard Access"
         case .darkerSystemColours: return "Darker System Colours"
         case .buttonShapes: return "Button Shapes"
         case .speakScreen: return "Speak Screen"

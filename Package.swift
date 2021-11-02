@@ -6,7 +6,7 @@ import PackageDescription
 // MARK: - Main
 var package = Package(
     name: "A11yoop",
-    platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)],
+    platforms: [.iOS(.v13)],
     products: [
         .library(
             name: "A11yoopMonitor",
