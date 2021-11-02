@@ -25,9 +25,11 @@ extension A11yFeature {
     private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
         guard #available(iOS 14.0, *) else { return Empty().eraseToAnyPublisher() }
 
-        return NotificationCenter.default
-            .publisher(for: UIAccessibility.buttonShapesEnabledStatusDidChangeNotification)
-            .map { _ in (type, status) }
-            .eraseToAnyPublisher()
+        return SubscriptionFactory.make(
+            with: .default,
+            notificationName: UIAccessibility.buttonShapesEnabledStatusDidChangeNotification,
+            type: type,
+            status: status
+        )
     }
 }

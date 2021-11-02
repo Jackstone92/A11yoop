@@ -26,9 +26,11 @@ extension A11yFeature {
     private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
         guard #available(iOS 14.0, tvOS 14.0, *) else { return Empty().eraseToAnyPublisher() }
 
-        return NotificationCenter.default
-            .publisher(for: UIAccessibility.prefersCrossFadeTransitionsStatusDidChange)
-            .map { _ in (type, status) }
-            .eraseToAnyPublisher()
+        return SubscriptionFactory.make(
+            with: .default,
+            notificationName: UIAccessibility.prefersCrossFadeTransitionsStatusDidChange,
+            type: type,
+            status: status
+        )
     }
 }

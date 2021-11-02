@@ -22,9 +22,11 @@ extension A11yFeature {
     private static var status: A11yStatus { isEnabled.asA11yStatus() }
 
     private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
-        NotificationCenter.default
-            .publisher(for: UIAccessibility.hearingDevicePairedEarDidChangeNotification)
-            .map { _ in (type, status) }
-            .eraseToAnyPublisher()
+        SubscriptionFactory.make(
+            with: .default,
+            notificationName: UIAccessibility.hearingDevicePairedEarDidChangeNotification,
+            type: type,
+            status: status
+        )
     }
 }

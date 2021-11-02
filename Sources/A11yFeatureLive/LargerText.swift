@@ -22,10 +22,12 @@ extension A11yFeature {
     }
 
     private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
-        NotificationCenter.default
-            .publisher(for: UIContentSizeCategory.didChangeNotification)
-            .map { _ in (type, status) }
-            .eraseToAnyPublisher()
+        SubscriptionFactory.make(
+            with: .default,
+            notificationName: UIContentSizeCategory.didChangeNotification,
+            type: type,
+            status: status
+        )
     }
 }
 
