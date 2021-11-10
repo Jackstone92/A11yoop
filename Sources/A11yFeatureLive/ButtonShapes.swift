@@ -26,7 +26,7 @@ extension A11yFeature {
         guard #available(iOS 14.0, *) else { return Empty().eraseToAnyPublisher() }
 
         return SubscriptionFactory.make(
-            with: .default,
+            with: Self.notificationCenter,
             notificationName: UIAccessibility.buttonShapesEnabledStatusDidChangeNotification,
             type: type,
             status: status

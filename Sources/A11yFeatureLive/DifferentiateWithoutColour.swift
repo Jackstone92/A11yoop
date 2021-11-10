@@ -23,7 +23,7 @@ extension A11yFeature {
 
     private static func observeChanges() -> A11yFeature.ObservationResult {
         SubscriptionFactory.make(
-            with: .default,
+            with: Self.notificationCenter,
             notificationName: UIAccessibility.differentiateWithoutColorDidChangeNotification,
             type: type,
             status: status

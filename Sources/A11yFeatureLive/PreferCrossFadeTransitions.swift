@@ -27,7 +27,7 @@ extension A11yFeature {
         guard #available(iOS 14.0, tvOS 14.0, *) else { return Empty().eraseToAnyPublisher() }
 
         return SubscriptionFactory.make(
-            with: .default,
+            with: Self.notificationCenter,
             notificationName: UIAccessibility.prefersCrossFadeTransitionsStatusDidChange,
             type: type,
             status: status

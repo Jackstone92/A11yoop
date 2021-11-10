@@ -23,7 +23,7 @@ extension A11yFeature {
 
     private static func observeChanges() -> ObservationResult {
         SubscriptionFactory.make(
-            with: .default,
+            with: Self.notificationCenter,
             notificationName: UIAccessibility.assistiveTouchStatusDidChangeNotification,
             type: type,
             status: status
