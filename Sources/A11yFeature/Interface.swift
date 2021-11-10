@@ -8,14 +8,16 @@ import Combine
 
 public struct A11yFeature {
 
+    public typealias ObservationResult = AnyPublisher<A11yFeatureObservation, Never>
+
     public let type: A11yFeatureType
     public var status: A11yStatus
-    public let observeChanges: () -> AnyPublisher<(A11yFeatureType, A11yStatus), Never>
+    public let observeChanges: () -> ObservationResult
 
     public init(
         type: A11yFeatureType,
         status: A11yStatus,
-        observeChanges: @escaping () -> AnyPublisher<(A11yFeatureType, A11yStatus), Never>
+        observeChanges: @escaping () -> ObservationResult
     ) {
         self.type = type
         self.status = status

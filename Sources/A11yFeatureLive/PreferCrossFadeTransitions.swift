@@ -23,7 +23,7 @@ extension A11yFeature {
 
     private static var status: A11yStatus { isEnabled.asA11yStatus() }
 
-    private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
+    private static func observeChanges() -> A11yFeature.ObservationResult {
         guard #available(iOS 14.0, tvOS 14.0, *) else { return Empty().eraseToAnyPublisher() }
 
         return SubscriptionFactory.make(

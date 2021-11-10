@@ -15,7 +15,7 @@ extension A11yStatusObserver {
     public static var live: Self {
         Self { feature, store, emitter in
             feature.observeChanges()
-                .sink { onChangeObserved(for: $0, whereStatusChangedTo: $1, store: store, emitter: emitter) }
+                .sink { onChangeObserved(for: $0.type, whereStatusChangedTo: $0.status, store: store, emitter: emitter) }
         }
     }
 

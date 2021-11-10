@@ -65,13 +65,14 @@ public enum A11yFeatureType: Hashable, CaseIterable {
     case preferCrossFadeTransitions
 }
 
+// MARK: - CustomStringConvertible conformance
 extension A11yFeatureType: CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case .voiceOver:    return "VoiceOver"
-        case .boldText:     return "Bold Text"
-        case .largerText:   return "Larger Text"
+        case .voiceOver: return "VoiceOver"
+        case .boldText: return "Bold Text"
+        case .largerText: return "Larger Text"
         case .switchControl: return "Switch Control"
         case .greyscale: return "Greyscale"
         case .invertColors: return "Invert Colours"

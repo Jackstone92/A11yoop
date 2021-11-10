@@ -21,7 +21,7 @@ extension A11yFeature {
         return .contentSize(contentSize)
     }
 
-    private static func observeChanges() -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
+    private static func observeChanges() -> A11yFeature.ObservationResult {
         SubscriptionFactory.make(
             with: .default,
             notificationName: UIContentSizeCategory.didChangeNotification,

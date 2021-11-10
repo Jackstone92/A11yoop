@@ -14,11 +14,11 @@ struct SubscriptionFactory {
         notificationName: NSNotification.Name,
         type: A11yFeatureType,
         status: A11yStatus
-    ) -> AnyPublisher<(A11yFeatureType, A11yStatus), Never> {
+    ) -> A11yFeature.ObservationResult {
 
         notificationCenter
             .publisher(for: notificationName)
-            .map { _ in (type, status) }
+            .map { _ in A11yFeatureObservation(type: type, status: status) }
             .eraseToAnyPublisher()
     }
 }

@@ -47,7 +47,7 @@ final class A11yStatusObserverTests: XCTestCase {
         let feature = A11yFeature(
             type: type,
             status: fromStatus,
-            observeChanges: { Just((self.type, self.toStatus)).eraseToAnyPublisher() }
+            observeChanges: { Just(A11yFeatureObservation(type: self.type, status: self.toStatus)).eraseToAnyPublisher() }
         )
 
         let storeSpy = FeatureStore(
@@ -85,7 +85,7 @@ final class A11yStatusObserverTests: XCTestCase {
         let feature = A11yFeature(
             type: .voiceOver,
             status: .disabled,
-            observeChanges: { Just((self.type, self.toStatus)).eraseToAnyPublisher() }
+            observeChanges: { Just(A11yFeatureObservation(type: self.type, status: self.toStatus)).eraseToAnyPublisher() }
         )
 
         let emitterSpy = A11yStatusEmitter { emitData = ($0, $1) }
