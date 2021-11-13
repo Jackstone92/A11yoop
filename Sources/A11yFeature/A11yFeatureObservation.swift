@@ -6,7 +6,7 @@
 import Foundation
 import Combine
 
-public struct A11yFeatureObservation {
+public struct A11yFeatureObservation: Equatable {
 
     public let type: A11yFeatureType
     public let status: A11yStatus

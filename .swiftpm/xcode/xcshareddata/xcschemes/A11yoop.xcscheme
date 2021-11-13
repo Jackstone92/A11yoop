@@ -328,6 +328,34 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A11yStatusProvider"
+               BuildableName = "A11yStatusProvider"
+               BlueprintName = "A11yStatusProvider"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A11yStatusProviderLive"
+               BuildableName = "A11yStatusProviderLive"
+               BlueprintName = "A11yStatusProviderLive"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -423,6 +451,16 @@
                BlueprintIdentifier = "A11yoopMonitorTests"
                BuildableName = "A11yoopMonitorTests"
                BlueprintName = "A11yoopMonitorTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A11yStatusProviderTests"
+               BuildableName = "A11yStatusProviderTests"
+               BlueprintName = "A11yStatusProviderTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>

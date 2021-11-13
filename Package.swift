@@ -10,7 +10,7 @@ var package = Package(
     products: [
         .library(
             name: "A11yoopMonitor",
-            targets: ["A11yoopMonitor"]),
+            targets: ["A11yoopMonitorLive"]),
     ],
     dependencies: [
     ],
@@ -20,10 +20,10 @@ var package = Package(
             dependencies: ["A11yFeature"]),
         .target(
             name: "A11yoopMonitorLive",
-            dependencies: ["A11yoopMonitor", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yFeatureLive"]),
+            dependencies: ["A11yoopMonitor", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yFeatureLive", "A11yStatusProviderLive"]),
         .testTarget(
             name: "A11yoopMonitorTests",
-            dependencies: ["A11yoopMonitorLive"]),
+            dependencies: ["A11yoopMonitorLive", "A11yStatusEmitterTestSupport"]),
     ]
 )
 
@@ -34,7 +34,7 @@ package.targets.append(contentsOf: [
         dependencies: []),
     .target(
         name: "A11yFeatureLive",
-        dependencies: ["A11yFeature"]),
+        dependencies: ["A11yFeature", "A11yStatusProviderLive"]),
     .testTarget(
         name: "A11yFeatureTests",
         dependencies: ["A11yFeatureLive"])
@@ -95,4 +95,14 @@ package.targets.append(contentsOf: [
                        "A11yStoreTestSupport",
                        "A11yStatusEmitterTestSupport",
                        "A11yStatusObserverTestSupport"]),
+
+    .target(
+        name: "A11yStatusProvider",
+        dependencies: ["A11yFeature"]),
+    .target(
+        name: "A11yStatusProviderLive",
+        dependencies: ["A11yFeature", "A11yStatusProvider"]),
+    .testTarget(
+        name: "A11yStatusProviderTests",
+        dependencies: ["A11yStatusProviderLive"])
 ])

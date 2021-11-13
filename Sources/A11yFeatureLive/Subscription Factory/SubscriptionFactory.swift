@@ -10,7 +10,7 @@ import A11yFeature
 struct SubscriptionFactory {
 
     static func make(
-        with notificationCenter: NotificationCenter = .default,
+        with notificationCenter: NotificationCenter,
         notificationName: NSNotification.Name,
         type: A11yFeatureType,
         status: A11yStatus

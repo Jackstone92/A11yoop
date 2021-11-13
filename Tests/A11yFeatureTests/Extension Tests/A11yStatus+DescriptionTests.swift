@@ -19,4 +19,9 @@ final class A11yStatus_DescriptionTests: XCTestCase {
 
         XCTAssertEqual(sut.disabled.description, "Disabled")
     }
+
+    func test_descriptionForContentSize() {
+
+        XCTAssertEqual(sut.contentSize(.large).description, ContentSize.large.description)
+    }
 }

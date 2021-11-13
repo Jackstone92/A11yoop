@@ -6,6 +6,7 @@
 import Foundation
 import A11yFeature
 import A11yFeatureLive
+import A11yStatusProvider
 
 struct FeatureMapped<T, U> {
     let mapped: (T) -> U
@@ -13,30 +14,8 @@ struct FeatureMapped<T, U> {
 
 extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
 
-    static var asA11yFeature: Self {
-        Self { featureType in
-            switch featureType {
-            case .voiceOver: return .voiceOver
-            case .boldText:  return .boldText
-            case .largerText: return .largerText
-            case .switchControl: return .switchControl
-            case .greyscale: return .greyscale
-            case .invertColors: return .invertColours
-            case .onOffLabels: return .onOffLabels
-            case .reduceTransparency: return .reduceTransparency
-            case .reduceMotion: return .reduceMotion
-            case .differentiateWithoutColour: return .differentiateWithoutColour
-            case .assistiveTouch: return .assistiveTouch
-            case .shakeToUndo: return .shakeToUndo
-            case .darkerSystemColours: return .darkerSystemColours
-            case .buttonShapes: return .buttonShapes
-            case .speakScreen: return .speakScreen
-            case .speakSelection: return .speakSelection
-            case .hearingDevicePairedEar: return .hearingDevicePairedEar
-            case .guidedAccess: return .guidedAccess
-            case .preferCrossFadeTransitions: return .preferCrossFadeTransitions
-            }
-        }
+    static func asA11yFeature(using statusProvider: A11yStatusProvider, notificationCenter: NotificationCenter) -> Self {
+        Self { featureType in .live(type: featureType, statusProvider: statusProvider, notificationCenter: notificationCenter) }
     }
 }
 

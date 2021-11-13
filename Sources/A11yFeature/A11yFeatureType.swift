@@ -23,7 +23,7 @@ public enum A11yFeatureType: Hashable, CaseIterable {
     case greyscale
 
     /// Helps people with low vision, colour blindness, or sensitivity to brightness to read the display content.
-    case invertColors
+    case invertColours
 
     /// Displays on/off labels for UISwitch controls.
     case onOffLabels
@@ -75,7 +75,7 @@ extension A11yFeatureType: CustomStringConvertible {
         case .largerText: return "Larger Text"
         case .switchControl: return "Switch Control"
         case .greyscale: return "Greyscale"
-        case .invertColors: return "Invert Colours"
+        case .invertColours: return "Invert Colours"
         case .onOffLabels: return "On/Off Labels"
         case .reduceTransparency: return "Reduce Transparency"
         case .reduceMotion: return "Reduce Motion"
