@@ -6,11 +6,13 @@
 import Foundation
 import A11yFeature
 
-public struct A11yoopMonitor {
+public class A11yoopMonitor {
 
+    public let features: [A11yFeature]
     public let isFeatureEnabled: (_ feature: A11yFeatureType) -> Bool
 
-    public init(isFeatureEnabled: @escaping (A11yFeatureType) -> Bool) {
+    public required init(features: [A11yFeature], isFeatureEnabled: @escaping (A11yFeatureType) -> Bool) {
+        self.features = features
         self.isFeatureEnabled = isFeatureEnabled
     }
 }

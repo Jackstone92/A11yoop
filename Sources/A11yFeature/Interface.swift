@@ -5,10 +5,13 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
-public struct A11yFeature {
+public struct A11yFeature: Identifiable {
 
     public typealias ObservationResult = AnyPublisher<A11yFeatureObservation, Never>
+
+    public let id = UUID()
 
     public let type: A11yFeatureType
     public var status: A11yStatus

@@ -27,6 +27,7 @@ extension A11yoopMonitor {
         statusManager.observeFeatures(features, emitter)
 
         return Self(
+            features: features,
             isFeatureEnabled: { featureType in
                 statusManager.isFeatureEnabled(featureType)
             }
