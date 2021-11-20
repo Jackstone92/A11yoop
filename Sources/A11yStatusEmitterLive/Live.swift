@@ -22,8 +22,8 @@ extension A11yStatusEmitter {
 
     public static func log(handler: @escaping LogHandler = defaultLogHandler) -> Self {
 
-        return Self { status, featureType in
-            emit(status, for: featureType, logHandler: handler)
+        return Self { feature in
+            emit(feature.status, for: feature.type, logHandler: handler)
         }
     }
 

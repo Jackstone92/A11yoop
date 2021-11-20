@@ -7,26 +7,31 @@ import Foundation
 import A11yFeature
 import A11yStore
 
-public typealias FeatureStore = Store<A11yFeatureType, A11yStatus>
+public typealias FeatureStore = Store<A11yFeatureType, A11yFeature, A11yStatus>
 
 extension FeatureStore {
 
     public static var live: Self {
 
-        var data = [Key: Value]()
+        let dataStore = DataStore<Key, Value>()
 
         return Self(
             get: {
-                data[$0]
+                dataStore.data[$0]
+            },
+            getAll: {
+                dataStore.data.keys
+                    .compactMap { dataStore.data[$0] }
+                    .sorted(by: { $0.type.description < $1.type.description })
             },
             insert: {
-                data[$1] = $0
+                dataStore.data[$1] = $0
             },
             update: {
-                data[$1] = $0
+                dataStore.data[$1]?.status = $0
             },
             remove: {
-                data.removeValue(forKey: $0)
+                dataStore.data.removeValue(forKey: $0)
             }
         )
     }

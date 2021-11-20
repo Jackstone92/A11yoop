@@ -45,5 +45,5 @@ extension A11yFeatureType {
 
 extension Notification.Name {
 
-    static let unsupportedA11yFeatureNotification = Notification.Name("UnsupportedA11yFature")
+    static let unsupportedA11yFeatureNotification = Notification.Name("UnsupportedA11yFeature")
 }

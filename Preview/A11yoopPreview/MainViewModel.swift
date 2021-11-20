@@ -11,12 +11,32 @@ import A11yoopMonitorLive
 
 final class MainViewModel: ObservableObject {
 
-    @Published var features: [A11yFeature]
+    @Published var features = [A11yFeature]()
 
-    let monitor: A11yoopMonitor
+    private var monitor: A11yoopMonitor!
 
     init(featureTypes: [A11yFeatureType] = A11yFeatureType.allCases) {
-        self.monitor = .live(featureTypes: featureTypes)
-        self.features = monitor.features
+        self.monitor = .live(
+            featureTypes: featureTypes,
+            statusManager: .live(
+                featureStore: .live,
+                notificationCenter: .default
+            ),
+            emitter: .init(emit: { emittedFeature in
+                let updatedFeatures = self.features.map { feature -> A11yFeature in
+                    guard feature.type == emittedFeature.type else {
+                        return feature
+                    }
+
+                    return A11yFeature(type: feature.type, status: emittedFeature.status)
+                }
+
+                self.features = updatedFeatures
+            }),
+            statusProvider: .live
+        )
+
+        // Set initial features
+        features = monitor.featuresSubject.value
     }
 }

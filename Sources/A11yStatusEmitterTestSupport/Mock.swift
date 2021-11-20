@@ -9,10 +9,10 @@ import A11yStatusEmitter
 extension A11yStatusEmitter {
 
     public static var notInvoked: Self {
-        Self { _, _ in XCTFail() }
+        Self { _ in XCTFail() }
     }
 
     public static var noop: Self {
-        Self { _, _ in }
+        Self { _ in }
     }
 }

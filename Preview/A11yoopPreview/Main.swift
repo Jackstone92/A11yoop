@@ -8,8 +8,8 @@ import A11yFeature
 
 struct Main: View {
 
-    @ObservedObject var viewModel: MainViewModel
-    
+    @StateObject var viewModel: MainViewModel
+
     var body: some View {
         NavigationView {
             A11yFeatureStatusList(features: viewModel.features)

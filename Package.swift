@@ -20,7 +20,7 @@ var package = Package(
             dependencies: ["A11yFeature"]),
         .target(
             name: "A11yoopMonitorLive",
-            dependencies: ["A11yoopMonitor", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yFeatureLive", "A11yStatusProviderLive"]),
+            dependencies: ["A11yoopMonitor", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
         .testTarget(
             name: "A11yoopMonitorTests",
             dependencies: ["A11yoopMonitorLive", "A11yStatusEmitterTestSupport"]),
@@ -32,12 +32,9 @@ package.targets.append(contentsOf: [
     .target(
         name: "A11yFeature",
         dependencies: []),
-    .target(
-        name: "A11yFeatureLive",
-        dependencies: ["A11yFeature", "A11yStatusProviderLive"]),
     .testTarget(
         name: "A11yFeatureTests",
-        dependencies: ["A11yFeatureLive"])
+        dependencies: ["A11yFeature"])
 ])
 
 // MARK: - Clients
@@ -69,32 +66,16 @@ package.targets.append(contentsOf: [
         dependencies: ["A11yStoreLive"]),
 
     .target(
-        name: "A11yStatusObserver",
-        dependencies: ["A11yFeature", "A11yFeature", "A11yStatusEmitter", "A11yStoreLive"]),
-    .target(
-        name: "A11yStatusObserverLive",
-        dependencies: ["A11yStatusObserver"]),
-    .target(
-        name: "A11yStatusObserverTestSupport",
-        dependencies: ["A11yStatusObserver"]),
-    .testTarget(
-        name: "A11yStatusObserverTests",
-        dependencies: ["A11yStatusObserverLive",
-                       "A11yStoreTestSupport",
-                       "A11yStatusEmitterTestSupport"]),
-
-    .target(
         name: "A11yStatusManager",
         dependencies: ["A11yFeature", "A11yStatusEmitter", "A11yFeature"]),
     .target(
         name: "A11yStatusManagerLive",
-        dependencies: ["A11yStatusManager", "A11yStatusObserverLive", "A11yStoreLive"]),
+        dependencies: ["A11yStatusManager", "A11yStoreLive", "A11yStatusProviderLive"]),
     .testTarget(
         name: "A11yStatusManagerTests",
         dependencies: ["A11yStatusManagerLive",
                        "A11yStoreTestSupport",
-                       "A11yStatusEmitterTestSupport",
-                       "A11yStatusObserverTestSupport"]),
+                       "A11yStatusEmitterTestSupport"]),
 
     .target(
         name: "A11yStatusProvider",

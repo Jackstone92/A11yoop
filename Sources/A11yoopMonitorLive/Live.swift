@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Combine
 import A11yoopMonitor
 import A11yStatusEmitter
 import A11yStatusEmitterLive
@@ -19,15 +20,15 @@ extension A11yoopMonitor {
         featureTypes: [A11yFeatureType] = A11yFeatureType.allCases,
         statusManager: A11yStatusManager = .live(),
         emitter: A11yStatusEmitter = .log(),
-        statusProvider: A11yStatusProvider = .live,
-        notificationCenter: NotificationCenter = .default
+        statusProvider: A11yStatusProvider = .live
     ) -> Self {
 
-        let features = featureTypes.map(.asA11yFeature(using: statusProvider, notificationCenter: notificationCenter))
-        statusManager.observeFeatures(features, emitter)
+        let features = featureTypes.map(.asA11yFeature(using: statusProvider))
+        let featuresSubject = CurrentValueSubject<[A11yFeature], Never>(features)
+        statusManager.observeFeatures(features, featuresSubject, emitter)
 
         return Self(
-            features: features,
+            featuresSubject: featuresSubject,
             isFeatureEnabled: { featureType in
                 statusManager.isFeatureEnabled(featureType)
             }

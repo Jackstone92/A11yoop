@@ -4,7 +4,7 @@
 //
 
 import XCTest
-import A11yFeatureLive
+import A11yFeature
 
 final class Bool_AsA11yStatusAdapterTests: XCTestCase {
 

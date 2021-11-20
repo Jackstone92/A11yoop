@@ -22,15 +22,14 @@ final class A11yStatusEmitterTests: XCTestCase {
                         message: StaticString,
                         args: [CVarArg])]()
         var didEmit = false
-        let featureTypeToEmit: A11yFeatureType = .voiceOver
-        let statusToEmit: A11yStatus = .enabled
+        let featureToEmit = A11yFeature(type: .voiceOver, status: .enabled)
 
         sut = .log { type, log, message, args in
             emitted.append((type, log, message, args))
             didEmit = true
         }
 
-        sut.emit(statusToEmit, featureTypeToEmit)
+        sut.emit(featureToEmit)
 
         XCTAssertTrue(didEmit)
         XCTAssertEqual(emitted.count, 1)

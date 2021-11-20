@@ -9,7 +9,7 @@ import A11yFeature
 
 struct A11yFeatureStatusRow: View {
 
-    @State var feature: A11yFeature
+    let feature: A11yFeature
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -28,13 +28,7 @@ struct A11yFeatureStatusRow: View {
 
 struct A11yFeatureStatusRow_Previews: PreviewProvider {
     static var previews: some View {
-        A11yFeatureStatusRow(
-            feature: .init(
-                type: .voiceOver,
-                status: .enabled,
-                observeChanges: { .init(Just(.init(type: .voiceOver, status: .enabled)).eraseToAnyPublisher()) }
-            )
-        )
+        A11yFeatureStatusRow(feature: A11yFeature(type: .voiceOver, status: .enabled))
             .previewLayout(.fixed(width: 300, height: 124))
     }
 }

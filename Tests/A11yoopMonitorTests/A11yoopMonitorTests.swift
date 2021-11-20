@@ -15,15 +15,8 @@ import A11yStatusEmitterTestSupport
 final class A11yoopMonitorTests: XCTestCase {
 
     private var sut: A11yoopMonitor!
-    private var notificationCenter: NotificationCenter!
 
     private let featureTypes: [A11yFeatureType] = [.assistiveTouch, .guidedAccess, .speakSelection, .voiceOver]
-
-    override func setUp() {
-        super.setUp()
-
-        notificationCenter = NotificationCenter()
-    }
 
     func test_statusManagerObservesFeaturesOnInitialisation() {
 
@@ -31,7 +24,7 @@ final class A11yoopMonitorTests: XCTestCase {
         var didInvokeStatusManager = false
 
         let spy = A11yStatusManager(
-            observeFeatures: { features, emitter in
+            observeFeatures: { features, _, _ in
                 output.append(contentsOf: features)
                 didInvokeStatusManager = true
             },
@@ -42,8 +35,7 @@ final class A11yoopMonitorTests: XCTestCase {
             featureTypes: featureTypes,
             statusManager: spy,
             emitter: .noop,
-            statusProvider: .enabled,
-            notificationCenter: notificationCenter
+            statusProvider: .enabled
         )
 
         XCTAssertTrue(didInvokeStatusManager)
@@ -56,7 +48,7 @@ final class A11yoopMonitorTests: XCTestCase {
         var didInvokeStatusManager = false
 
         let spy = A11yStatusManager(
-            observeFeatures: { _, _ in },
+            observeFeatures: { _, _, _ in },
             isFeatureEnabled: { type in
                 output.append(type)
                 didInvokeStatusManager = true
@@ -68,8 +60,7 @@ final class A11yoopMonitorTests: XCTestCase {
             featureTypes: featureTypes,
             statusManager: spy,
             emitter: .noop,
-            statusProvider: .enabled,
-            notificationCenter: notificationCenter
+            statusProvider: .enabled
         )
 
         XCTAssertTrue(sut.isFeatureEnabled(try XCTUnwrap(featureTypes.first)))

@@ -8,82 +8,91 @@ import Combine
 import A11yFeature
 import A11yStore
 import A11yStoreLive
-import A11yStatusObserver
 import A11yStatusEmitter
 import A11yStatusManager
 import A11yStatusManagerLive
 import A11yStoreTestSupport
 import A11yStatusEmitterTestSupport
-import A11yStatusObserverTestSupport
 
 final class A11yStatusManagerTests: XCTestCase {
 
     private var sut: A11yStatusManager!
+    private var notificationCenter: NotificationCenter!
     private var subscriptions: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
+        notificationCenter = NotificationCenter()
         subscriptions = Set<AnyCancellable>()
     }
 
     // MARK: - observeFeatures tests
     func test_observeFeaturesAddsEachFeatureToFeatureStore() {
 
-        let features: [A11yFeature] = [
-            .init(
-                type: .voiceOver,
-                status: .disabled,
-                observeChanges: { Empty().eraseToAnyPublisher() }
-            )
-        ]
-        var addedFeatureData = [(status: A11yStatus, type: A11yFeatureType)]()
+        let features = [A11yFeature(type: .voiceOver, status: .disabled)]
+        var output = [(feature: A11yFeature, type: A11yFeatureType)]()
 
         let storeSpy = FeatureStore(
             get: { _ in XCTFail(); return nil },
-            insert: { addedFeatureData.append(($0, $1)) },
+            getAll: { XCTFail(); return [] },
+            insert: { output.append(($0, $1)) },
             update: { _, _ in XCTFail() },
             remove: { _ in XCTFail(); return nil }
         )
 
-        sut = .live(observer: .noop, featureStore: storeSpy)
+        sut = .live(featureStore: storeSpy, notificationCenter: notificationCenter)
 
-        sut.observeFeatures(features, .noop)
+        sut.observeFeatures(features, .init([]), .noop)
 
-        XCTAssertEqual(addedFeatureData.map { $0.status }, [.disabled])
-        XCTAssertEqual(addedFeatureData.map { $0.type }, [.voiceOver])
+        XCTAssertEqual(output.map { $0.feature.status }, [.disabled])
+        XCTAssertEqual(output.map { $0.type }, [.voiceOver])
     }
 
-    func test_observeFeaturesSubscribesToObserveChangesToEachFeature() {
+    func test_observeFeaturesInvokesSubjectOnFeatureStatusChange() {
 
-        var featuresObserved = [A11yFeature]()
+        let features = [A11yFeature(type: .voiceOver, status: .disabled)]
+        var output = [A11yFeature]()
 
-        let features: [A11yFeature] = [
-            .init(
-                type: .voiceOver,
-                status: .disabled,
-                observeChanges: { Empty().eraseToAnyPublisher() }
-            )
-        ]
+        let subject = CurrentValueSubject<[A11yFeature], Never>([])
 
-        let observerSpy = A11yStatusObserver { feature, _, _ in
-            featuresObserved.append(feature)
-            return AnyCancellable({})
-        }
+        subject
+            .dropFirst()
+            .sink { output.append(contentsOf: $0) }
+            .store(in: &subscriptions)
 
-        sut = .live(observer: observerSpy, featureStore: .noop)
+        sut = .live(featureStore: .live, notificationCenter: notificationCenter)
 
-        sut.observeFeatures(features, .noop)
+        sut.observeFeatures(features, subject, .noop)
 
-        XCTAssertEqual(featuresObserved, features)
+        notificationCenter.post(name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
+
+        XCTAssertEqual(output, features)
+    }
+
+    func test_observeFeaturesInvokesEmitterOnFeatureStatusChange() {
+
+        let features = [A11yFeature(type: .voiceOver, status: .disabled)]
+        var output = [A11yFeature]()
+
+        let emitterSpy = A11yStatusEmitter { output.append($0) }
+
+        sut = .live(featureStore: .live, notificationCenter: notificationCenter)
+
+        sut.observeFeatures(features, .init([]), emitterSpy)
+
+        notificationCenter.post(name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
+
+        XCTAssertEqual(output, features)
     }
 
     // MARK: - isFeatureEnabled tests
     func test_isFeatureEnabledWhenFeatureEnabled() {
 
         let store: FeatureStore = .live
-        store.insert(.enabled, .voiceOver)
+        let enabledVoiceoverFeature = A11yFeature(type: .voiceOver, status: .enabled)
+        store.insert(enabledVoiceoverFeature, .voiceOver)
 
-        sut = .live(observer: .noop, featureStore: store)
+        sut = .live(featureStore: store, notificationCenter: notificationCenter)
 
         XCTAssertTrue(sut.isFeatureEnabled(.voiceOver))
     }
@@ -91,9 +100,10 @@ final class A11yStatusManagerTests: XCTestCase {
     func test_isFeatureEnabledWhenFeatureDisabled() {
 
         let store: FeatureStore = .live
-        store.insert(.disabled, .voiceOver)
+        let disabledVoiceoverFeature = A11yFeature(type: .voiceOver, status: .disabled)
+        store.insert(disabledVoiceoverFeature, .voiceOver)
 
-        sut = .live(observer: .noop, featureStore: store)
+        sut = .live(featureStore: store, notificationCenter: notificationCenter)
 
         XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
     }
@@ -103,7 +113,7 @@ final class A11yStatusManagerTests: XCTestCase {
         let store: FeatureStore = .live
         XCTAssertNil(store.get(.voiceOver))
 
-        sut = .live(observer: .noop, featureStore: store)
+        sut = .live(featureStore: store, notificationCenter: notificationCenter)
 
         XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
     }

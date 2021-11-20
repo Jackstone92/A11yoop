@@ -11,6 +11,7 @@ extension FeatureStore {
     public static var notInvoked: Self {
         Self(
             get: { _ in XCTFail(); return nil },
+            getAll: { XCTFail(); return [] },
             insert: { _, _ in XCTFail() },
             update: { _, _ in XCTFail() },
             remove: { _ in XCTFail(); return nil }
@@ -20,6 +21,7 @@ extension FeatureStore {
     public static var noop: Self {
         Self(
             get: { _ in return nil },
+            getAll: { return [] },
             insert: { _, _ in },
             update: { _, _ in },
             remove: { _ in return nil }

@@ -15,9 +15,9 @@
 		2544AB3C274045BE00B20CFC /* A11yoopPreviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB3B274045BE00B20CFC /* A11yoopPreviewUITests.swift */; };
 		2544AB3E274045BE00B20CFC /* A11yoopPreviewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB3D274045BE00B20CFC /* A11yoopPreviewUITestsLaunchTests.swift */; };
 		2544AB4E2740465200B20CFC /* A11yoopMonitor in Frameworks */ = {isa = PBXBuildFile; productRef = 2544AB4D2740465200B20CFC /* A11yoopMonitor */; };
-		2544AB522740470100B20CFC /* A11yFeatureStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB512740470100B20CFC /* A11yFeatureStatusList.swift */; };
 		2544AB542740471300B20CFC /* A11yFeatureStatusRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB532740471300B20CFC /* A11yFeatureStatusRow.swift */; };
 		2544AB5627404CAA00B20CFC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB5527404CAA00B20CFC /* MainViewModel.swift */; };
+		259D6EFD27497B5600C794D0 /* A11yFeatureStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259D6EFC27497B5600C794D0 /* A11yFeatureStatusList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +49,9 @@
 		2544AB3B274045BE00B20CFC /* A11yoopPreviewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yoopPreviewUITests.swift; sourceTree = "<group>"; };
 		2544AB3D274045BE00B20CFC /* A11yoopPreviewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yoopPreviewUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2544AB4B2740462D00B20CFC /* A11yoop */ = {isa = PBXFileReference; lastKnownFileType = folder; name = A11yoop; path = ..; sourceTree = "<group>"; };
-		2544AB512740470100B20CFC /* A11yFeatureStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yFeatureStatusList.swift; sourceTree = "<group>"; };
 		2544AB532740471300B20CFC /* A11yFeatureStatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yFeatureStatusRow.swift; sourceTree = "<group>"; };
 		2544AB5527404CAA00B20CFC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		259D6EFC27497B5600C794D0 /* A11yFeatureStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yFeatureStatusList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,10 +108,10 @@
 				2544AB20274045BC00B20CFC /* A11yoopPreviewApp.swift */,
 				2544AB5527404CAA00B20CFC /* MainViewModel.swift */,
 				2544AB22274045BC00B20CFC /* Main.swift */,
-				2544AB512740470100B20CFC /* A11yFeatureStatusList.swift */,
 				2544AB532740471300B20CFC /* A11yFeatureStatusRow.swift */,
 				2544AB24274045BE00B20CFC /* Assets.xcassets */,
 				2544AB26274045BE00B20CFC /* Preview Content */,
+				259D6EFC27497B5600C794D0 /* A11yFeatureStatusList.swift */,
 			);
 			path = A11yoopPreview;
 			sourceTree = "<group>";
@@ -289,10 +289,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				259D6EFD27497B5600C794D0 /* A11yFeatureStatusList.swift in Sources */,
 				2544AB5627404CAA00B20CFC /* MainViewModel.swift in Sources */,
 				2544AB23274045BC00B20CFC /* Main.swift in Sources */,
 				2544AB542740471300B20CFC /* A11yFeatureStatusRow.swift in Sources */,
-				2544AB522740470100B20CFC /* A11yFeatureStatusList.swift in Sources */,
 				2544AB21274045BC00B20CFC /* A11yoopPreviewApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

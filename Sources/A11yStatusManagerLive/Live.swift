@@ -7,77 +7,68 @@ import Foundation
 import Combine
 import A11yStatusManager
 import A11yStatusEmitter
-import A11yStatusObserver
-import A11yStatusObserverLive
 import A11yStore
 import A11yStoreLive
+import A11yStatusProvider
+import A11yStatusProviderLive
 import A11yFeature
 
 extension A11yStatusManager {
 
     public static func live(
-        observer: A11yStatusObserver = .live,
-        featureStore: FeatureStore = .live
+        featureStore: FeatureStore = .live,
+        statusProvider: A11yStatusProvider = .live,
+        notificationCenter: NotificationCenter = .default
     ) -> Self {
 
         var subscriptions = Set<AnyCancellable>()
 
         return Self(
-            observeFeatures: { features, emitter in
-                features.forEach { addToStore($0.status, for: $0.type, using: featureStore) }
+            observeFeatures: { features, subject, emitter in
+                features.forEach { featureStore.insert($0, $0.type) }
 
                 subscribe(
                     to: features,
-                    using: observer,
+                    subject: subject,
                     featureStore: featureStore,
+                    statusProvider: statusProvider,
+                    notificationCenter: notificationCenter,
                     emitter: emitter,
                     subscriptions: &subscriptions
                 )
             },
             isFeatureEnabled: { featureType in
-                guard let status = featureStore.get(featureType) else {
+                guard let feature = featureStore.get(featureType) else {
                     return false
                 }
 
-                return status == .enabled
+                return feature.status == .enabled
             }
         )
     }
 
-    private static func addToStore(
-        _ status: A11yStatus,
-        for type: A11yFeatureType,
-        using store: FeatureStore
-    ) {
-        store.insert(status, type)
-    }
-
     private static func subscribe(
         to features: [A11yFeature],
-        using observer: A11yStatusObserver,
+        subject: CurrentValueSubject<[A11yFeature], Never>,
         featureStore: FeatureStore,
+        statusProvider: A11yStatusProvider,
+        notificationCenter: NotificationCenter,
         emitter: A11yStatusEmitter,
         subscriptions: inout Set<AnyCancellable>
     ) {
-        features.forEach {
-            subscribe(
-                to: $0,
-                using: observer,
-                featureStore: featureStore,
-                emitter: emitter,
-                subscriptions: &subscriptions
-            )
-        }
-    }
+        features
+            .map { ($0, notificationCenter.publisher(for: $0.type.notificationName, object: nil)) }
+            .forEach { feature, publisher in
+                publisher.sink { _ in
+                    let updatedStatus = statusProvider.getStatus(feature.type)
+                    featureStore.update(updatedStatus, feature.type)
 
-    private static func subscribe(
-        to feature: A11yFeature,
-        using observer: A11yStatusObserver,
-        featureStore: FeatureStore,
-        emitter: A11yStatusEmitter,
-        subscriptions: inout Set<AnyCancellable>
-    ) {
-        observer.observeChanges(feature, featureStore, emitter)
-            .store(in: &subscriptions)
+                    guard let feature = featureStore.get(feature.type) else { return }
+
+                    emitter.emit(feature)
+                    subject.send(featureStore.getAll())
+                }
+                .store(in: &subscriptions)
+            }
     }
 }

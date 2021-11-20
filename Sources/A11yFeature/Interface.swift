@@ -5,26 +5,19 @@
 
 import Foundation
 import Combine
-import SwiftUI
 
 public struct A11yFeature: Identifiable {
 
-    public typealias ObservationResult = AnyPublisher<A11yFeatureObservation, Never>
+    public typealias ObservationResult = AnyPublisher<A11yFeature, Never>
 
     public let id = UUID()
 
     public let type: A11yFeatureType
     public var status: A11yStatus
-    public let observeChanges: () -> ObservationResult
 
-    public init(
-        type: A11yFeatureType,
-        status: A11yStatus,
-        observeChanges: @escaping () -> ObservationResult
-    ) {
+    public init(type: A11yFeatureType, status: A11yStatus) {
         self.type = type
         self.status = status
-        self.observeChanges = observeChanges
     }
 }
 

@@ -5,7 +5,6 @@
 
 import Foundation
 import A11yFeature
-import A11yFeatureLive
 import A11yStatusProvider
 
 struct FeatureMapped<T, U> {
@@ -14,8 +13,12 @@ struct FeatureMapped<T, U> {
 
 extension FeatureMapped where T == A11yFeatureType, U == A11yFeature {
 
-    static func asA11yFeature(using statusProvider: A11yStatusProvider, notificationCenter: NotificationCenter) -> Self {
-        Self { featureType in .live(type: featureType, statusProvider: statusProvider, notificationCenter: notificationCenter) }
+    static func asA11yFeature(using statusProvider: A11yStatusProvider) -> Self {
+        Self { featureType in
+            let status = statusProvider.getStatus(featureType)
+
+            return A11yFeature(type: featureType, status: status)
+        }
     }
 }
 
