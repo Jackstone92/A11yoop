@@ -24,16 +24,15 @@ extension A11yStatusManager {
         var subscriptions = Set<AnyCancellable>()
 
         return Self(
-            observeFeatures: { features, subject, emitter in
+            observeFeatures: { features, emitters in
                 features.forEach { featureStore.insert($0, $0.type) }
 
                 subscribe(
                     to: features,
-                    subject: subject,
                     featureStore: featureStore,
                     statusProvider: statusProvider,
                     notificationCenter: notificationCenter,
-                    emitter: emitter,
+                    emitters: emitters,
                     subscriptions: &subscriptions
                 )
             },
@@ -49,11 +48,10 @@ extension A11yStatusManager {
 
     private static func subscribe(
         to features: [A11yFeature],
-        subject: CurrentValueSubject<[A11yFeature], Never>,
         featureStore: FeatureStore,
         statusProvider: A11yStatusProvider,
         notificationCenter: NotificationCenter,
-        emitter: A11yStatusEmitter,
+        emitters: [A11yStatusEmitter],
         subscriptions: inout Set<AnyCancellable>
     ) {
         features
@@ -65,8 +63,7 @@ extension A11yStatusManager {
 
                     guard let feature = featureStore.get(feature.type) else { return }
 
-                    emitter.emit(feature)
-                    subject.send(featureStore.getAll())
+                    emitters.forEach { $0.emit(feature) }
                 }
                 .store(in: &subscriptions)
             }

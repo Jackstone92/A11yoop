@@ -10,15 +10,11 @@ import A11yFeature
 
 public struct A11yStatusManager {
 
-    public let observeFeatures: (_ features: [A11yFeature],
-                                 _ subject: CurrentValueSubject<[A11yFeature], Never>,
-                                 _ emitter: A11yStatusEmitter) -> Void
+    public let observeFeatures: (_ features: [A11yFeature], _ emitters: [A11yStatusEmitter]) -> Void
     public let isFeatureEnabled: (_ feature: A11yFeatureType) -> Bool
 
     public init(
-        observeFeatures: @escaping (_ features: [A11yFeature],
-                                    _ subject: CurrentValueSubject<[A11yFeature], Never>,
-                                    _ emitter: A11yStatusEmitter) -> Void,
+        observeFeatures: @escaping (_ features: [A11yFeature], _ emitters: [A11yStatusEmitter]) -> Void,
         isFeatureEnabled: @escaping (_ feature: A11yFeatureType) -> Bool
     ) {
         self.observeFeatures = observeFeatures

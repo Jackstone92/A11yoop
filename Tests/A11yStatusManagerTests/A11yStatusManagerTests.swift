@@ -42,31 +42,10 @@ final class A11yStatusManagerTests: XCTestCase {
 
         sut = .live(featureStore: storeSpy, notificationCenter: notificationCenter)
 
-        sut.observeFeatures(features, .init([]), .noop)
+        sut.observeFeatures(features, [.noop])
 
         XCTAssertEqual(output.map { $0.feature.status }, [.disabled])
         XCTAssertEqual(output.map { $0.type }, [.voiceOver])
-    }
-
-    func test_observeFeaturesInvokesSubjectOnFeatureStatusChange() {
-
-        let features = [A11yFeature(type: .voiceOver, status: .disabled)]
-        var output = [A11yFeature]()
-
-        let subject = CurrentValueSubject<[A11yFeature], Never>([])
-
-        subject
-            .dropFirst()
-            .sink { output.append(contentsOf: $0) }
-            .store(in: &subscriptions)
-
-        sut = .live(featureStore: .live, notificationCenter: notificationCenter)
-
-        sut.observeFeatures(features, subject, .noop)
-
-        notificationCenter.post(name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
-
-        XCTAssertEqual(output, features)
     }
 
     func test_observeFeaturesInvokesEmitterOnFeatureStatusChange() {
@@ -78,7 +57,7 @@ final class A11yStatusManagerTests: XCTestCase {
 
         sut = .live(featureStore: .live, notificationCenter: notificationCenter)
 
-        sut.observeFeatures(features, .init([]), emitterSpy)
+        sut.observeFeatures(features, [emitterSpy])
 
         notificationCenter.post(name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
 

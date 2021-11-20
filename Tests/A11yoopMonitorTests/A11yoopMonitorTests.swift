@@ -24,7 +24,7 @@ final class A11yoopMonitorTests: XCTestCase {
         var didInvokeStatusManager = false
 
         let spy = A11yStatusManager(
-            observeFeatures: { features, _, _ in
+            observeFeatures: { features, _ in
                 output.append(contentsOf: features)
                 didInvokeStatusManager = true
             },
@@ -34,7 +34,7 @@ final class A11yoopMonitorTests: XCTestCase {
         sut = .live(
             featureTypes: featureTypes,
             statusManager: spy,
-            emitter: .noop,
+            emitters: [.noop],
             statusProvider: .enabled
         )
 
@@ -48,7 +48,7 @@ final class A11yoopMonitorTests: XCTestCase {
         var didInvokeStatusManager = false
 
         let spy = A11yStatusManager(
-            observeFeatures: { _, _, _ in },
+            observeFeatures: { _, _ in },
             isFeatureEnabled: { type in
                 output.append(type)
                 didInvokeStatusManager = true
@@ -59,7 +59,7 @@ final class A11yoopMonitorTests: XCTestCase {
         sut = .live(
             featureTypes: featureTypes,
             statusManager: spy,
-            emitter: .noop,
+            emitters: [.noop],
             statusProvider: .enabled
         )
 

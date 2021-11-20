@@ -22,17 +22,19 @@ final class MainViewModel: ObservableObject {
                 featureStore: .live,
                 notificationCenter: .default
             ),
-            emitter: .init(emit: { emittedFeature in
-                let updatedFeatures = self.features.map { feature -> A11yFeature in
-                    guard feature.type == emittedFeature.type else {
-                        return feature
+            emitters: [
+                .init(emit: { emittedFeature in
+                    let updatedFeatures = self.features.map { feature -> A11yFeature in
+                        guard feature.type == emittedFeature.type else {
+                            return feature
+                        }
+
+                        return A11yFeature(type: feature.type, status: emittedFeature.status)
                     }
-
-                    return A11yFeature(type: feature.type, status: emittedFeature.status)
-                }
-
-                self.features = updatedFeatures
-            }),
+                    
+                    self.features = updatedFeatures
+                })
+            ],
             statusProvider: .live
         )
 
