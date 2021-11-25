@@ -11,7 +11,6 @@
 		2544AB23274045BC00B20CFC /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB22274045BC00B20CFC /* Main.swift */; };
 		2544AB25274045BE00B20CFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2544AB24274045BE00B20CFC /* Assets.xcassets */; };
 		2544AB28274045BE00B20CFC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2544AB27274045BE00B20CFC /* Preview Assets.xcassets */; };
-		2544AB32274045BE00B20CFC /* A11yoopPreviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB31274045BE00B20CFC /* A11yoopPreviewTests.swift */; };
 		2544AB3C274045BE00B20CFC /* A11yoopPreviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB3B274045BE00B20CFC /* A11yoopPreviewUITests.swift */; };
 		2544AB3E274045BE00B20CFC /* A11yoopPreviewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB3D274045BE00B20CFC /* A11yoopPreviewUITestsLaunchTests.swift */; };
 		2544AB4E2740465200B20CFC /* A11yoopMonitor in Frameworks */ = {isa = PBXBuildFile; productRef = 2544AB4D2740465200B20CFC /* A11yoopMonitor */; };
@@ -21,13 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2544AB2E274045BE00B20CFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2544AB15274045BC00B20CFC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2544AB1C274045BC00B20CFC;
-			remoteInfo = A11yoopPreview;
-		};
 		2544AB38274045BE00B20CFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2544AB15274045BC00B20CFC /* Project object */;
@@ -43,8 +35,6 @@
 		2544AB22274045BC00B20CFC /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		2544AB24274045BE00B20CFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2544AB27274045BE00B20CFC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2544AB2D274045BE00B20CFC /* A11yoopPreviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A11yoopPreviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2544AB31274045BE00B20CFC /* A11yoopPreviewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yoopPreviewTests.swift; sourceTree = "<group>"; };
 		2544AB37274045BE00B20CFC /* A11yoopPreviewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A11yoopPreviewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2544AB3B274045BE00B20CFC /* A11yoopPreviewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yoopPreviewUITests.swift; sourceTree = "<group>"; };
 		2544AB3D274045BE00B20CFC /* A11yoopPreviewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yoopPreviewUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -63,13 +53,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2544AB2A274045BE00B20CFC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2544AB34274045BE00B20CFC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,7 +68,6 @@
 			children = (
 				2544AB4A2740462D00B20CFC /* Packages */,
 				2544AB1F274045BC00B20CFC /* A11yoopPreview */,
-				2544AB30274045BE00B20CFC /* A11yoopPreviewTests */,
 				2544AB3A274045BE00B20CFC /* A11yoopPreviewUITests */,
 				2544AB1E274045BC00B20CFC /* Products */,
 				2544AB4C2740465200B20CFC /* Frameworks */,
@@ -96,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				2544AB1D274045BC00B20CFC /* A11yoopPreview.app */,
-				2544AB2D274045BE00B20CFC /* A11yoopPreviewTests.xctest */,
 				2544AB37274045BE00B20CFC /* A11yoopPreviewUITests.xctest */,
 			);
 			name = Products;
@@ -122,14 +103,6 @@
 				2544AB27274045BE00B20CFC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		2544AB30274045BE00B20CFC /* A11yoopPreviewTests */ = {
-			isa = PBXGroup;
-			children = (
-				2544AB31274045BE00B20CFC /* A11yoopPreviewTests.swift */,
-			);
-			path = A11yoopPreviewTests;
 			sourceTree = "<group>";
 		};
 		2544AB3A274045BE00B20CFC /* A11yoopPreviewUITests */ = {
@@ -179,24 +152,6 @@
 			productReference = 2544AB1D274045BC00B20CFC /* A11yoopPreview.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2544AB2C274045BE00B20CFC /* A11yoopPreviewTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2544AB44274045BE00B20CFC /* Build configuration list for PBXNativeTarget "A11yoopPreviewTests" */;
-			buildPhases = (
-				2544AB29274045BE00B20CFC /* Sources */,
-				2544AB2A274045BE00B20CFC /* Frameworks */,
-				2544AB2B274045BE00B20CFC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2544AB2F274045BE00B20CFC /* PBXTargetDependency */,
-			);
-			name = A11yoopPreviewTests;
-			productName = A11yoopPreviewTests;
-			productReference = 2544AB2D274045BE00B20CFC /* A11yoopPreviewTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		2544AB36274045BE00B20CFC /* A11yoopPreviewUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2544AB47274045BE00B20CFC /* Build configuration list for PBXNativeTarget "A11yoopPreviewUITests" */;
@@ -228,10 +183,6 @@
 					2544AB1C274045BC00B20CFC = {
 						CreatedOnToolsVersion = 13.1;
 					};
-					2544AB2C274045BE00B20CFC = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 2544AB1C274045BC00B20CFC;
-					};
 					2544AB36274045BE00B20CFC = {
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = 2544AB1C274045BC00B20CFC;
@@ -252,7 +203,6 @@
 			projectRoot = "";
 			targets = (
 				2544AB1C274045BC00B20CFC /* A11yoopPreview */,
-				2544AB2C274045BE00B20CFC /* A11yoopPreviewTests */,
 				2544AB36274045BE00B20CFC /* A11yoopPreviewUITests */,
 			);
 		};
@@ -265,13 +215,6 @@
 			files = (
 				2544AB28274045BE00B20CFC /* Preview Assets.xcassets in Resources */,
 				2544AB25274045BE00B20CFC /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2544AB2B274045BE00B20CFC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +240,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2544AB29274045BE00B20CFC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2544AB32274045BE00B20CFC /* A11yoopPreviewTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2544AB33274045BE00B20CFC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,11 +252,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2544AB2F274045BE00B20CFC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2544AB1C274045BC00B20CFC /* A11yoopPreview */;
-			targetProxy = 2544AB2E274045BE00B20CFC /* PBXContainerItemProxy */;
-		};
 		2544AB39274045BE00B20CFC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2544AB1C274045BC00B20CFC /* A11yoopPreview */;
@@ -504,56 +434,6 @@
 			};
 			name = Release;
 		};
-		2544AB45274045BE00B20CFC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R97A3PMDGF;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jackstone.A11yoopPreviewTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/A11yoopPreview.app/A11yoopPreview";
-			};
-			name = Debug;
-		};
-		2544AB46274045BE00B20CFC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R97A3PMDGF;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jackstone.A11yoopPreviewTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/A11yoopPreview.app/A11yoopPreview";
-			};
-			name = Release;
-		};
 		2544AB48274045BE00B20CFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -617,15 +497,6 @@
 			buildConfigurations = (
 				2544AB42274045BE00B20CFC /* Debug */,
 				2544AB43274045BE00B20CFC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2544AB44274045BE00B20CFC /* Build configuration list for PBXNativeTarget "A11yoopPreviewTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2544AB45274045BE00B20CFC /* Debug */,
-				2544AB46274045BE00B20CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
