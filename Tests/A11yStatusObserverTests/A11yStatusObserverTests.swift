@@ -1,5 +1,5 @@
 //
-//  A11yStatusManagerTests.swift
+//  A11yStatusObserverTests.swift
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
@@ -9,14 +9,14 @@ import A11yFeature
 import A11yStore
 import A11yStoreLive
 import A11yStatusEmitter
-import A11yStatusManager
-import A11yStatusManagerLive
+import A11yStatusObserver
+import A11yStatusObserverLive
 import A11yStoreTestSupport
 import A11yStatusEmitterTestSupport
 
-final class A11yStatusManagerTests: XCTestCase {
+final class A11yStatusObserverTests: XCTestCase {
 
-    private var sut: A11yStatusManager!
+    private var sut: A11yStatusObserver!
     private var notificationCenter: NotificationCenter!
     private var subscriptions: Set<AnyCancellable>!
 

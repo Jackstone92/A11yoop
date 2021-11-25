@@ -8,8 +8,8 @@ import Combine
 import A11yoopMonitor
 import A11yStatusEmitter
 import A11yStatusEmitterLive
-import A11yStatusManager
-import A11yStatusManagerLive
+import A11yStatusObserver
+import A11yStatusObserverLive
 import A11yStatusProvider
 import A11yStatusProviderLive
 import A11yFeature
@@ -18,7 +18,7 @@ extension A11yoopMonitor {
 
     public static func live(
         featureTypes: [A11yFeatureType] = A11yFeatureType.allCases,
-        statusManager: A11yStatusManager = .live(),
+        statusManager: A11yStatusObserver = .live(),
         emitters: [A11yStatusEmitter] = [.log()],
         statusProvider: A11yStatusProvider = .live
     ) -> Self {

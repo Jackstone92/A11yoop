@@ -5,7 +5,7 @@
 
 import Foundation
 import Combine
-import A11yStatusManager
+import A11yStatusObserver
 import A11yStatusEmitter
 import A11yStore
 import A11yStoreLive
@@ -13,7 +13,7 @@ import A11yStatusProvider
 import A11yStatusProviderLive
 import A11yFeature
 
-extension A11yStatusManager {
+extension A11yStatusObserver {
 
     public static func live(
         featureStore: FeatureStore = .live,

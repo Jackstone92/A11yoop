@@ -5,7 +5,7 @@
 
 import XCTest
 import A11yFeature
-@testable import A11yStatusManagerLive
+@testable import A11yStatusObserverLive
 
 final class A11yFeatureType_NotificationNameTests: XCTestCase {
 

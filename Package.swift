@@ -20,7 +20,7 @@ var package = Package(
             dependencies: ["A11yFeature"]),
         .target(
             name: "A11yoopMonitorLive",
-            dependencies: ["A11yoopMonitor", "A11yStatusManagerLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
+            dependencies: ["A11yoopMonitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
         .testTarget(
             name: "A11yoopMonitorTests",
             dependencies: ["A11yoopMonitorLive", "A11yStatusEmitterTestSupport"]),
@@ -66,14 +66,14 @@ package.targets.append(contentsOf: [
         dependencies: ["A11yStoreLive"]),
 
     .target(
-        name: "A11yStatusManager",
+        name: "A11yStatusObserver",
         dependencies: ["A11yFeature", "A11yStatusEmitter", "A11yFeature"]),
     .target(
-        name: "A11yStatusManagerLive",
-        dependencies: ["A11yStatusManager", "A11yStoreLive", "A11yStatusProviderLive"]),
+        name: "A11yStatusObserverLive",
+        dependencies: ["A11yStatusObserver", "A11yStoreLive", "A11yStatusProviderLive"]),
     .testTarget(
-        name: "A11yStatusManagerTests",
-        dependencies: ["A11yStatusManagerLive",
+        name: "A11yStatusObserverTests",
+        dependencies: ["A11yStatusObserverLive",
                        "A11yStoreTestSupport",
                        "A11yStatusEmitterTestSupport"]),
 

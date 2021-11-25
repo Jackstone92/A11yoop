@@ -5,7 +5,7 @@
 
 import XCTest
 import A11yFeature
-import A11yStatusManager
+import A11yStatusObserver
 import A11yStatusProvider
 import A11yStatusEmitter
 import A11yoopMonitor
@@ -23,7 +23,7 @@ final class A11yoopMonitorTests: XCTestCase {
         var output = [A11yFeature]()
         var didInvokeStatusManager = false
 
-        let spy = A11yStatusManager(
+        let spy = A11yStatusObserver(
             observeFeatures: { features, _ in
                 output.append(contentsOf: features)
                 didInvokeStatusManager = true
@@ -47,7 +47,7 @@ final class A11yoopMonitorTests: XCTestCase {
         var output = [A11yFeatureType]()
         var didInvokeStatusManager = false
 
-        let spy = A11yStatusManager(
+        let spy = A11yStatusObserver(
             observeFeatures: { _, _ in },
             isFeatureEnabled: { type in
                 output.append(type)

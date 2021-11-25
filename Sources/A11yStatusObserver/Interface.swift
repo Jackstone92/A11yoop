@@ -8,7 +8,7 @@ import Combine
 import A11yStatusEmitter
 import A11yFeature
 
-public struct A11yStatusManager {
+public struct A11yStatusObserver {
 
     public let observeFeatures: (_ features: [A11yFeature], _ emitters: [A11yStatusEmitter]) -> Void
     public let isFeatureEnabled: (_ feature: A11yFeatureType) -> Bool
