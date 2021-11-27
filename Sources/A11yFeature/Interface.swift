@@ -8,8 +8,6 @@ import Combine
 
 public struct A11yFeature: Identifiable {
 
-    public typealias ObservationResult = AnyPublisher<A11yFeature, Never>
-
     public let id = UUID()
 
     public let type: A11yFeatureType
