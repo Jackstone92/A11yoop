@@ -7,9 +7,9 @@ import Foundation
 
 extension AccessibilitySettings {
 
-    public enum Touch: Equatable {
-        case assistiveTouch
-        case shakeToUndo
+    public enum Touch: Equatable, DrillDownable {
+        case assistiveTouch(enabled: Bool)
+        case shakeToUndo(enabled: Bool)
 
         public var label: String {
             switch self {
@@ -17,12 +17,21 @@ extension AccessibilitySettings {
             case .shakeToUndo:      return "Shake to Undo"
             }
         }
+
+        public var next: DrillDownable? { associatedValue as? DrillDownable }
+
+        private var associatedValue: Any {
+            switch self {
+            case .assistiveTouch(let enabled),
+                 .shakeToUndo(let enabled):     return enabled
+            }
+        }
     }
 }
 
 extension AccessibilitySettings.Touch {
 
-    public enum AssistiveTouch: Equatable {
+    public enum AssistiveTouch: Equatable, DrillDownable {
         case mousePointerDwellControl(enabled: Bool)
         case mousePointerDwellAutoRevert(AutoRevert)
         case mousePointerDwellTolerance(Tolerance)
@@ -38,12 +47,24 @@ extension AccessibilitySettings.Touch {
             case .seconds(let stepperValue):    return "\(stepperValue) Seconds"
             }
         }
+
+        public var next: DrillDownable? { associatedValue as? DrillDownable }
+
+        private var associatedValue: Any {
+            switch self {
+            case .mousePointerDwellControl(let enabled):        return enabled
+            case .mousePointerDwellAutoRevert(let autoRevert):  return autoRevert
+            case .mousePointerDwellTolerance(let tolerance):    return tolerance
+            case .mousePointerDwellHotCorners(let hotCorners):  return hotCorners
+            case .seconds(let stepperValue):                    return stepperValue
+            }
+        }
     }
 }
 
 extension AccessibilitySettings.Touch.AssistiveTouch {
 
-    public enum AutoRevert: Equatable {
+    public enum AutoRevert: Equatable, DrillDownable {
         case mousePointerDwellAuto(enabled: Bool)
         case tocar(selected: Bool)
         case pausarPermanencia(selected: Bool)
@@ -55,14 +76,32 @@ extension AccessibilitySettings.Touch.AssistiveTouch {
             case .pausarPermanencia:        return "Pausar Permanencia"
             }
         }
+
+        public var next: DrillDownable? { associatedValue as? DrillDownable }
+
+        private var associatedValue: Any {
+            switch self {
+            case .mousePointerDwellAuto(let enabled):   return enabled
+            case .tocar(let selected),
+                 .pausarPermanencia(let selected):      return selected
+            }
+        }
     }
 
-    public enum Tolerance: Equatable {
+    public enum Tolerance: Equatable, DrillDownable {
         case dwellMovementToleranceFooter(sliderValue: Double)
 
         public var label: String {
             switch self {
             case .dwellMovementToleranceFooter:     return "DWELL_MOVEMENT_TOLERANCE_FOOTER"
+            }
+        }
+
+        public var next: DrillDownable? { associatedValue as? DrillDownable }
+
+        private var associatedValue: Any {
+            switch self {
+            case .dwellMovementToleranceFooter(let sliderValue):    return sliderValue
             }
         }
     }

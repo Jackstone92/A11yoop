@@ -7,12 +7,20 @@ import Foundation
 
 extension AccessibilitySettings {
 
-    public enum FaceIdAndAttention: Equatable {
+    public enum FaceIdAndAttention: Equatable, DrillDownable {
         case attentionAwareFeatures(enabled: Bool)
 
         public var label: String {
             switch self {
             case .attentionAwareFeatures:   return "Attention Aware Features"
+            }
+        }
+
+        public var next: DrillDownable? { associatedValue as? DrillDownable }
+
+        private var associatedValue: Any {
+            switch self {
+            case .attentionAwareFeatures(let enabled): return enabled
             }
         }
     }

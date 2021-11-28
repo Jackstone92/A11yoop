@@ -7,7 +7,7 @@ import Foundation
 
 extension AccessibilitySettings {
 
-    public enum DisplayAndTextSize: Equatable {
+    public enum DisplayAndTextSize: Equatable, DrillDownable {
         case boldText(enabled: Bool)
         case largerText(LargerText)
         case buttonShapes(enabled: Bool)
@@ -29,12 +29,27 @@ extension AccessibilitySettings {
             case .smartInvert:                  return "Smart Invert"
             }
         }
+
+        public var next: DrillDownable? { associatedValue as? DrillDownable }
+
+        private var associatedValue: Any {
+            switch self {
+            case .boldText(let enabled):                    return enabled
+            case .largerText(let largerText):               return largerText
+            case .buttonShapes(let enabled),
+                 .onOffLabels(let enabled),
+                 .reduceTransparency(let enabled),
+                 .increaseContrast(let enabled),
+                 .differentiateWithoutColor(let enabled),
+                 .smartInvert(let enabled):                 return enabled
+            }
+        }
     }
 }
 
 extension AccessibilitySettings.DisplayAndTextSize {
 
-    public enum LargerText: Equatable {
+    public enum LargerText: Equatable, DrillDownable {
         case largerAccessibilitySizes(enabled: Bool)
         case slider(sliderValue: Double)
 
@@ -42,6 +57,15 @@ extension AccessibilitySettings.DisplayAndTextSize {
             switch self {
             case .largerAccessibilitySizes: return "Larger Accessibility Sizes"
             case .slider:                   return ""
+            }
+        }
+
+        public var next: DrillDownable? { associatedValue as? DrillDownable }
+
+        private var associatedValue: Any {
+            switch self {
+            case .largerAccessibilitySizes(let enabled):    return enabled
+            case .slider(let sliderValue):                  return sliderValue
             }
         }
     }

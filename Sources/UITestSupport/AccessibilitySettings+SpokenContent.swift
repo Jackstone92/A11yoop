@@ -7,14 +7,23 @@ import Foundation
 
 extension AccessibilitySettings {
 
-    public enum SpokenContent: Equatable {
+    public enum SpokenContent: Equatable, DrillDownable {
         case speakSelection(enabled: Bool)
         case pronunciations(Pronunciations)
 
-        var label: String {
+        public var label: String {
             switch self {
             case .speakSelection: return "Speak Selection"
             case .pronunciations: return "Pronunciations"
+            }
+        }
+
+        public var next: DrillDownable? { associatedValue as? DrillDownable }
+
+        private var associatedValue: Any {
+            switch self {
+            case .speakSelection(let enabled):          return enabled
+            case .pronunciations(let pronunciations):   return pronunciations
             }
         }
     }
