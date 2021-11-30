@@ -96,5 +96,8 @@ package.products.append(contentsOf: [
 package.targets.append(contentsOf: [
     .target(
         name: "UITestSupport",
-        dependencies: [])
+        dependencies: []),
+    .testTarget(
+        name: "UITestSupportTests",
+        dependencies: ["UITestSupport"])
 ])
