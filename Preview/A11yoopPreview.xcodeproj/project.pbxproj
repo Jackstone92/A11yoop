@@ -38,6 +38,7 @@
 		2544AB532740471300B20CFC /* A11yFeatureStatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yFeatureStatusRow.swift; sourceTree = "<group>"; };
 		2544AB5527404CAA00B20CFC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		259D6EFC27497B5600C794D0 /* A11yFeatureStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yFeatureStatusList.swift; sourceTree = "<group>"; };
+		25EFDFA527583E74008998CC /* UITestSupport */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UITestSupport; path = Packages/UITestSupport; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				2544AB4B2740462D00B20CFC /* A11yoop */,
+				25EFDFA527583E74008998CC /* UITestSupport */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -179,6 +181,7 @@
 					};
 					2544AB36274045BE00B20CFC = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 						TestTargetID = 2544AB1C274045BC00B20CFC;
 					};
 				};
@@ -430,6 +433,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R97A3PMDGF;
@@ -443,6 +447,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackstone.A11yoopPreviewUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = A11yoopPreview;
@@ -453,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R97A3PMDGF;

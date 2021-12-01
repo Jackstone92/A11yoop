@@ -87,17 +87,3 @@ package.targets.append(contentsOf: [
         name: "A11yStatusProviderTests",
         dependencies: ["A11yStatusProviderLive"])
 ])
-
-// MARK: - UI test support
-package.products.append(contentsOf: [
-    .library(name: "UITestSupport", targets: ["UITestSupport"])
-])
-
-package.targets.append(contentsOf: [
-    .target(
-        name: "UITestSupport",
-        dependencies: []),
-    .testTarget(
-        name: "UITestSupportTests",
-        dependencies: ["UITestSupport"])
-])
