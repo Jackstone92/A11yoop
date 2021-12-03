@@ -7,7 +7,7 @@ import Foundation
 
 public struct Traverser {
 
-    public func traverse(_ start: DrillDownable, step: (LabelIdentifiable) -> Void) -> DrillDownable {
+    public func traverse(_ start: DrillDownable, step: (LabelIdentifiable) -> Void) -> DrillDownableValue? {
         var traversal = start
         step(traversal)
 
@@ -18,7 +18,7 @@ public struct Traverser {
             step(traversal)
         }
 
-        return traversal
+        return DrillDownableValue(traversal.value)
     }
 
     public init() {}

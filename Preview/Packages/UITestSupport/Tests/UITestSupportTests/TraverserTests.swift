@@ -19,14 +19,14 @@ final class TraverserTests: XCTestCase {
 
         var output = [LabelIdentifiable]()
 
-        let level3 = MockDrillDownable(next: nil, label: "level3")
-        let level2 = MockDrillDownable(next: level3, label: "level2")
-        let level1 = MockDrillDownable(next: level2, label: "level1")
-        let root = MockDrillDownable(next: level1, label: "root")
+        let level3 = MockDrillDownable(next: nil, label: "level3", value: true)
+        let level2 = MockDrillDownable(next: level3, label: "level2", value:  level3)
+        let level1 = MockDrillDownable(next: level2, label: "level1", value: level2)
+        let root = MockDrillDownable(next: level1, label: "root", value: level1)
 
-        let leaf = sut.traverse(root, step: { output.append($0) })
+        let value = sut.traverse(root, step: { output.append($0) })
 
-        XCTAssertEqual(leaf.label, level3.label)
+        XCTAssertEqual(try XCTUnwrap(value), DrillDownableValue.toggleable(true))
         XCTAssertEqual(
             output.map(\.label),
             [root.label, level1.label, level2.label, level3.label]
@@ -37,12 +37,22 @@ final class TraverserTests: XCTestCase {
 
         var output = [LabelIdentifiable]()
 
-        let root = MockDrillDownable(next: nil, label: "root")
+        let root = MockDrillDownable(next: nil, label: "root", value: true)
 
-        let leaf = sut.traverse(root, step: { output.append($0) })
+        let value = sut.traverse(root, step: { output.append($0) })
 
-        XCTAssertEqual(leaf.label, root.label)
+        XCTAssertEqual(try XCTUnwrap(value), DrillDownableValue.toggleable(true))
         XCTAssertEqual(output.map(\.label), [root.label])
+    }
+
+
+    func test_traverseReturnsNilForUnexpectedDrillDownableValue() {
+
+        let root = MockDrillDownable(next: nil, label: "root", value: "Unexpected DrillDownableValue type")
+
+        let value = sut.traverse(root, step: { _ in })
+
+        XCTAssertNil(value)
     }
 }
 
@@ -51,12 +61,15 @@ private struct MockDrillDownable: DrillDownable {
 
     var label: String { _label }
     var next: DrillDownable? { _next }
+    var value: Any { _value }
 
     private let _label: String
     private let _next: DrillDownable?
+    private let _value: Any
 
-    init(next: DrillDownable?, label: String) {
+    init(next: DrillDownable?, label: String, value: Any) {
         self._next = next
         self._label = label
+        self._value = value
     }
 }
