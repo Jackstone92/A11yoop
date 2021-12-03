@@ -16,9 +16,7 @@ extension AccessibilitySettings {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .attentionAwareFeatures(let enabled): return enabled
             }

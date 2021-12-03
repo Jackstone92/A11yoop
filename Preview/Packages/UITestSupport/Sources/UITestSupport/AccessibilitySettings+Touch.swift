@@ -18,9 +18,7 @@ extension AccessibilitySettings {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .assistiveTouch(let enabled),
                  .shakeToUndo(let enabled):     return enabled
@@ -48,9 +46,7 @@ extension AccessibilitySettings.Touch {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .mousePointerDwellControl(let enabled):        return enabled
             case .mousePointerDwellAutoRevert(let autoRevert):  return autoRevert
@@ -77,9 +73,7 @@ extension AccessibilitySettings.Touch.AssistiveTouch {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .mousePointerDwellAuto(let enabled):   return enabled
             case .tocar(let selected),
@@ -97,9 +91,7 @@ extension AccessibilitySettings.Touch.AssistiveTouch {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .dwellMovementToleranceFooter(let sliderValue):    return sliderValue
             }

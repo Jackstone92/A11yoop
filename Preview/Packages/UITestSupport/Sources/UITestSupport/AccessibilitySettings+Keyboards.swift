@@ -24,9 +24,7 @@ extension AccessibilitySettings {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .fullKeyboardAccess(let fullKeyboardAccess):   return fullKeyboardAccess
             case .keyRepeat(let keyRepeat):                     return keyRepeat
@@ -59,9 +57,7 @@ extension AccessibilitySettings.Keyboards {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .commands(let commands):           return commands
             case .autoHide(let autoHide):           return autoHide
@@ -92,9 +88,7 @@ extension AccessibilitySettings.Keyboards {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .autoHide(let enabled):        return enabled
             case .seconds(let stepperValue):    return stepperValue
@@ -118,9 +112,7 @@ extension AccessibilitySettings.Keyboards {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .keyRepeat(let enabled):
                 return enabled
@@ -147,9 +139,7 @@ extension AccessibilitySettings.Keyboards {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .stickyKeys(let enabled),
                  .toggleWithShiftKey(let enabled),
@@ -172,9 +162,7 @@ extension AccessibilitySettings.Keyboards {
             }
         }
 
-        public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-        private var associatedValue: Any {
+        public var value: Any {
             switch self {
             case .slowKeys(let enabled): return enabled
             }

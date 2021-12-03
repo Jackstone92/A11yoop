@@ -24,9 +24,7 @@ public enum AccessibilitySettings: Equatable, DrillDownable {
         }
     }
 
-    public var next: DrillDownable? { associatedValue as? DrillDownable }
-
-    private var associatedValue: Any {
+    public var value: Any {
         switch self {
         case .displayAndTextSize(let displayAndTextSize):   return displayAndTextSize
         case .motion(let motion):                           return motion
