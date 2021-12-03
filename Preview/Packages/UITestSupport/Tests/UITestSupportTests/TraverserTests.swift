@@ -26,10 +26,10 @@ final class TraverserTests: XCTestCase {
 
         let value = sut.traverse(root, step: { output.append($0) })
 
-        XCTAssertEqual(try XCTUnwrap(value), DrillDownableValue.toggleable(true))
+        XCTAssertEqual(try XCTUnwrap(value), try XCTUnwrap(DrillDownableValue(level3.value)))
         XCTAssertEqual(
             output.map(\.label),
-            [root.label, level1.label, level2.label, level3.label]
+            [root.label, level1.label, level2.label]
         )
     }
 
@@ -42,7 +42,7 @@ final class TraverserTests: XCTestCase {
         let value = sut.traverse(root, step: { output.append($0) })
 
         XCTAssertEqual(try XCTUnwrap(value), DrillDownableValue.toggleable(true))
-        XCTAssertEqual(output.map(\.label), [root.label])
+        XCTAssertTrue(output.isEmpty)
     }
 
 

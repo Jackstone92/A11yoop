@@ -7,19 +7,16 @@ import Foundation
 
 public struct Traverser {
 
-    public func traverse(_ start: DrillDownable, step: (LabelIdentifiable) -> Void) -> DrillDownableValue? {
+    public init() {}
+
+    public func traverse(_ start: DrillDownable, step: @escaping (LabelIdentifiable) -> Void) -> DrillDownableValue? {
         var traversal = start
-        step(traversal)
 
-        while true {
-            guard traversal.next != nil else { break }
-
-            traversal = traversal.next!
+        while traversal.next != nil {
             step(traversal)
+            traversal = traversal.next!
         }
 
         return DrillDownableValue(traversal.value)
     }
-
-    public init() {}
 }
