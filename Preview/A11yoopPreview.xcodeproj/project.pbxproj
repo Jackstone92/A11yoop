@@ -38,7 +38,6 @@
 		2544AB532740471300B20CFC /* A11yFeatureStatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yFeatureStatusRow.swift; sourceTree = "<group>"; };
 		2544AB5527404CAA00B20CFC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		259D6EFC27497B5600C794D0 /* A11yFeatureStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A11yFeatureStatusList.swift; sourceTree = "<group>"; };
-		25EFDFA527583E74008998CC /* UITestSupport */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UITestSupport; path = Packages/UITestSupport; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +64,6 @@
 			children = (
 				2544AB4A2740462D00B20CFC /* Packages */,
 				2544AB1F274045BC00B20CFC /* A11yoopPreview */,
-				2544AB3A274045BE00B20CFC /* A11yoopPreviewUITests */,
 				2544AB1E274045BC00B20CFC /* Products */,
 				2544AB4C2740465200B20CFC /* Frameworks */,
 			);
@@ -102,18 +100,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2544AB3A274045BE00B20CFC /* A11yoopPreviewUITests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = A11yoopPreviewUITests;
-			sourceTree = "<group>";
-		};
 		2544AB4A2740462D00B20CFC /* Packages */ = {
 			isa = PBXGroup;
 			children = (
 				2544AB4B2740462D00B20CFC /* A11yoop */,
-				25EFDFA527583E74008998CC /* UITestSupport */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
