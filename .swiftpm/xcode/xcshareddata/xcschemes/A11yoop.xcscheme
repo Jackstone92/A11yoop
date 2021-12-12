@@ -356,6 +356,34 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Monitor"
+               BuildableName = "Monitor"
+               BlueprintName = "Monitor"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MonitorLive"
+               BuildableName = "MonitorLive"
+               BlueprintName = "MonitorLive"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -461,6 +489,16 @@
                BlueprintIdentifier = "A11yStatusProviderTests"
                BuildableName = "A11yStatusProviderTests"
                BlueprintName = "A11yStatusProviderTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MonitorTests"
+               BuildableName = "MonitorTests"
+               BlueprintName = "MonitorTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>

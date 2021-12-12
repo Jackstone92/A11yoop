@@ -10,20 +10,24 @@ var package = Package(
     products: [
         .library(
             name: "A11yoopMonitor",
-            targets: ["A11yoopMonitorLive"]),
+            targets: ["A11yoopMonitor"]),
     ],
     dependencies: [
     ],
     targets: [
         .target(
             name: "A11yoopMonitor",
+            dependencies: ["MonitorLive"]),
+
+        .target(
+            name: "Monitor",
             dependencies: ["A11yFeature"]),
         .target(
-            name: "A11yoopMonitorLive",
-            dependencies: ["A11yoopMonitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
+            name: "MonitorLive",
+            dependencies: ["Monitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
         .testTarget(
-            name: "A11yoopMonitorTests",
-            dependencies: ["A11yoopMonitorLive", "A11yStatusEmitterTestSupport"]),
+            name: "MonitorTests",
+            dependencies: ["MonitorLive", "A11yStatusEmitterTestSupport"]),
     ]
 )
 

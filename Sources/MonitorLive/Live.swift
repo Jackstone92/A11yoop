@@ -5,7 +5,7 @@
 
 import Foundation
 import Combine
-import A11yoopMonitor
+import Monitor
 import A11yStatusEmitter
 import A11yStatusEmitterLive
 import A11yStatusObserver
@@ -14,7 +14,7 @@ import A11yStatusProvider
 import A11yStatusProviderLive
 import A11yFeature
 
-extension A11yoopMonitor {
+extension Monitor {
 
     public static func live(
         featureTypes: [A11yFeatureType] = A11yFeatureType.allCases,

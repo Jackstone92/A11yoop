@@ -7,7 +7,7 @@ import Foundation
 import Combine
 import A11yFeature
 
-public class A11yoopMonitor {
+public class Monitor {
 
     public let featuresSubject: CurrentValueSubject<[A11yFeature], Never>
     public let isFeatureEnabled: (_ feature: A11yFeatureType) -> Bool

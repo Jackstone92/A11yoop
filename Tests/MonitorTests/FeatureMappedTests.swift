@@ -8,7 +8,7 @@ import Combine
 import A11yFeature
 import A11yStatusProvider
 import A11yoopMonitor
-@testable import A11yoopMonitorLive
+@testable import MonitorLive
 
 final class FeatureMappedTests: XCTestCase {
 
