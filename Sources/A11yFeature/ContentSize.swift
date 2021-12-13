@@ -3,6 +3,7 @@
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
+/// Constants that indicate the preferred size of an app's content.
 public enum ContentSize: Equatable {
     case unknown
     case extraSmall

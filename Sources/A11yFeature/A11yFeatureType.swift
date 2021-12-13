@@ -5,6 +5,7 @@
 
 import Foundation
 
+/// The different types of accessibility features that are available to be monitored.
 public enum A11yFeatureType: Hashable, CaseIterable {
 
     /// The screen reader available on Apple platforms.

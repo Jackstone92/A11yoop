@@ -6,13 +6,22 @@
 import Foundation
 import Combine
 
+/// A accessibility feature representation.
 public struct A11yFeature: Identifiable {
 
     public let id = UUID()
 
+    /// The type of accessibility feature.
     public let type: A11yFeatureType
+
+    /// The current status of the accessibility feature.
     public var status: A11yStatus
 
+    /// Instantiates a representation of an accessibility feature, specified by a type and an initial status.
+    ///
+    /// - Parameter type: The type of accessibility feature.
+    /// - Parameter status: The initial status of the accessibility feature. This can then be subsequently updated.
+    ///
     public init(type: A11yFeatureType, status: A11yStatus) {
         self.type = type
         self.status = status

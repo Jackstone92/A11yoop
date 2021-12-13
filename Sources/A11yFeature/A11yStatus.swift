@@ -5,9 +5,16 @@
 
 import Foundation
 
+/// The status of a particular accessibility feature.
 public enum A11yStatus: Equatable {
+
+    /// The accessibility feature is enabled.
     case enabled
+
+    /// The accessibility feature is disabled.
     case disabled
+
+    /// The accessibility feature is enabled, using a particular content size.
     case contentSize(ContentSize)
 }
 
