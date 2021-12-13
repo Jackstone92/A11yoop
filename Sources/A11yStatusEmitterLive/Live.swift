@@ -20,6 +20,13 @@ extension A11yStatusEmitter {
         os_log(message, log: log, type: type, args)
     }
 
+    /// A status emitter configuration that prints any accessibility feature status changes to system logs.
+    ///
+    /// - Parameter handler: A log handler that receives corresponding logging parameters to log.
+    ///                      By default, these details are logged using `os_log`.
+    ///
+    ///  - Returns: The log status emitter instance.
+    ///
     public static func log(handler: @escaping LogHandler = defaultLogHandler) -> Self {
 
         return Self { feature in
