@@ -12,7 +12,7 @@ import A11yStatusEmitter
 import A11yStatusProvider
 
 /// Allows accessibility features that users have enabled on their iOS devices to be tracked as they are enabled and disabled.
-public final class A11yoopMonitor {
+public struct A11yoopMonitor {
 
     let _monitor: Monitor
 

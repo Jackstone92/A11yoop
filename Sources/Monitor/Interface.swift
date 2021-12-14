@@ -8,7 +8,7 @@ import Combine
 import A11yFeature
 
 /// Monitors updates to accessibility features that are currently being observed and provides an interface to query the current status of a given accessibility feature.
-public class Monitor {
+public struct Monitor {
 
     /// A list of accessibility features that are currently being observed.
     public let featuresSubject: CurrentValueSubject<[A11yFeature], Never>
@@ -21,7 +21,7 @@ public class Monitor {
     ///
     public let isFeatureEnabled: (_ feature: A11yFeatureType) -> Bool
 
-    public required init(
+    public init(
         featuresSubject: CurrentValueSubject<[A11yFeature], Never>,
         isFeatureEnabled: @escaping (A11yFeatureType) -> Bool
     ) {
