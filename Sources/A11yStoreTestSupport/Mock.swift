@@ -8,6 +8,8 @@ import A11yStoreLive
 
 extension FeatureStore {
 
+    /// An accessibility feature store designed for testing purposes, which should never be invoked.
+    /// If it is, it will result in an `XCTFail`.
     public static var notInvoked: Self {
         Self(
             get: { _ in XCTFail(); return nil },
@@ -18,6 +20,7 @@ extension FeatureStore {
         )
     }
 
+    /// A stub accessibility feature store designed for testing purposes.
     public static var noop: Self {
         Self(
             get: { _ in return nil },
