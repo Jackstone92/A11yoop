@@ -24,4 +24,9 @@ final class A11yStatus_DescriptionTests: XCTestCase {
 
         XCTAssertEqual(sut.contentSize(.large).description, ContentSize.large.description)
     }
+
+    func test_descriptionForNotSupported() {
+
+        XCTAssertEqual(sut.notSupported.description, "Not Supported")
+    }
 }

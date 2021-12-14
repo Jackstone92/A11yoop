@@ -16,6 +16,9 @@ public enum A11yStatus: Equatable {
 
     /// The accessibility feature is enabled, using a particular content size.
     case contentSize(ContentSize)
+
+    /// The accessibility feature is not supported on the current device.
+    case notSupported
 }
 
 extension A11yStatus: CustomStringConvertible {
@@ -25,6 +28,7 @@ extension A11yStatus: CustomStringConvertible {
         case .enabled:  return "Enabled"
         case .disabled: return "Disabled"
         case .contentSize(let size): return size.description
+        case .notSupported: return "Not Supported"
         }
     }
 }

@@ -57,7 +57,7 @@ extension A11yStatusProvider {
             return UIAccessibility.isDarkerSystemColorsEnabled.asA11yStatus()
 
         case .buttonShapes:
-            guard #available(iOS 14.0, *) else { return .disabled }
+            guard #available(iOS 14.0, *) else { return .notSupported }
             return UIAccessibility.buttonShapesEnabled.asA11yStatus()
 
         case .speakScreen:
@@ -73,7 +73,7 @@ extension A11yStatusProvider {
             return UIAccessibility.isGuidedAccessEnabled.asA11yStatus()
 
         case .preferCrossFadeTransitions:
-            guard #available(iOS 14.0, *) else { return .disabled }
+            guard #available(iOS 14.0, *) else { return .notSupported }
             return UIAccessibility.prefersCrossFadeTransitions.asA11yStatus()
         }
     }
