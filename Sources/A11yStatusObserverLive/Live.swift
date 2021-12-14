@@ -15,6 +15,18 @@ import A11yFeature
 
 extension A11yStatusObserver {
 
+    /// The live status observer implementation that allows for accessibility feature status changes to be observed.
+    ///
+    /// - Parameter featureStore: The backing in-memory storage solution, which maintains the up-to-date list of
+    ///                           observed accessibility features and their current statuses.
+    ///
+    /// - Parameter statusProvider: The provider that derives the current accessibility feature status.
+    ///
+    /// - Parameter notificationCenter: The notification centre instance to use in order to observe accessibility
+    ///                                 feature status changes.
+    ///
+    /// - Returns: The live status observer instance.
+    ///
     public static func live(
         featureStore: FeatureStore = .live,
         statusProvider: A11yStatusProvider = .live,
