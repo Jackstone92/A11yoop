@@ -23,8 +23,8 @@ public final class A11yoopMonitor {
     ) {
         _monitor = .live(
             featureTypes: featureTypes,
-            statusManager: .live(),
             emitters: emitters,
+            statusObserver: .live(),
             statusProvider: .live
         )
     }

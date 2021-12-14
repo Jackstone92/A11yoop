@@ -33,8 +33,8 @@ final class A11yoopMonitorTests: XCTestCase {
 
         sut = .live(
             featureTypes: featureTypes,
-            statusManager: spy,
             emitters: [.noop],
+            statusObserver: spy,
             statusProvider: .enabled
         )
 
@@ -58,8 +58,8 @@ final class A11yoopMonitorTests: XCTestCase {
 
         sut = .live(
             featureTypes: featureTypes,
-            statusManager: spy,
             emitters: [.noop],
+            statusObserver: spy,
             statusProvider: .enabled
         )
 

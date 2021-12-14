@@ -1,5 +1,5 @@
 //
-//  FeatureMappedTests.swift
+//  MapperTests.swift
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
@@ -7,10 +7,10 @@ import XCTest
 import Combine
 import A11yFeature
 import A11yStatusProvider
-import A11yoopMonitor
+import Monitor
 @testable import MonitorLive
 
-final class FeatureMappedTests: XCTestCase {
+final class MapperTests: XCTestCase {
 
     private var statusProvider: A11yStatusProvider!
     private var subscriptions: Set<AnyCancellable>!
@@ -25,7 +25,7 @@ final class FeatureMappedTests: XCTestCase {
 
     func test_asA11yFeaturePassesType() {
 
-        let sut = FeatureMapped.asA11yFeature(using: statusProvider).mapped(featureType)
+        let sut = Mapper.asA11yFeature(using: statusProvider).map(featureType)
 
         XCTAssertEqual(sut.type, featureType)
     }
@@ -40,7 +40,7 @@ final class FeatureMappedTests: XCTestCase {
             return .enabled
         }
 
-        let sut = FeatureMapped.asA11yFeature(using: spy).mapped(featureType)
+        let sut = Mapper.asA11yFeature(using: spy).map(featureType)
 
         XCTAssertEqual(sut.status, .enabled)
 
