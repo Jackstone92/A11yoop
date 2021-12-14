@@ -84,10 +84,10 @@
 				2544AB20274045BC00B20CFC /* A11yoopPreviewApp.swift */,
 				2544AB5527404CAA00B20CFC /* MainViewModel.swift */,
 				2544AB22274045BC00B20CFC /* Main.swift */,
+				259D6EFC27497B5600C794D0 /* A11yFeatureStatusList.swift */,
 				2544AB532740471300B20CFC /* A11yFeatureStatusRow.swift */,
 				2544AB24274045BE00B20CFC /* Assets.xcassets */,
 				2544AB26274045BE00B20CFC /* Preview Content */,
-				259D6EFC27497B5600C794D0 /* A11yFeatureStatusList.swift */,
 			);
 			path = A11yoopPreview;
 			sourceTree = "<group>";

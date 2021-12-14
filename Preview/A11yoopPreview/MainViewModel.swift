@@ -11,6 +11,7 @@ import A11yoopMonitor
 final class MainViewModel: ObservableObject {
 
     @Published var features = [A11yFeature]()
+    @Published var lastUpdated: Date!
 
     private var monitor: A11yoopMonitor!
 
@@ -28,11 +29,13 @@ final class MainViewModel: ObservableObject {
                     }
                     
                     self.features = updatedFeatures
+                    self.lastUpdated = Date()
                 })
             ]
         )
 
         // Set initial features
         features = monitor.features
+        lastUpdated = Date()
     }
 }

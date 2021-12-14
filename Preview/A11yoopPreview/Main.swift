@@ -12,8 +12,10 @@ struct Main: View {
 
     var body: some View {
         NavigationView {
-            A11yFeatureStatusList(features: viewModel.features)
-                .navigationTitle("A11yoop Preview")
+            VStack {
+                A11yFeatureStatusList(features: viewModel.features, lastUpdated: viewModel.lastUpdated)
+                    .navigationTitle("A11yoop Preview")
+            }
         }
     }
 }

@@ -9,9 +9,14 @@ import A11yFeature
 struct A11yFeatureStatusList: View {
 
     let features: [A11yFeature]
+    let lastUpdated: Date
 
     var body: some View {
         List {
+            Section("Last updated") {
+                Text("\(lastUpdated)")
+            }
+
             Section("Enabled features") {
                 ForEach(features.filter { $0.status != .disabled }) { feature in
                     A11yFeatureStatusRow(feature: feature)
@@ -33,7 +38,8 @@ struct A11yFeatureStatusList_Previews: PreviewProvider {
             features: [
                 A11yFeature(type: .guidedAccess, status: .enabled),
                 A11yFeature(type: .voiceOver, status: .disabled)
-            ]
+            ],
+            lastUpdated: Date()
         )
     }
 }
