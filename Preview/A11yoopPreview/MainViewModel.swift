@@ -7,7 +7,6 @@ import Foundation
 import Combine
 import A11yFeature
 import A11yoopMonitor
-import A11yoopMonitorLive
 
 final class MainViewModel: ObservableObject {
 
@@ -16,12 +15,8 @@ final class MainViewModel: ObservableObject {
     private var monitor: A11yoopMonitor!
 
     init(featureTypes: [A11yFeatureType] = A11yFeatureType.allCases) {
-        self.monitor = .live(
+        monitor = A11yoopMonitor(
             featureTypes: featureTypes,
-            statusManager: .live(
-                featureStore: .live,
-                notificationCenter: .default
-            ),
             emitters: [
                 .init(emit: { emittedFeature in
                     let updatedFeatures = self.features.map { feature -> A11yFeature in
@@ -34,11 +29,10 @@ final class MainViewModel: ObservableObject {
                     
                     self.features = updatedFeatures
                 })
-            ],
-            statusProvider: .live
+            ]
         )
 
         // Set initial features
-        features = monitor.featuresSubject.value
+        features = monitor.features
     }
 }
