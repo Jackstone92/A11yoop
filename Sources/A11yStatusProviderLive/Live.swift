@@ -9,6 +9,7 @@ import A11yStatusProvider
 
 extension A11yStatusProvider {
 
+    /// The live status provider instance.
     public static var live: Self {
         Self(getStatus: getStatus)
     }

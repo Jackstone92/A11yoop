@@ -8,6 +8,7 @@ import A11yFeature
 
 extension UIContentSizeCategory {
 
+    /// An adapter that converts a `UIContentSizeCategory` value to a `ContentSize` value.
     func asContentSize() -> ContentSize {
         switch self {
         case .extraSmall: return .extraSmall
