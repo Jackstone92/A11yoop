@@ -10,7 +10,7 @@ import A11yStore
 import A11yStoreLive
 import A11yStatusEmitter
 import A11yStatusObserver
-import A11yStatusObserverLive
+@testable import A11yStatusObserverLive
 import A11yStoreTestSupport
 import A11yStatusEmitterTestSupport
 
@@ -95,5 +95,26 @@ final class A11yStatusObserverTests: XCTestCase {
         sut = .live(featureStore: store, notificationCenter: notificationCenter)
 
         XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
+    }
+
+    // MARK: - Multiple emitter tests
+    func test_multipleEmittersOnlyEmitOnceEachPerStatusChange() {
+
+        var outputA = [A11yFeature]()
+        var outputB = [A11yFeature]()
+
+        let features = [A11yFeature(type: .voiceOver, status: .disabled)]
+
+        let spyA = A11yStatusEmitter { outputA.append($0) }
+        let spyB = A11yStatusEmitter { outputB.append($0) }
+
+        sut = .live(notificationCenter: notificationCenter)
+
+        sut.observeFeatures(features, [spyA, spyB])
+
+        notificationCenter.post(name: A11yFeatureType.voiceOver.notificationName, object: nil)
+
+        XCTAssertEqual(outputA.count, 1)
+        XCTAssertEqual(outputB.count, 1)
     }
 }
