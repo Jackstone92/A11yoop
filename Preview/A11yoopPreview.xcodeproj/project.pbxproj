@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251DC393276A8FDA00DFEC6B /* CombineSchedulers in Frameworks */ = {isa = PBXBuildFile; productRef = 251DC392276A8FDA00DFEC6B /* CombineSchedulers */; };
 		2544AB21274045BC00B20CFC /* A11yoopPreviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB20274045BC00B20CFC /* A11yoopPreviewApp.swift */; };
 		2544AB23274045BC00B20CFC /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2544AB22274045BC00B20CFC /* Main.swift */; };
 		2544AB25274045BE00B20CFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2544AB24274045BE00B20CFC /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				251DC393276A8FDA00DFEC6B /* CombineSchedulers in Frameworks */,
 				2544AB4E2740465200B20CFC /* A11yoopMonitor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +135,7 @@
 			name = A11yoopPreview;
 			packageProductDependencies = (
 				2544AB4D2740465200B20CFC /* A11yoopMonitor */,
+				251DC392276A8FDA00DFEC6B /* CombineSchedulers */,
 			);
 			productName = A11yoopPreview;
 			productReference = 2544AB1D274045BC00B20CFC /* A11yoopPreview.app */;
@@ -185,6 +188,9 @@
 				Base,
 			);
 			mainGroup = 2544AB14274045BC00B20CFC;
+			packageReferences = (
+				251DC391276A8FDA00DFEC6B /* XCRemoteSwiftPackageReference "combine-schedulers" */,
+			);
 			productRefGroup = 2544AB1E274045BC00B20CFC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -500,7 +506,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		251DC391276A8FDA00DFEC6B /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/combine-schedulers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		251DC392276A8FDA00DFEC6B /* CombineSchedulers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 251DC391276A8FDA00DFEC6B /* XCRemoteSwiftPackageReference "combine-schedulers" */;
+			productName = CombineSchedulers;
+		};
 		2544AB4D2740465200B20CFC /* A11yoopMonitor */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = A11yoopMonitor;
