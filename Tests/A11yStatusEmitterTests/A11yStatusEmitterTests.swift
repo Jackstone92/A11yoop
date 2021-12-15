@@ -11,8 +11,6 @@ import A11yStatusEmitterLive
 
 final class A11yStatusEmitterTests: XCTestCase {
 
-    private typealias LogHandler = A11yStatusEmitter.LogHandler
-
     private var sut: A11yStatusEmitter!
 
     func test_emitFormatting() {
@@ -20,20 +18,46 @@ final class A11yStatusEmitterTests: XCTestCase {
         var emitted = [(type: OSLogType,
                         log: OSLog,
                         message: StaticString,
-                        args: [CVarArg])]()
-        var didEmit = false
+                        featureDescription: CVarArg,
+                        statusDescription: CVarArg)]()
         let featureToEmit = A11yFeature(type: .voiceOver, status: .enabled)
 
-        sut = .log { type, log, message, args in
-            emitted.append((type, log, message, args))
-            didEmit = true
+        sut = .log { type, log, message, featureDescription, statusDescription in
+            emitted.append((type, log, message, featureDescription, statusDescription))
         }
 
         sut.emit(featureToEmit)
 
-        XCTAssertTrue(didEmit)
         XCTAssertEqual(emitted.count, 1)
         XCTAssertEqual(emitted.first?.type, .default)
         XCTAssertEqual(emitted.first?.log, OSLog(subsystem: "com.jackstone.A11yoop", category: "A11yoop"))
+        XCTAssertEqual(
+            emitted.first?.message.description,
+            "\"%{public}@\" accessibility feature status was updated to \"%{public}@\""
+        )
+    }
+
+    func test_logLevelCanBeSpecified() {
+
+        var output = [OSLogType]()
+        let featureToEmit = A11yFeature(type: .voiceOver, status: .enabled)
+
+        sut = .log(level: .info) { type, _, _, _, _ in output.append(type) }
+
+        sut.emit(featureToEmit)
+
+        XCTAssertEqual(output, [.info])
+    }
+
+    func test_usesDefaultLevelByDefault() {
+
+        var output = [OSLogType]()
+        let featureToEmit = A11yFeature(type: .voiceOver, status: .enabled)
+
+        sut = .log { type, _, _, _, _ in output.append(type) }
+
+        sut.emit(featureToEmit)
+
+        XCTAssertEqual(output, [.default])
     }
 }
