@@ -5,6 +5,7 @@
 
 import XCTest
 import Combine
+import CombineSchedulers
 import A11yFeature
 import A11yStore
 import A11yStoreLive
@@ -19,6 +20,8 @@ final class A11yStatusObserverTests: XCTestCase {
     private var sut: A11yStatusObserver!
     private var notificationCenter: NotificationCenter!
     private var subscriptions: Set<AnyCancellable>!
+
+    private let queue = DispatchQueue.immediate.eraseToAnyScheduler()
 
     override func setUp() {
         super.setUp()
@@ -40,7 +43,7 @@ final class A11yStatusObserverTests: XCTestCase {
             remove: { _ in XCTFail(); return nil }
         )
 
-        sut = .live(featureStore: storeSpy, notificationCenter: notificationCenter)
+        sut = .live(featureStore: storeSpy, notificationCenter: notificationCenter, queue: queue)
 
         sut.observeFeatures(features, [.noop])
 
@@ -55,7 +58,7 @@ final class A11yStatusObserverTests: XCTestCase {
 
         let emitterSpy = A11yStatusEmitter { output.append($0) }
 
-        sut = .live(featureStore: .live, notificationCenter: notificationCenter)
+        sut = .live(featureStore: .live, notificationCenter: notificationCenter, queue: queue)
 
         sut.observeFeatures(features, [emitterSpy])
 
@@ -71,7 +74,7 @@ final class A11yStatusObserverTests: XCTestCase {
         let enabledVoiceoverFeature = A11yFeature(type: .voiceOver, status: .enabled)
         store.insert(enabledVoiceoverFeature, .voiceOver)
 
-        sut = .live(featureStore: store, notificationCenter: notificationCenter)
+        sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
         XCTAssertTrue(sut.isFeatureEnabled(.voiceOver))
     }
@@ -82,7 +85,7 @@ final class A11yStatusObserverTests: XCTestCase {
         let disabledVoiceoverFeature = A11yFeature(type: .voiceOver, status: .disabled)
         store.insert(disabledVoiceoverFeature, .voiceOver)
 
-        sut = .live(featureStore: store, notificationCenter: notificationCenter)
+        sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
         XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
     }
@@ -92,7 +95,7 @@ final class A11yStatusObserverTests: XCTestCase {
         let store: FeatureStore = .live
         XCTAssertNil(store.get(.voiceOver))
 
-        sut = .live(featureStore: store, notificationCenter: notificationCenter)
+        sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
         XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
     }
@@ -108,7 +111,7 @@ final class A11yStatusObserverTests: XCTestCase {
         let spyA = A11yStatusEmitter { outputA.append($0) }
         let spyB = A11yStatusEmitter { outputB.append($0) }
 
-        sut = .live(notificationCenter: notificationCenter)
+        sut = .live(notificationCenter: notificationCenter, queue: queue)
 
         sut.observeFeatures(features, [spyA, spyB])
 

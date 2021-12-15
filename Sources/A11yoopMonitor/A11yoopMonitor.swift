@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import CombineSchedulers
 import Monitor
 import MonitorLive
 import A11yFeature
@@ -24,16 +25,18 @@ public struct A11yoopMonitor {
     ///
     /// - Parameter featureTypes: The list of accessibility feature types to observe. If unspecified, all available feature types will be observed.
     /// - Parameter emitters: The list of emitters that will process status changes to any observed accessibility features. If unspecified, changes will be logged to the console.
+    /// - Parameter queue: The queue on which any accessibility feature status changes will be observed.
     ///
     public init(
         featureTypes: [A11yFeatureType] = A11yFeatureType.allCases,
-        emitters: [A11yStatusEmitter] = [.log()]
+        emitters: [A11yStatusEmitter] = [.log()],
+        queue: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.init(
             monitor: .live(
                 featureTypes: featureTypes,
                 emitters: emitters,
-                statusObserver: .live(),
+                statusObserver: .live(queue: queue),
                 statusProvider: .live
             )
         )

@@ -4,6 +4,7 @@
 //
 
 import XCTest
+import CombineSchedulers
 import A11yFeature
 import A11yStatusEmitter
 import Monitor
@@ -13,12 +14,14 @@ final class A11yoopMonitorTests: XCTestCase {
 
     private var sut: A11yoopMonitor!
 
+    private let queue = DispatchQueue.immediate.eraseToAnyScheduler()
+
     // MARK: - Initialisation
     func test_passesSpecifiedFeatureTypesToUnderlyingMonitor() {
 
         let featureTypes: [A11yFeatureType] = [.voiceOver, .darkerSystemColours, .greyscale]
 
-        sut = A11yoopMonitor(featureTypes: featureTypes)
+        sut = A11yoopMonitor(featureTypes: featureTypes, queue: queue)
 
         let underlyingObservedFeatureTypes = sut._monitor.featuresSubject.value.map(\.type)
 
@@ -31,7 +34,7 @@ final class A11yoopMonitorTests: XCTestCase {
 
         let spy = A11yStatusEmitter { output.append($0) }
 
-        sut = A11yoopMonitor(emitters: [spy])
+        sut = A11yoopMonitor(emitters: [spy], queue: queue)
 
         NotificationCenter.default.post(name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
 
@@ -40,7 +43,7 @@ final class A11yoopMonitorTests: XCTestCase {
 
     func test_defaultFeatureTypes() {
 
-        sut = A11yoopMonitor()
+        sut = A11yoopMonitor(queue: queue)
 
         let underlyingObservedFeatureTypes = sut._monitor.featuresSubject.value.map(\.type)
 
@@ -57,7 +60,7 @@ final class A11yoopMonitorTests: XCTestCase {
             A11yFeature(type: .buttonShapes, status: .notSupported)
         ]
 
-        sut = A11yoopMonitor(featureTypes: [])
+        sut = A11yoopMonitor(featureTypes: [], queue: queue)
 
         XCTAssertTrue(sut._monitor.featuresSubject.value.isEmpty)
         XCTAssertTrue(sut.features.isEmpty)
@@ -68,7 +71,7 @@ final class A11yoopMonitorTests: XCTestCase {
     }
 
     // MARK: - isFeatureEnabled tests
-    func test_isFeatureEnabledInvokesMonitor() {
+    func test_isFeatureEnabledInvokesUnderlyingMonitor() {
 
         var output = [A11yFeatureType]()
 

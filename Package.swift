@@ -13,11 +13,12 @@ var package = Package(
             targets: ["A11yoopMonitor"]),
     ],
     dependencies: [
+        .package(name: "combine-schedulers", url: "https://github.com/pointfreeco/combine-schedulers", .upToNextMajor(from: "0.5.3")),
     ],
     targets: [
         .target(
             name: "A11yoopMonitor",
-            dependencies: ["MonitorLive"]),
+            dependencies: ["MonitorLive", .product(name: "CombineSchedulers", package: "combine-schedulers")]),
         .testTarget(
             name: "A11yoopMonitorTests",
             dependencies: ["A11yoopMonitor"])
@@ -77,7 +78,12 @@ package.targets.append(contentsOf: [
         dependencies: ["A11yFeature", "A11yStatusEmitter", "A11yFeature"]),
     .target(
         name: "A11yStatusObserverLive",
-        dependencies: ["A11yStatusObserver", "A11yStoreLive", "A11yStatusProviderLive"]),
+        dependencies: [
+            "A11yStatusObserver",
+            "A11yStoreLive",
+            "A11yStatusProviderLive",
+            .product(name: "CombineSchedulers", package: "combine-schedulers")
+        ]),
     .testTarget(
         name: "A11yStatusObserverTests",
         dependencies: ["A11yStatusObserverLive",

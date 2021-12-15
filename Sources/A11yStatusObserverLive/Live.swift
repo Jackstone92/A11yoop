@@ -5,6 +5,7 @@
 
 import Foundation
 import Combine
+import CombineSchedulers
 import A11yStatusObserver
 import A11yStatusEmitter
 import A11yStore
@@ -25,12 +26,15 @@ extension A11yStatusObserver {
     /// - Parameter notificationCenter: The notification centre instance to use in order to observe accessibility
     ///                                 feature status changes.
     ///
+    /// - Parameter queue: The queue on which the emitters will process any accessibility feature status changes.
+    ///
     /// - Returns: The live status observer instance.
     ///
     public static func live(
         featureStore: FeatureStore = .live,
         statusProvider: A11yStatusProvider = .live,
-        notificationCenter: NotificationCenter = .default
+        notificationCenter: NotificationCenter = .default,
+        queue: AnySchedulerOf<DispatchQueue> = .main
     ) -> Self {
 
         var subscriptions = Set<AnyCancellable>()
@@ -45,6 +49,7 @@ extension A11yStatusObserver {
                     statusProvider: statusProvider,
                     notificationCenter: notificationCenter,
                     emitters: emitters,
+                    queue: queue,
                     subscriptions: &subscriptions
                 )
             },
@@ -64,20 +69,24 @@ extension A11yStatusObserver {
         statusProvider: A11yStatusProvider,
         notificationCenter: NotificationCenter,
         emitters: [A11yStatusEmitter],
+        queue: AnySchedulerOf<DispatchQueue>,
         subscriptions: inout Set<AnyCancellable>
     ) {
         features
             .map { ($0, notificationCenter.publisher(for: $0.type.notificationName, object: nil)) }
             .forEach { feature, publisher in
-                publisher.sink { _ in
-                    let updatedStatus = statusProvider.getStatus(feature.type)
-                    featureStore.update(updatedStatus, feature.type)
 
-                    guard let feature = featureStore.get(feature.type) else { return }
+                publisher
+                    .receive(on: queue)
+                    .sink { _ in
+                        let updatedStatus = statusProvider.getStatus(feature.type)
+                        featureStore.update(updatedStatus, feature.type)
 
-                    emitters.forEach { $0.emit(feature) }
-                }
-                .store(in: &subscriptions)
+                        guard let feature = featureStore.get(feature.type) else { return }
+
+                        emitters.forEach { $0.emit(feature) }
+                    }
+                    .store(in: &subscriptions)
             }
     }
 }
