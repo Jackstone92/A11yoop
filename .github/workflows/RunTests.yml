@@ -1,0 +1,29 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: '**'
+
+jobs:
+  iOS:
+    name: "iOS"
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Generate project
+      run: swift package generate-xcodeproj --enable-code-coverage
+    - name: Run latest iOS tests
+      run: set -o pipefail && xcodebuild -project A11yoop.xcodeproj -scheme A11yoop-Package -enableCodeCoverage YES -sdk macosx -destination "platform=iOS Simulator,OS=latest,name=iPhone 13" test | xcpretty -c -r html --output logs/iPhone13.html
+    - uses: codecov/codecov-action@v1.0.5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        name: A11yoop
+    - uses: actions/upload-artifact@v1
+      with:
+        name: build-logs-${{ github.run_id }}
+        path: logs
+    - name: Update coverage
+      run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }}
