@@ -30,7 +30,8 @@ final class MainViewModel: ObservableObject {
                     
                     self.features = updatedFeatures
                     self.lastUpdated = Date()
-                })
+                }),
+                .log()
             ]
         )
 
