@@ -2,6 +2,7 @@
 
 ![Swift](https://img.shields.io/badge/swift-5.5-red.svg)
 ![SPM](https://img.shields.io/badge/SPM-compatible-ff59b4)
+[![codecov](https://codecov.io/gh/Jackstone92/A11yoop/branch/develop/graph/badge.svg?token=5CUD7R531H)](https://codecov.io/gh/Jackstone92/A11yoop)
 
 ## A11oopMonitor
 Have you ever wondered which accessibility features users of your app actually have enabled? Do you want to easily be able to prioritise accessibility improvements that should be made to your app based on real data from your user base?
