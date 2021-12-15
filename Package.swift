@@ -18,16 +18,9 @@ var package = Package(
         .target(
             name: "A11yoopMonitor",
             dependencies: ["MonitorLive"]),
-
-        .target(
-            name: "Monitor",
-            dependencies: ["A11yFeature"]),
-        .target(
-            name: "MonitorLive",
-            dependencies: ["Monitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
         .testTarget(
-            name: "MonitorTests",
-            dependencies: ["MonitorLive", "A11yStatusEmitterTestSupport"]),
+            name: "A11yoopMonitorTests",
+            dependencies: ["A11yoopMonitor"])
     ]
 )
 
@@ -43,6 +36,16 @@ package.targets.append(contentsOf: [
 
 // MARK: - Clients
 package.targets.append(contentsOf: [
+    .target(
+        name: "Monitor",
+        dependencies: ["A11yFeature"]),
+    .target(
+        name: "MonitorLive",
+        dependencies: ["Monitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
+    .testTarget(
+        name: "MonitorTests",
+        dependencies: ["MonitorLive", "A11yStatusEmitterTestSupport"]),
+
     .target(
         name: "A11yStatusEmitter",
         dependencies: ["A11yFeature"]),
