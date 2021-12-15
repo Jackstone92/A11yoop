@@ -21,6 +21,9 @@ var package = Package(
             dependencies: ["MonitorLive", .product(name: "CombineSchedulers", package: "combine-schedulers")]),
         .testTarget(
             name: "A11yoopMonitorTests",
+            dependencies: ["A11yoopMonitor"]),
+        .testTarget(
+            name: "A11yoopMonitorIntegrationTests",
             dependencies: ["A11yoopMonitor"])
     ]
 )

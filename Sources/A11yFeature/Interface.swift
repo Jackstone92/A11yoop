@@ -30,6 +30,7 @@ public struct A11yFeature: Identifiable {
 
 extension A11yFeature: Equatable {
 
+    // Ignore `id` property and derive equatability by type and status only.
     public static func == (lhs: A11yFeature, rhs: A11yFeature) -> Bool {
         lhs.type == rhs.type && lhs.status == rhs.status
     }
