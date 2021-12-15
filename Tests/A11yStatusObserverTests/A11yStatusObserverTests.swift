@@ -12,8 +12,6 @@ import A11yStoreLive
 import A11yStatusEmitter
 import A11yStatusObserver
 @testable import A11yStatusObserverLive
-import A11yStoreTestSupport
-import A11yStatusEmitterTestSupport
 
 final class A11yStatusObserverTests: XCTestCase {
 
@@ -119,5 +117,45 @@ final class A11yStatusObserverTests: XCTestCase {
 
         XCTAssertEqual(outputA.count, 1)
         XCTAssertEqual(outputB.count, 1)
+    }
+}
+
+private extension A11yStatusEmitter {
+
+    /// A status emitter designed for testing purposes, which should never be invoked.
+    /// If it is, it will result in an `XCTFail`.
+    static var notInvoked: Self {
+        Self { _ in XCTFail() }
+    }
+
+    /// A stub status emitter designed for testing purposes.
+    static var noop: Self {
+        Self { _ in }
+    }
+}
+
+private extension FeatureStore {
+
+    /// An accessibility feature store designed for testing purposes, which should never be invoked.
+    /// If it is, it will result in an `XCTFail`.
+    static var notInvoked: Self {
+        Self(
+            get: { _ in XCTFail(); return nil },
+            getAll: { XCTFail(); return [] },
+            insert: { _, _ in XCTFail() },
+            update: { _, _ in XCTFail() },
+            remove: { _ in XCTFail(); return nil }
+        )
+    }
+
+    /// A stub accessibility feature store designed for testing purposes.
+    static var noop: Self {
+        Self(
+            get: { _ in return nil },
+            getAll: { return [] },
+            insert: { _, _ in },
+            update: { _, _ in },
+            remove: { _ in return nil }
+        )
     }
 }

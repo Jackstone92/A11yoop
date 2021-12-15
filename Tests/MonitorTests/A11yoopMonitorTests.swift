@@ -10,7 +10,6 @@ import A11yStatusProvider
 import A11yStatusEmitter
 import Monitor
 import MonitorLive
-import A11yStatusEmitterTestSupport
 
 final class A11yoopMonitorTests: XCTestCase {
 
@@ -67,5 +66,19 @@ final class A11yoopMonitorTests: XCTestCase {
 
         XCTAssertTrue(didInvokeStatusManager)
         XCTAssertEqual(output, [try XCTUnwrap(featureTypes.first)])
+    }
+}
+
+private extension A11yStatusEmitter {
+
+    /// A status emitter designed for testing purposes, which should never be invoked.
+    /// If it is, it will result in an `XCTFail`.
+    static var notInvoked: Self {
+        Self { _ in XCTFail() }
+    }
+
+    /// A stub status emitter designed for testing purposes.
+    static var noop: Self {
+        Self { _ in }
     }
 }

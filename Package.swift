@@ -48,16 +48,13 @@ package.targets.append(contentsOf: [
         dependencies: ["Monitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
     .testTarget(
         name: "MonitorTests",
-        dependencies: ["MonitorLive", "A11yStatusEmitterTestSupport"]),
+        dependencies: ["MonitorLive"]),
 
     .target(
         name: "A11yStatusEmitter",
         dependencies: ["A11yFeature"]),
     .target(
         name: "A11yStatusEmitterLive",
-        dependencies: ["A11yStatusEmitter"]),
-    .target(
-        name: "A11yStatusEmitterTestSupport",
         dependencies: ["A11yStatusEmitter"]),
     .testTarget(
         name: "A11yStatusEmitterTests",
@@ -69,9 +66,6 @@ package.targets.append(contentsOf: [
     .target(
         name: "A11yStoreLive",
         dependencies: ["A11yStore"]),
-    .target(
-        name: "A11yStoreTestSupport",
-        dependencies: ["A11yStoreLive"]),
     .testTarget(
         name: "A11yStoreTests",
         dependencies: ["A11yStoreLive"]),
@@ -89,9 +83,7 @@ package.targets.append(contentsOf: [
         ]),
     .testTarget(
         name: "A11yStatusObserverTests",
-        dependencies: ["A11yStatusObserverLive",
-                       "A11yStoreTestSupport",
-                       "A11yStatusEmitterTestSupport"]),
+        dependencies: ["A11yStatusObserverLive"]),
 
     .target(
         name: "A11yStatusProvider",
