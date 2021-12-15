@@ -75,7 +75,7 @@ package.targets.append(contentsOf: [
 
     .target(
         name: "A11yStatusObserver",
-        dependencies: ["A11yFeature", "A11yStatusEmitter", "A11yFeature"]),
+        dependencies: ["A11yFeature", "A11yStatusEmitter"]),
     .target(
         name: "A11yStatusObserverLive",
         dependencies: [
