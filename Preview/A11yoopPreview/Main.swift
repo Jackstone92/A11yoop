@@ -14,7 +14,10 @@ struct Main: View {
         NavigationView {
             VStack {
                 A11yFeatureStatusList(features: viewModel.features, lastUpdated: viewModel.lastUpdated)
-                    .navigationTitle("A11yoop Preview")
+                    .navigationTitle(
+                        Text("A11yoop Preview")
+                            .accessibilityLabel("Allyoop Preview")
+                    )
             }
         }
     }
