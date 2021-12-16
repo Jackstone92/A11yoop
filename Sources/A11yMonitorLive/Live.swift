@@ -5,7 +5,7 @@
 
 import Foundation
 import Combine
-import Monitor
+import A11yMonitor
 import A11yStatusEmitter
 import A11yStatusEmitterLive
 import A11yStatusObserver
@@ -14,7 +14,7 @@ import A11yStatusProvider
 import A11yStatusProviderLive
 import A11yFeature
 
-extension Monitor {
+extension A11yMonitor {
 
     /// The live monitor instance that allows for accessibility features to be monitored.
     ///

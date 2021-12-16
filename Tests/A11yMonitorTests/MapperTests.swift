@@ -7,8 +7,8 @@ import XCTest
 import Combine
 import A11yFeature
 import A11yStatusProvider
-import Monitor
-@testable import MonitorLive
+import A11yMonitor
+@testable import A11yMonitorLive
 
 final class MapperTests: XCTestCase {
 

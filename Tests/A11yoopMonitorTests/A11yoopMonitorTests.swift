@@ -7,7 +7,7 @@ import XCTest
 import CombineSchedulers
 import A11yFeature
 import A11yStatusEmitter
-import Monitor
+import A11yMonitor
 @testable import A11yoopMonitor
 
 final class A11yoopMonitorTests: XCTestCase {
@@ -75,7 +75,7 @@ final class A11yoopMonitorTests: XCTestCase {
 
         var output = [A11yFeatureType]()
 
-        let spy = Monitor(
+        let spy = A11yMonitor(
             featuresSubject: .init([]),
             isFeatureEnabled: {
                 output.append($0)

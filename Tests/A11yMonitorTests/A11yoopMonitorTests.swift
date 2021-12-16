@@ -8,12 +8,12 @@ import A11yFeature
 import A11yStatusObserver
 import A11yStatusProvider
 import A11yStatusEmitter
-import Monitor
-import MonitorLive
+import A11yMonitor
+import A11yMonitorLive
 
 final class A11yoopMonitorTests: XCTestCase {
 
-    private var sut: Monitor!
+    private var sut: A11yMonitor!
 
     private let featureTypes: [A11yFeatureType] = [.assistiveTouch, .guidedAccess, .speakSelection, .voiceOver]
 

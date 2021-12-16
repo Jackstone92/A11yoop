@@ -384,6 +384,34 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A11yMonitor"
+               BuildableName = "A11yMonitor"
+               BlueprintName = "A11yMonitor"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A11yMonitorLive"
+               BuildableName = "A11yMonitorLive"
+               BlueprintName = "A11yMonitorLive"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -509,6 +537,16 @@
                BlueprintIdentifier = "A11yoopMonitorIntegrationTests"
                BuildableName = "A11yoopMonitorIntegrationTests"
                BlueprintName = "A11yoopMonitorIntegrationTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A11yMonitorTests"
+               BuildableName = "A11yMonitorTests"
+               BlueprintName = "A11yMonitorTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>

@@ -18,7 +18,7 @@ var package = Package(
     targets: [
         .target(
             name: "A11yoopMonitor",
-            dependencies: ["MonitorLive", .product(name: "CombineSchedulers", package: "combine-schedulers")]),
+            dependencies: ["A11yMonitorLive", .product(name: "CombineSchedulers", package: "combine-schedulers")]),
         .testTarget(
             name: "A11yoopMonitorTests",
             dependencies: ["A11yoopMonitor"]),
@@ -41,14 +41,14 @@ package.targets.append(contentsOf: [
 // MARK: - Clients
 package.targets.append(contentsOf: [
     .target(
-        name: "Monitor",
+        name: "A11yMonitor",
         dependencies: ["A11yFeature"]),
     .target(
-        name: "MonitorLive",
-        dependencies: ["Monitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
+        name: "A11yMonitorLive",
+        dependencies: ["A11yMonitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
     .testTarget(
-        name: "MonitorTests",
-        dependencies: ["MonitorLive"]),
+        name: "A11yMonitorTests",
+        dependencies: ["A11yMonitorLive"]),
 
     .target(
         name: "A11yStatusEmitter",

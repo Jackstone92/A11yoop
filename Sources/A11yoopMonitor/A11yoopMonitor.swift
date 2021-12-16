@@ -5,8 +5,8 @@
 
 import Foundation
 import CombineSchedulers
-import Monitor
-import MonitorLive
+import A11yMonitor
+import A11yMonitorLive
 import A11yFeature
 import A11yStatusObserver
 import A11yStatusEmitter
@@ -19,7 +19,7 @@ public struct A11yoopMonitor {
     public var features: [A11yFeature] { _monitor.featuresSubject.value }
 
     /// The internal underlying monitor instance.
-    let _monitor: Monitor
+    let _monitor: A11yMonitor
 
     /// Initialises the `A11yoopMonitor` with a list of accessibility feature types to observe and a series of emitters that will process status changes to any observed accessibility feature.
     ///
@@ -43,7 +43,7 @@ public struct A11yoopMonitor {
     }
 
     /// Internal initialiser that ensures the underlying monitor instance is configured correctly.
-    init(monitor: Monitor) {
+    init(monitor: A11yMonitor) {
         _monitor = monitor
     }
 
