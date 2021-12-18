@@ -3,26 +3,95 @@
 
 import PackageDescription
 
-let package = Package(
+// MARK: - Main
+var package = Package(
     name: "A11yoop",
+    platforms: [.iOS(.v13)],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "A11yoop",
-            targets: ["A11yoop"]),
+            name: "A11yoopMonitor",
+            targets: ["A11yoopMonitor"]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(name: "combine-schedulers", url: "https://github.com/pointfreeco/combine-schedulers", .upToNextMajor(from: "0.5.3")),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "A11yoop",
-            dependencies: []),
+            name: "A11yoopMonitor",
+            dependencies: ["A11yMonitorLive", .product(name: "CombineSchedulers", package: "combine-schedulers")]),
         .testTarget(
-            name: "A11yoopTests",
-            dependencies: ["A11yoop"]),
+            name: "A11yoopMonitorTests",
+            dependencies: ["A11yoopMonitor"]),
+        .testTarget(
+            name: "A11yoopMonitorIntegrationTests",
+            dependencies: ["A11yoopMonitor"])
     ]
 )
+
+// MARK: - Features
+package.targets.append(contentsOf: [
+    .target(
+        name: "A11yFeature",
+        dependencies: []),
+    .testTarget(
+        name: "A11yFeatureTests",
+        dependencies: ["A11yFeature"])
+])
+
+// MARK: - Clients
+package.targets.append(contentsOf: [
+    .target(
+        name: "A11yMonitor",
+        dependencies: ["A11yFeature"]),
+    .target(
+        name: "A11yMonitorLive",
+        dependencies: ["A11yMonitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
+    .testTarget(
+        name: "A11yMonitorTests",
+        dependencies: ["A11yMonitorLive"]),
+
+    .target(
+        name: "A11yStatusEmitter",
+        dependencies: ["A11yFeature"]),
+    .target(
+        name: "A11yStatusEmitterLive",
+        dependencies: ["A11yStatusEmitter"]),
+    .testTarget(
+        name: "A11yStatusEmitterTests",
+        dependencies: ["A11yStatusEmitterLive"]),
+
+    .target(
+        name: "A11yStore",
+        dependencies: ["A11yFeature"]),
+    .target(
+        name: "A11yStoreLive",
+        dependencies: ["A11yStore"]),
+    .testTarget(
+        name: "A11yStoreTests",
+        dependencies: ["A11yStoreLive"]),
+
+    .target(
+        name: "A11yStatusObserver",
+        dependencies: ["A11yFeature", "A11yStatusEmitter"]),
+    .target(
+        name: "A11yStatusObserverLive",
+        dependencies: [
+            "A11yStatusObserver",
+            "A11yStoreLive",
+            "A11yStatusProviderLive",
+            .product(name: "CombineSchedulers", package: "combine-schedulers")
+        ]),
+    .testTarget(
+        name: "A11yStatusObserverTests",
+        dependencies: ["A11yStatusObserverLive"]),
+
+    .target(
+        name: "A11yStatusProvider",
+        dependencies: ["A11yFeature"]),
+    .target(
+        name: "A11yStatusProviderLive",
+        dependencies: ["A11yFeature", "A11yStatusProvider"]),
+    .testTarget(
+        name: "A11yStatusProviderTests",
+        dependencies: ["A11yStatusProviderLive"])
+])
