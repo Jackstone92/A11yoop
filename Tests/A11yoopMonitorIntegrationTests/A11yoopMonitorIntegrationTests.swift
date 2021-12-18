@@ -134,7 +134,7 @@ final class A11yoopMonitorIntegrationTests: XCTestCase {
 
         sut = A11yoopMonitor(queue: .immediate)
 
-        let status = try XCTUnwrap(sut.features.first { $0.type == featureType }?.status)
+        let status = try XCTUnwrap(sut.allFeatures.first { $0.type == featureType }?.status)
 
         XCTAssertEqual(status, expectedStatus)
     }

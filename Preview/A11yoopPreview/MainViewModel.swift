@@ -36,7 +36,7 @@ final class MainViewModel: ObservableObject {
         )
 
         // Set initial features
-        features = monitor.features
+        features = monitor.allFeatures
         lastUpdated = Date()
     }
 }

@@ -15,8 +15,17 @@ import A11yStatusProvider
 /// Allows accessibility features that users have enabled on their iOS devices to be tracked as they are enabled and disabled.
 public struct A11yoopMonitor {
 
-    /// A list of accessibility features that are currently being monitored. These contain up-to-date statuses for each accessibility feature.
-    public var features: [A11yFeature] { _monitor.featuresSubject.value }
+    /// A list of all accessibility features that are currently being monitored. These contain up-to-date statuses for each accessibility feature.
+    public var allFeatures: [A11yFeature] { _monitor.featuresSubject.value }
+
+    /// A list of accessibility features that are currently being monitored that are considered to be enabled. These contain up-to-date statuses for each accessibility feature.
+    public var enabledFeatures: [A11yFeature] { allFeatures.filter(\.status.isEnabled) }
+
+    /// A list of accessibility features that are currently being monitored that are considered to be disabled. These contain up-to-date statuses for each accessibility feature.
+    public var disabledFeatures: [A11yFeature] { allFeatures.filter(\.status.isDisabled) }
+
+    /// A list of accessibility features that are currently being monitored that are considered not to be supported. These contain up-to-date statuses for each accessibility feature.
+    public var unsupportedFeatures: [A11yFeature] { allFeatures.filter(\.status.isNotSupported) }
 
     /// The internal underlying monitor instance.
     let _monitor: A11yMonitor

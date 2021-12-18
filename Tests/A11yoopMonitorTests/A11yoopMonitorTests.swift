@@ -8,13 +8,20 @@ import CombineSchedulers
 import A11yFeature
 import A11yStatusEmitter
 import A11yMonitor
+import A11yStatusProvider
 @testable import A11yoopMonitor
 
 final class A11yoopMonitorTests: XCTestCase {
 
     private var sut: A11yoopMonitor!
 
+    private var notificationCenter: NotificationCenter!
     private let queue = DispatchQueue.immediate.eraseToAnyScheduler()
+
+    override func setUp() {
+        super.setUp()
+        notificationCenter = NotificationCenter()
+    }
 
     // MARK: - Initialisation
     func test_passesSpecifiedFeatureTypesToUnderlyingMonitor() {
@@ -50,7 +57,7 @@ final class A11yoopMonitorTests: XCTestCase {
         XCTAssertEqual(underlyingObservedFeatureTypes, A11yFeatureType.allCases)
     }
 
-    // MARK: - features tests
+    // MARK: - allFeatures tests
     func test_featuresReturnsListOfCurrentlyObservedA11yFeatures() {
 
         let features = [
@@ -63,11 +70,104 @@ final class A11yoopMonitorTests: XCTestCase {
         sut = A11yoopMonitor(featureTypes: [], queue: queue)
 
         XCTAssertTrue(sut._monitor.featuresSubject.value.isEmpty)
-        XCTAssertTrue(sut.features.isEmpty)
+        XCTAssertTrue(sut.allFeatures.isEmpty)
 
         sut._monitor.featuresSubject.send(features)
 
-        XCTAssertEqual(sut.features, features)
+        XCTAssertEqual(sut.allFeatures, features)
+    }
+
+    // MARK: - enabledFeatures tests
+    func test_enabledFeaturesOnlyReturnsFeaturesThatAreEnabled() {
+
+        let statusProvider = A11yStatusProvider { type in
+            switch type {
+            case .voiceOver:    return .enabled
+            case .buttonShapes: return .notSupported
+            case .largerText:   return .contentSize(.medium)
+            case .boldText:     return .disabled
+            default:            XCTFail(); return .notSupported
+            }
+        }
+
+        sut = A11yoopMonitor(
+            monitor: .live(
+                featureTypes: [.voiceOver, .buttonShapes, .largerText, .boldText],
+                emitters: [],
+                statusObserver: .live(
+                    featureStore: .live,
+                    statusProvider: statusProvider,
+                    notificationCenter: notificationCenter,
+                    queue: queue
+                ),
+                statusProvider: statusProvider
+            )
+        )
+
+        XCTAssertEqual(
+            sut.enabledFeatures,
+            [A11yFeature(type: .voiceOver, status: .enabled), A11yFeature(type: .largerText, status: .contentSize(.medium))]
+        )
+    }
+
+    // MARK: - disabledFeatures tests
+    func test_disabledFeaturesOnlyReturnsFeaturesThatAreDisabled() {
+
+        let statusProvider = A11yStatusProvider { type in
+            switch type {
+            case .voiceOver:    return .enabled
+            case .buttonShapes: return .notSupported
+            case .largerText:   return .contentSize(.medium)
+            case .boldText:     return .disabled
+            default:            XCTFail(); return .notSupported
+            }
+        }
+
+        sut = A11yoopMonitor(
+            monitor: .live(
+                featureTypes: [.voiceOver, .buttonShapes, .largerText, .boldText],
+                emitters: [],
+                statusObserver: .live(
+                    featureStore: .live,
+                    statusProvider: statusProvider,
+                    notificationCenter: notificationCenter,
+                    queue: queue
+                ),
+                statusProvider: statusProvider
+            )
+        )
+
+        XCTAssertEqual(sut.disabledFeatures, [A11yFeature(type: .boldText, status: .disabled)])
+    }
+
+    // MARK: - unsupportedFeatures tests
+    func test_unsupportedFeaturesOnlyReturnsFeaturesThatAreUnsupported() {
+
+        let statusProvider = A11yStatusProvider { type in
+            switch type {
+            case .voiceOver:    return .enabled
+            case .buttonShapes: return .notSupported
+            case .largerText:   return .contentSize(.medium)
+            case .boldText:     return .disabled
+            default:            XCTFail(); return .notSupported
+            }
+        }
+
+        sut = A11yoopMonitor(
+            monitor: .live(
+                featureTypes: [.voiceOver, .buttonShapes, .largerText, .boldText],
+                emitters: [],
+                statusObserver: .live(
+                    featureStore: .live,
+                    statusProvider: statusProvider,
+                    notificationCenter: notificationCenter,
+                    queue: queue
+                ),
+                statusProvider: statusProvider
+            )
+        )
+
+        XCTAssertEqual(sut.unsupportedFeatures, [A11yFeature(type: .buttonShapes, status: .notSupported)])
     }
 
     // MARK: - isFeatureEnabled tests
