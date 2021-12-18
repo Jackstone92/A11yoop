@@ -1,10 +1,11 @@
 # A11yoop - iOS Accessibility Tools 
 
-![Swift](https://img.shields.io/badge/swift-5.5-red.svg)
-![SPM](https://img.shields.io/badge/SPM-compatible-ff59b4)
-[![License](https://img.shields.io/badge/license-mit-brightgreen.svg)](https://en.wikipedia.org/wiki/MIT_License)
 ![Run Tests](https://github.com/Jackstone92/CombineRx/workflows/Run%20Tests/badge.svg)
 [![codecov](https://codecov.io/gh/Jackstone92/A11yoop/branch/develop/graph/badge.svg?token=5CUD7R531H)](https://codecov.io/gh/Jackstone92/A11yoop)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FJackstone92%2FA11yoop%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/Jackstone92/A11yoop)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FJackstone92%2FA11yoop%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/Jackstone92/A11yoop)
+![SPM](https://img.shields.io/badge/SPM-compatible-ff59b4)
+[![License](https://img.shields.io/badge/license-mit-brightgreen.svg)](https://en.wikipedia.org/wiki/MIT_License)
 
 ## A11oopMonitor
 Have you ever wondered which accessibility features users of your app actually have enabled? Do you want to easily be able to prioritise accessibility improvements that should be made to your app based on real data from your user base?
