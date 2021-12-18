@@ -2,6 +2,8 @@
 
 ![Swift](https://img.shields.io/badge/swift-5.5-red.svg)
 ![SPM](https://img.shields.io/badge/SPM-compatible-ff59b4)
+[![License](https://img.shields.io/badge/license-mit-brightgreen.svg)](https://en.wikipedia.org/wiki/MIT_License)
+![Run Tests](https://github.com/Jackstone92/CombineRx/workflows/Run%20Tests/badge.svg)
 [![codecov](https://codecov.io/gh/Jackstone92/A11yoop/branch/develop/graph/badge.svg?token=5CUD7R531H)](https://codecov.io/gh/Jackstone92/A11yoop)
 
 ## A11oopMonitor
