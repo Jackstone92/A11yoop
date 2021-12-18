@@ -61,7 +61,7 @@ A sample use-case would be including accessibility feature statuses in a trackin
 ```swift
 func sendEvent() {
 
-    let params = self.monitor.features.asAnalyticsParams()
+    let params = self.monitor.allFeatures.asAnalyticsParams()
     let eventName = "A11yoop features"
 
     // Firebase
@@ -70,6 +70,20 @@ func sendEvent() {
 ```
 
 In order to prevent conflicts, it is also possible to pass a prefix, which will be applied to all parameter keys (eg. resulting in "A11yoop Bold Text" with a prefix applied rather than "Bold Text" without).
+
+Alternatively, it you want to represent monitored accessibility features in a completely different way, there are a number of computed properties available that can be used for convenience. These are as follows:
+```swift
+// `.enabledFeatures` provides only the monitored accessibility features that are currently enabled.
+let formattedEnabledFeatures =  self.monitor.enabledFeatures.map(\.type.description).joined(separator: ",")
+
+// `.disabledFeatures` provides only the monitored accessibility features that are currently disabled.
+let formattedDisabledFeatures = self.monitor.disabledFeatures.map(\.type.description).joined(separator: ",")
+
+// `.unsupportedFeatures` provides only the monitored accessibility features that are unsupported.
+let formattedUnsupportedFeatures = self.monitor.unsupportedFeatures.map(\.type.description).joined(separator: ",")
+```
+
+This allows you to format them in whichever way you want (eg. as a comma-separated String).
 
 ### Extend functionality with custom emitters
 
