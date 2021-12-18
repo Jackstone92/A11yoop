@@ -33,21 +33,20 @@ extension FeatureStore {
 
         return Self(
             get: {
-                dataStore.data[$0]
+                await dataStore.get(forKey: $0)
             },
             getAll: {
-                dataStore.data.keys
-                    .compactMap { dataStore.data[$0] }
+                await dataStore.getAll()
                     .sorted(by: { $0.type.description < $1.type.description })
             },
             insert: {
-                dataStore.data[$1] = $0
+                await dataStore.insert($0, forKey: $1)
             },
             update: {
-                dataStore.data[$1]?.status = $0
+                await dataStore.update(property: \.status, to: $0, forKey: $1)
             },
             remove: {
-                dataStore.data.removeValue(forKey: $0)
+                await dataStore.remove(forKey: $0)
             }
         )
     }

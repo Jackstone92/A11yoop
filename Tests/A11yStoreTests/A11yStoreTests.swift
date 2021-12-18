@@ -18,87 +18,97 @@ final class A11yStoreTests: XCTestCase {
     }
 
     // MARK: - get tests
-    func test_getWhenExists() {
+    func test_getWhenExists() async {
 
         let type: A11yFeatureType = .voiceOver
         let feature = A11yFeature(type: type, status: .disabled)
 
-        sut.insert(feature, type)
+        await sut.insert(feature, type)
 
-        let value = sut.get(type)
+        let value = await sut.get(type)
 
         XCTAssertEqual(value, feature)
     }
 
-    func test_getWhenDoesNotExist() {
+    func test_getWhenDoesNotExist() async {
 
-        XCTAssertNil(sut.get(.voiceOver))
+        let feature = await sut.get(.voiceOver)
+        XCTAssertNil(feature)
     }
 
     // MARK: - getAll tests
-    func test_getAllWhenPopulated() {
+    func test_getAllWhenPopulated() async {
 
         let feature1 = A11yFeature(type: .voiceOver, status: .disabled)
         let feature2 = A11yFeature(type: .assistiveTouch, status: .disabled)
         let feature3 = A11yFeature(type: .boldText, status: .disabled)
 
-        [feature1, feature2, feature3].forEach { sut.insert($0, $0.type) }
+        [feature1, feature2, feature3].forEach { feature in
+            Task { await sut.insert(feature, feature.type) }
+        }
 
         let expectedSortedFeatures = [feature2, feature3, feature1]
 
-        XCTAssertEqual(sut.getAll(), expectedSortedFeatures)
+        let allFeatures = await sut.getAll()
+        XCTAssertEqual(allFeatures, expectedSortedFeatures)
     }
 
-    func test_getAllWhenValuesDoNotExist() {
+    func test_getAllWhenValuesDoNotExist() async {
 
-        XCTAssertTrue(sut.getAll().isEmpty)
+        let allFeatures = await sut.getAll()
+        XCTAssertTrue(allFeatures.isEmpty)
     }
 
     // MARK: - insert tests
-    func test_insert() {
+    func test_insert() async {
 
         let type: A11yFeatureType = .voiceOver
         let feature = A11yFeature(type: type, status: .disabled)
 
-        sut.insert(feature, type)
+        await sut.insert(feature, type)
 
-        let value = sut.get(type)
+        let value = await sut.get(type)
 
         XCTAssertEqual(value, feature)
     }
 
     // MARK: - update tests
-    func test_update() {
+    func test_update() async {
 
         let type: A11yFeatureType = .voiceOver
         let enabledFeature = A11yFeature(type: type, status: .enabled)
 
-        sut.insert(enabledFeature, type)
+        await sut.insert(enabledFeature, type)
 
-        XCTAssertEqual(sut.get(type), enabledFeature)
+        let feature = await sut.get(type)
+        XCTAssertEqual(feature, enabledFeature)
 
-        sut.update(.disabled, type)
+        await sut.update(.disabled, type)
 
         let expectedDisabledFeature = A11yFeature(type: type, status: .disabled)
 
-        XCTAssertEqual(sut.get(type), expectedDisabledFeature)
+        let updatedFeature = await sut.get(type)
+        XCTAssertEqual(updatedFeature, expectedDisabledFeature)
     }
 
     // MARK: - remove tests
-    func test_remove() throws {
+    func test_remove() async {
 
         let type: A11yFeatureType = .voiceOver
         let feature = A11yFeature(type: type, status: .enabled)
 
-        sut.insert(feature, type)
+        await sut.insert(feature, type)
 
-        XCTAssertNotNil(sut.remove(type))
+        let removedFeature = await sut.remove(type)
+        XCTAssertNotNil(removedFeature)
 
-        XCTAssertNil(sut.get(type))
+        let attemptedFeature = await sut.get(type)
+        XCTAssertNil(attemptedFeature)
     }
 
-    func test_cannotRemoveWhenValueDoesNotExist() {
+    func test_cannotRemoveWhenValueDoesNotExist() async {
 
-        XCTAssertNil(sut.remove(.voiceOver))
+        let removedFeature = await sut.remove(.voiceOver)
+        XCTAssertNil(removedFeature)
     }
 }

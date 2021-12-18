@@ -42,7 +42,7 @@ extension A11yMonitor {
         return Self(
             featuresSubject: featuresSubject,
             isFeatureEnabled: { featureType in
-                statusObserver.isFeatureEnabled(featureType)
+                await statusObserver.isFeatureEnabled(featureType)
             }
         )
     }

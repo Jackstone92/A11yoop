@@ -41,7 +41,11 @@ extension A11yStatusObserver {
 
         return Self(
             observeFeatures: { features, emitters in
-                features.forEach { featureStore.insert($0, $0.type) }
+                features.forEach { feature in
+                    Task {
+                        await featureStore.insert(feature, feature.type)
+                    }
+                }
 
                 subscribe(
                     to: features,
@@ -54,7 +58,7 @@ extension A11yStatusObserver {
                 )
             },
             isFeatureEnabled: { featureType in
-                guard let feature = featureStore.get(featureType) else {
+                guard let feature = await featureStore.get(featureType) else {
                     return false
                 }
 
@@ -79,14 +83,27 @@ extension A11yStatusObserver {
                 publisher
                     .receive(on: queue)
                     .sink { _ in
-                        let updatedStatus = statusProvider.getStatus(feature.type)
-                        featureStore.update(updatedStatus, feature.type)
-
-                        guard let feature = featureStore.get(feature.type) else { return }
-
-                        emitters.forEach { $0.emit(feature) }
+                        Task {
+                            await updateFeatureStatus(of: feature, featureStore: featureStore, statusProvider: statusProvider, emitters: emitters)
+                        }
                     }
                     .store(in: &subscriptions)
             }
+    }
+
+    private static func updateFeatureStatus(
+        of feature: A11yFeature,
+        featureStore: FeatureStore,
+        statusProvider: A11yStatusProvider,
+        emitters: [A11yStatusEmitter]
+    ) async {
+
+        let updatedStatus = statusProvider.getStatus(feature.type)
+
+        await featureStore.update(updatedStatus, feature.type)
+
+        guard let feature = await featureStore.get(feature.type) else { return }
+
+        emitters.forEach { $0.emit(feature) }
     }
 }

@@ -171,7 +171,7 @@ final class A11yoopMonitorTests: XCTestCase {
     }
 
     // MARK: - isFeatureEnabled tests
-    func test_isFeatureEnabledInvokesUnderlyingMonitor() {
+    func test_isFeatureEnabledInvokesUnderlyingMonitor() async {
 
         var output = [A11yFeatureType]()
 
@@ -185,7 +185,7 @@ final class A11yoopMonitorTests: XCTestCase {
 
         sut = A11yoopMonitor(monitor: spy)
 
-        _ = sut.isFeatureEnabled(.assistiveTouch)
+        _ = await sut.isFeatureEnabled(.assistiveTouch)
 
         XCTAssertEqual(output, [.assistiveTouch])
     }

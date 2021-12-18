@@ -24,11 +24,11 @@ public struct A11yStatusObserver {
     ///
     /// - Returns: A boolean value that indicates whether or not the accessibility feature is currently enabled.
     ///
-    public let isFeatureEnabled: (_ featureType: A11yFeatureType) -> Bool
+    public let isFeatureEnabled: (_ featureType: A11yFeatureType) async -> Bool
 
     public init(
         observeFeatures: @escaping (_ features: [A11yFeature], _ emitters: [A11yStatusEmitter]) -> Void,
-        isFeatureEnabled: @escaping (_ featureType: A11yFeatureType) -> Bool
+        isFeatureEnabled: @escaping (_ featureType: A11yFeatureType) async -> Bool
     ) {
         self.observeFeatures = observeFeatures
         self.isFeatureEnabled = isFeatureEnabled

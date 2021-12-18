@@ -5,6 +5,7 @@
 
 import Foundation
 import Combine
+import CombineSchedulers
 import A11yFeature
 import A11yoopMonitor
 
@@ -14,29 +15,36 @@ final class MainViewModel: ObservableObject {
     @Published var lastUpdated: Date!
 
     private var monitor: A11yoopMonitor!
+    private let queue = DispatchQueue.global(qos: .background).eraseToAnyScheduler()
 
     init(featureTypes: [A11yFeatureType] = A11yFeatureType.allCases) {
         monitor = A11yoopMonitor(
             featureTypes: featureTypes,
             emitters: [
-                .init(emit: { emittedFeature in
-                    let updatedFeatures = self.features.map { feature -> A11yFeature in
-                        guard feature.type == emittedFeature.type else {
-                            return feature
-                        }
-
-                        return A11yFeature(type: feature.type, status: emittedFeature.status)
+                .init { emittedFeature in
+                    DispatchQueue.main.async {
+                        self.onFeatureStatusChange(emittedFeature)
                     }
-                    
-                    self.features = updatedFeatures
-                    self.lastUpdated = Date()
-                }),
-                .log()
-            ]
+                }
+            ],
+            queue: queue
         )
 
         // Set initial features
         features = monitor.allFeatures
+        lastUpdated = Date()
+    }
+
+    private func onFeatureStatusChange(_ emittedFeature: A11yFeature) {
+        let updatedFeatures = features.map { feature -> A11yFeature in
+            guard feature.type == emittedFeature.type else {
+                return feature
+            }
+
+            return A11yFeature(type: feature.type, status: emittedFeature.status)
+        }
+
+        features = updatedFeatures
         lastUpdated = Date()
     }
 }

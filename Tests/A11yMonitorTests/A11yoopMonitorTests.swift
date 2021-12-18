@@ -41,7 +41,7 @@ final class A11yoopMonitorTests: XCTestCase {
         XCTAssertEqual(output.map { $0.type }, featureTypes)
     }
 
-    func test_isFeatureEnabledInvokesStatusManagerWithFeatureType() {
+    func test_isFeatureEnabledInvokesStatusManagerWithFeatureType() async throws {
 
         var output = [A11yFeatureType]()
         var didInvokeStatusManager = false
@@ -62,7 +62,8 @@ final class A11yoopMonitorTests: XCTestCase {
             statusProvider: .enabled
         )
 
-        XCTAssertTrue(sut.isFeatureEnabled(try XCTUnwrap(featureTypes.first)))
+        let isFeatureEnabled = await sut.isFeatureEnabled(try XCTUnwrap(featureTypes.first))
+        XCTAssertTrue(isFeatureEnabled)
 
         XCTAssertTrue(didInvokeStatusManager)
         XCTAssertEqual(output, [try XCTUnwrap(featureTypes.first)])

@@ -66,36 +66,41 @@ final class A11yStatusObserverTests: XCTestCase {
     }
 
     // MARK: - isFeatureEnabled tests
-    func test_isFeatureEnabledWhenFeatureEnabled() {
+    func test_isFeatureEnabledWhenFeatureEnabled() async {
 
         let store: FeatureStore = .live
         let enabledVoiceoverFeature = A11yFeature(type: .voiceOver, status: .enabled)
-        store.insert(enabledVoiceoverFeature, .voiceOver)
+        await store.insert(enabledVoiceoverFeature, .voiceOver)
 
         sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
-        XCTAssertTrue(sut.isFeatureEnabled(.voiceOver))
+        let isFeatureEnabled = await sut.isFeatureEnabled(.voiceOver)
+        XCTAssertTrue(isFeatureEnabled)
     }
 
-    func test_isFeatureEnabledWhenFeatureDisabled() {
+    func test_isFeatureEnabledWhenFeatureDisabled() async {
 
         let store: FeatureStore = .live
         let disabledVoiceoverFeature = A11yFeature(type: .voiceOver, status: .disabled)
-        store.insert(disabledVoiceoverFeature, .voiceOver)
+        await store.insert(disabledVoiceoverFeature, .voiceOver)
 
         sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
-        XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
+        let isFeatureEnabled = await sut.isFeatureEnabled(.voiceOver)
+        XCTAssertFalse(isFeatureEnabled)
     }
 
-    func test_isFeatureEnabledWhenFeatureNotInFeatureStore() {
+    func test_isFeatureEnabledWhenFeatureNotInFeatureStore() async {
 
         let store: FeatureStore = .live
-        XCTAssertNil(store.get(.voiceOver))
+
+        let feature = await store.get(.voiceOver)
+        XCTAssertNil(feature)
 
         sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
-        XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
+        let isFeatureEnabled = await sut.isFeatureEnabled(.voiceOver)
+        XCTAssertFalse(isFeatureEnabled)
     }
 
     // MARK: - Multiple emitter tests
