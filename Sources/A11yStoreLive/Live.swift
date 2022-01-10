@@ -29,25 +29,36 @@ extension FeatureStore {
     ///
     public static var live: Self {
 
-        let dataStore = DataStore<Key, Value>()
+        let queue = DispatchQueue(label: "A11yStore.queue", attributes: .concurrent)
+        var _data = [Key: Value]()
 
         return Self(
-            get: {
-                dataStore.data[$0]
+            get: { key in
+                queue.sync(flags: .barrier) {
+                    _data[key]
+                }
             },
             getAll: {
-                dataStore.data.keys
-                    .compactMap { dataStore.data[$0] }
-                    .sorted(by: { $0.type.description < $1.type.description })
+                queue.sync(flags: .barrier) {
+                    _data.keys
+                        .compactMap { _data[$0] }
+                        .sorted(by: { $0.type.description < $1.type.description })
+                }
             },
-            insert: {
-                dataStore.data[$1] = $0
+            insert: { value, key in
+                queue.sync(flags: .barrier) {
+                    _data[key] = value
+                }
             },
-            update: {
-                dataStore.data[$1]?.status = $0
+            update: { value, key in
+                queue.sync(flags: .barrier) {
+                    _data[key]?.status = value
+                }
             },
-            remove: {
-                dataStore.data.removeValue(forKey: $0)
+            remove: { key in
+                queue.sync(flags: .barrier) {
+                    _data.removeValue(forKey: key)
+                }
             }
         )
     }
