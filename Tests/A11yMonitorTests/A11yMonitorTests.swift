@@ -1,5 +1,5 @@
 //
-//  A11yoopMonitorTests.swift
+//  A11yMonitorTests.swift
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import A11yStatusEmitter
 import A11yMonitor
 import A11yMonitorLive
 
-final class A11yoopMonitorTests: XCTestCase {
+final class A11yMonitorTests: XCTestCase {
 
     private var sut: A11yMonitor!
 
