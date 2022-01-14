@@ -29,4 +29,9 @@ final class A11yStatus_DescriptionTests: XCTestCase {
 
         XCTAssertEqual(sut.notSupported.description, "Not Supported")
     }
+
+    func test_descriptionForNotMonitored() {
+
+        XCTAssertEqual(sut.notMonitored.description, "Not Monitored")
+    }
 }

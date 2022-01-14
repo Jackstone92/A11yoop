@@ -179,7 +179,7 @@ final class A11yoopMonitorTests: XCTestCase {
             featuresSubject: .init([]),
             isFeatureEnabled: {
                 output.append($0)
-                return false
+                return .disabled
             }
         )
 
