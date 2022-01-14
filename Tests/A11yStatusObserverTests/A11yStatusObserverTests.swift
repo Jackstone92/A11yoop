@@ -74,7 +74,7 @@ final class A11yStatusObserverTests: XCTestCase {
 
         sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
-        XCTAssertTrue(sut.isFeatureEnabled(.voiceOver))
+        XCTAssertEqual(sut.isFeatureEnabled(.voiceOver), .enabled)
     }
 
     func test_isFeatureEnabledWhenFeatureDisabled() {
@@ -85,7 +85,7 @@ final class A11yStatusObserverTests: XCTestCase {
 
         sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
-        XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
+        XCTAssertEqual(sut.isFeatureEnabled(.voiceOver), .disabled)
     }
 
     func test_isFeatureEnabledWhenFeatureNotInFeatureStore() {
@@ -95,7 +95,7 @@ final class A11yStatusObserverTests: XCTestCase {
 
         sut = .live(featureStore: store, notificationCenter: notificationCenter, queue: queue)
 
-        XCTAssertFalse(sut.isFeatureEnabled(.voiceOver))
+        XCTAssertEqual(sut.isFeatureEnabled(.voiceOver), .notMonitored)
     }
 
     // MARK: - Multiple emitter tests

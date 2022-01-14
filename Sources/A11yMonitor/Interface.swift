@@ -19,11 +19,11 @@ public struct A11yMonitor {
     ///
     /// - Returns: A boolean value that indicates whether or not the accessibility feature is currently enabled.
     ///
-    public let isFeatureEnabled: (_ feature: A11yFeatureType) -> Bool
+    public let isFeatureEnabled: (_ feature: A11yFeatureType) -> A11yStatus
 
     public init(
         featuresSubject: CurrentValueSubject<[A11yFeature], Never>,
-        isFeatureEnabled: @escaping (A11yFeatureType) -> Bool
+        isFeatureEnabled: @escaping (A11yFeatureType) -> A11yStatus
     ) {
         self.featuresSubject = featuresSubject
         self.isFeatureEnabled = isFeatureEnabled

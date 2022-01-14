@@ -38,15 +38,15 @@ Once you have instantiated `A11yoopMonitor`, it is possible to query the current
 let monitor = A11yoopMonitor(featureTypes: [.voiceOver, ...])
 
 // In order to query current status of voice over accessibility feature
-let isEnabled = monitor.isFeatureEnabled(.voiceOver)
+let status = monitor.isFeatureEnabled(.voiceOver)
 ```
 
-Note that it is only possible to query the status of accessibility features that are currently being monitored. Doing the following would therefore always result in `.disabled`:
+When querying the status of an accessibility feature that is not currently being monitored, the resulting status will be `.notMonitored`.
 ```swift
 let monitor = A11yoopMonitor(featureTypes: [.voiceOver]) // Only monitors voice over
 
-let isEnabled = monitor.isFeatureEnabled(.boldText) // Query an accessibility feature that isn't monitored
-/// - false
+let status = monitor.isFeatureEnabled(.boldText) // Query an accessibility feature that isn't monitored
+/// - .notMonitored
 ```
 
 Finally, if an accessibility feature that you are monitoring is not currently supported on a user's device, the status is returned as `.notSupported`.

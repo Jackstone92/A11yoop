@@ -55,10 +55,10 @@ extension A11yStatusObserver {
             },
             isFeatureEnabled: { featureType in
                 guard let feature = featureStore.get(featureType) else {
-                    return false
+                    return .notMonitored
                 }
 
-                return feature.status == .enabled
+                return feature.status
             }
         )
     }

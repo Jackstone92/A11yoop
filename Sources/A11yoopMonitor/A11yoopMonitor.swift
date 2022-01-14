@@ -62,7 +62,7 @@ public struct A11yoopMonitor {
     ///
     /// - Returns: A boolean value that indicates whether or not the accessibility feature is currently enabled.
     ///
-    public func isFeatureEnabled(_ featureType: A11yFeatureType) -> Bool {
+    public func isFeatureEnabled(_ featureType: A11yFeatureType) -> A11yStatus {
         _monitor.isFeatureEnabled(featureType)
     }
 }

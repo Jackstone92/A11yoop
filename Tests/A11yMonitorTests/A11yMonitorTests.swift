@@ -1,5 +1,5 @@
 //
-//  A11yoopMonitorTests.swift
+//  A11yMonitorTests.swift
 //  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import A11yStatusEmitter
 import A11yMonitor
 import A11yMonitorLive
 
-final class A11yoopMonitorTests: XCTestCase {
+final class A11yMonitorTests: XCTestCase {
 
     private var sut: A11yMonitor!
 
@@ -27,7 +27,7 @@ final class A11yoopMonitorTests: XCTestCase {
                 output.append(contentsOf: features)
                 didInvokeStatusManager = true
             },
-            isFeatureEnabled: { _ in XCTFail(); return false }
+            isFeatureEnabled: { _ in XCTFail(); return .disabled }
         )
 
         sut = .live(
@@ -51,7 +51,7 @@ final class A11yoopMonitorTests: XCTestCase {
             isFeatureEnabled: { type in
                 output.append(type)
                 didInvokeStatusManager = true
-                return true
+                return .enabled
             }
         )
 
@@ -62,7 +62,7 @@ final class A11yoopMonitorTests: XCTestCase {
             statusProvider: .enabled
         )
 
-        XCTAssertTrue(sut.isFeatureEnabled(try XCTUnwrap(featureTypes.first)))
+        XCTAssertEqual(sut.isFeatureEnabled(try XCTUnwrap(featureTypes.first)), .enabled)
 
         XCTAssertTrue(didInvokeStatusManager)
         XCTAssertEqual(output, [try XCTUnwrap(featureTypes.first)])
