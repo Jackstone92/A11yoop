@@ -1,6 +1,6 @@
 //
 //  ContentSize.swift
-//  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
+//  Created by Jack Stone in 2021.
 //
 
 /// Constants that indicate the preferred size of an app's content.

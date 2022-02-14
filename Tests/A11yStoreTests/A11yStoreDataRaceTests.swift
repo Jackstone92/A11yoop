@@ -1,6 +1,6 @@
 //
 //  A11yStoreDataRaceTests.swift
-//  Copyright © 2022 Notonthehighstreet Enterprises Limited. All rights reserved.
+//  Created by Jack Stone in 2022.
 //
 
 import XCTest
