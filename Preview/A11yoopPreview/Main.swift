@@ -1,10 +1,10 @@
 //
 //  Main.swift
-//  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
+//  Created by Jack Stone in 2021.
 //
 
 import SwiftUI
-import A11yFeature
+import A11yoopMonitor
 
 struct Main: View {
 

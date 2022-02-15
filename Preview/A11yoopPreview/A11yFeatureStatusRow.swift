@@ -1,11 +1,11 @@
 //
 //  A11yFeatureStatusRow.swift
-//  Copyright © 2021 Notonthehighstreet Enterprises Limited. All rights reserved.
+//  Created by Jack Stone in 2021.
 //
 
 import SwiftUI
 import Combine
-import A11yFeature
+import A11yoopMonitor
 
 struct A11yFeatureStatusRow: View {
 
