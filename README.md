@@ -19,7 +19,7 @@ It is worth mentioning that any data tracked by `A11yoopMonitor` is completely a
 
 When you instantiate `A11yoopMonitor`, you have the option to specify which accessibility features you want to monitor. These can either be chosen by you or can be omitted and all observable accessibility features will be monitored by default.
 ```swift
-import A11yoop
+import A11yoopMonitor
 
 final class MyClass {
 
@@ -122,7 +122,7 @@ import PackageDescription
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/Jackstone92/A11yoop", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/Jackstone92/A11yoop", .upToNextMajor(from: "3.1.0")),
     ],
     ...
     targets: [

@@ -5,10 +5,6 @@
 
 import XCTest
 import CombineSchedulers
-import A11yFeature
-import A11yStatusEmitter
-import A11yMonitor
-import A11yStatusProvider
 @testable import A11yoopMonitor
 
 final class A11yoopMonitorTests: XCTestCase {

@@ -5,7 +5,7 @@
 
 import SwiftUI
 import Combine
-import A11yFeature
+import A11yoopMonitor
 
 struct A11yFeatureStatusRow: View {
 
