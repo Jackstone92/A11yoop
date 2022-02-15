@@ -18,7 +18,7 @@ var package = Package(
     targets: [
         .target(
             name: "A11yoopMonitor",
-            dependencies: ["A11yMonitorLive", .product(name: "CombineSchedulers", package: "combine-schedulers")]),
+            dependencies: [.product(name: "CombineSchedulers", package: "combine-schedulers")]),
         .testTarget(
             name: "A11yoopMonitorTests",
             dependencies: ["A11yoopMonitor"]),
@@ -27,71 +27,3 @@ var package = Package(
             dependencies: ["A11yoopMonitor"])
     ]
 )
-
-// MARK: - Features
-package.targets.append(contentsOf: [
-    .target(
-        name: "A11yFeature",
-        dependencies: []),
-    .testTarget(
-        name: "A11yFeatureTests",
-        dependencies: ["A11yFeature"])
-])
-
-// MARK: - Clients
-package.targets.append(contentsOf: [
-    .target(
-        name: "A11yMonitor",
-        dependencies: ["A11yFeature"]),
-    .target(
-        name: "A11yMonitorLive",
-        dependencies: ["A11yMonitor", "A11yStatusObserverLive", "A11yStatusEmitterLive", "A11yStatusProviderLive"]),
-    .testTarget(
-        name: "A11yMonitorTests",
-        dependencies: ["A11yMonitorLive"]),
-
-    .target(
-        name: "A11yStatusEmitter",
-        dependencies: ["A11yFeature"]),
-    .target(
-        name: "A11yStatusEmitterLive",
-        dependencies: ["A11yStatusEmitter"]),
-    .testTarget(
-        name: "A11yStatusEmitterTests",
-        dependencies: ["A11yStatusEmitterLive"]),
-
-    .target(
-        name: "A11yStore",
-        dependencies: ["A11yFeature"]),
-    .target(
-        name: "A11yStoreLive",
-        dependencies: ["A11yStore"]),
-    .testTarget(
-        name: "A11yStoreTests",
-        dependencies: ["A11yStoreLive"]),
-
-    .target(
-        name: "A11yStatusObserver",
-        dependencies: ["A11yFeature", "A11yStatusEmitter"]),
-    .target(
-        name: "A11yStatusObserverLive",
-        dependencies: [
-            "A11yStatusObserver",
-            "A11yStoreLive",
-            "A11yStatusProviderLive",
-            .product(name: "CombineSchedulers", package: "combine-schedulers")
-        ]),
-    .testTarget(
-        name: "A11yStatusObserverTests",
-        dependencies: ["A11yStatusObserverLive"]),
-
-    .target(
-        name: "A11yStatusProvider",
-        dependencies: ["A11yFeature"]),
-    .target(
-        name: "A11yStatusProviderLive",
-        dependencies: ["A11yFeature", "A11yStatusProvider"]),
-    .testTarget(
-        name: "A11yStatusProviderTests",
-        dependencies: ["A11yStatusProviderLive"])
-])

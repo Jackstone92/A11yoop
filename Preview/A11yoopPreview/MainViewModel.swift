@@ -5,7 +5,6 @@
 
 import Foundation
 import Combine
-import A11yFeature
 import A11yoopMonitor
 
 final class MainViewModel: ObservableObject {
